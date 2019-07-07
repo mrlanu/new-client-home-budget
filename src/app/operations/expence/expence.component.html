@@ -1,10 +1,87 @@
-<div>
-  <form>
-    <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control form-control-sm" id="inputEmail3" placeholder="Email">
+<div class="expense-component">
+  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="date" class="col-sm-2 col-form-label">Date</label>
+      <div class="col-sm-12">
+        <div class="input-group">
+          <input class="form-control form-control-sm" placeholder="yyyy-mm-dd"
+                 name="date" id="date" formControlName="date" ngbDatepicker #d2="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category" class="col-sm-2">Category</label>
+      <div class="col-sm-12">
+        <select class="form-control form-control-sm" formControlName="category" id="category">
+          <option *ngFor="let account of accounts" [value]="account.id">
+            {{account.type}} / {{account.name}}
+          </option>
+          <option>
+            <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">
+              <a style="cursor: pointer">Add</a>
+            </div>
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="subCategory" class="col-sm-2">Subcategory</label>
+      <div class="col-sm-12">
+        <select class="form-control form-control-sm" formControlName="subcategory" id="subCategory">
+          <option *ngFor="let account of accounts" [value]="account.id">
+            {{account.type}} / {{account.name}}
+          </option>
+          <option>
+            <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">
+              <a style="cursor: pointer">Add</a>
+            </div>
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="acc" class="col-sm-2">Account</label>
+      <div class="col-sm-12">
+        <select class="form-control form-control-sm" formControlName="account" id="acc">
+          <option *ngFor="let account of accounts" [value]="account.id">
+            {{account.type}} / {{account.name}}
+          </option>
+          <option>
+            <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">
+              <a style="cursor: pointer">Add</a>
+            </div>
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="amount" class="col-sm-2">Amount</label>
+      <div class="col-sm-12">
+        <input type="number" class="form-control form-control-sm"
+               id="amount" placeholder="Amount" formControlName="amount">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="col-sm-2">Description</label>
+      <div class="col-sm-12">
+        <input type="text" class="form-control form-control-sm"
+               id="description" placeholder="Description" formControlName="description">
+      </div>
+    </div>
+
+    <hr>
+    <div style="text-align: center">
+      <button type="submit" class="btn btn-primary btn-sm"
+              [disabled]="expenseForm.invalid || expenseForm.untouched">SAVE EXPENSE</button>
     </div>
   </form>
 </div>

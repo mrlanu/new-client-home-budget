@@ -1,26 +1,30 @@
-<div class="my-wrapper">
-  <ul class="nav nav-tabs" style="padding-left: 85px" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Expense</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Income</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Transfer</a>
-    </li>
-  </ul>
-  <div class="my-border">
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <app-expence></app-expence>
-      </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <app-income></app-income>
-      </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <app-transfer></app-transfer>
-      </div>
-    </div>
-  </div>
+<div class="container my-wrapper">
+
+  <ngb-tabset justify="center">
+
+    <ngb-tab title="Expense">
+      <ng-template ngbTabContent>
+        <div class="my-border">
+          <app-expence></app-expence>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Income">
+      <ng-template ngbTabContent>
+        <div class="my-border">
+          <app-income></app-income>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab title="Transfer">
+      <ng-template ngbTabContent>
+        <div class="my-border">
+          <app-transfer></app-transfer>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+
 </div>
