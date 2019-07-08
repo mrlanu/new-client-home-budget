@@ -1,0 +1,20 @@
+a {
+  text-decoration: none;
+  display: block;
+}
+
+.my-wrapper {
+  padding: 20px;
+  width: 370px;
+  height: 500px;
+  margin-top: 5vh;
+  border: 1px solid lightgrey;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.acc-names {
+  padding: 10px;
+  margin-left: 30px;
+}
+

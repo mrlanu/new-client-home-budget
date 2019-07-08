@@ -9,6 +9,8 @@ import {IncomeComponent} from './operations/income/income.component';
 import {TransferComponent} from './operations/transfer/transfer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SummaryComponent } from './summary/summary.component';
+import { CollapseShowDirective } from './shared/collapse-show.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ExpenceComponent,
     OperationsComponent,
     IncomeComponent,
-    TransferComponent
+    TransferComponent,
+    SummaryComponent,
+    CollapseShowDirective
   ],
   imports: [
     BrowserModule,

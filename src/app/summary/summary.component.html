@@ -1,0 +1,16 @@
+<div class="my-wrapper">
+  <div class="accordion" id="accordionExample">
+    <div class="test" *ngFor="let i of accountsGroups; let j = index;">
+      <a class="" data-toggle="collapse" [href]="'#' + i.name" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <div style="padding: 10px;display: inline-block">{{ i.name }}</div>
+        <div style="display: inline-block;width: 100%" class="text-right">{{ i.balance }}</div>
+      </a>
+
+      <div [id]="i.name" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="acc-names" *ngFor="let k of i.accountList">
+          {{ k.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
