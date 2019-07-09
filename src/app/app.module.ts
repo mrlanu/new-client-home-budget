@@ -3,33 +3,40 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ExpenceComponent} from './operations/expence/expence.component';
+import {ExpenseComponent} from './operations/expense/expense.component';
 import {OperationsComponent} from './operations/operations.component';
 import {IncomeComponent} from './operations/income/income.component';
 import {TransferComponent} from './operations/transfer/transfer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { SummaryComponent } from './summary/summary.component';
-import { CollapseShowDirective } from './shared/collapse-show.directive';
+import {SummaryComponent} from './summary/summary.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {TestGridComponent} from './test-grid/test-grid.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {OperationsService} from './services/operations.service';
+import {SummariesService} from './services/summaries.service';
+import {AuthInterceptor} from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExpenceComponent,
+    ExpenseComponent,
     OperationsComponent,
     IncomeComponent,
     TransferComponent,
     SummaryComponent,
-    CollapseShowDirective
+    TestGridComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [OperationsService, SummariesService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

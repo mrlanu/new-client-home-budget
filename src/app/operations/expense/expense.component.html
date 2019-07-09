@@ -17,9 +17,9 @@
     <div class="form-group">
       <label for="category" class="col-sm-2">Category</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="category" id="category">
-          <option *ngFor="let account of accounts" [value]="account.id">
-            {{account.type}} / {{account.name}}
+        <select class="form-control form-control-sm" formControlName="category" id="category" (change)="onSelectCategory($event.target.value)">
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
           </option>
           <option>
             <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">
@@ -33,9 +33,9 @@
     <div class="form-group">
       <label for="subCategory" class="col-sm-2">Subcategory</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="subcategory" id="subCategory">
-          <option *ngFor="let account of accounts" [value]="account.id">
-            {{account.type}} / {{account.name}}
+        <select class="form-control form-control-sm" formControlName="subCategory" id="subCategory">
+          <option *ngFor="let sub of subcategories" [value]="sub.id">
+            {{sub.name}}
           </option>
           <option>
             <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">

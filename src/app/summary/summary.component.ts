@@ -1,33 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GroupAccount} from '../models/group-account.model';
-import {Account} from '../models/account.model';
+import {Subscription} from 'rxjs';
+import {SummariesService} from '../services/summaries.service';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent implements OnInit, OnDestroy {
 
-  accountsSaving: Account[] = [
-    {id: 1, name: 'Chase', type: 'Saving', includeInTotal: true, balance: 555.67, currency: 'USD', initialBalance: 0},
-    {id: 2, name: 'BofA', type: 'Saving', includeInTotal: true, balance: 200.00, currency: 'USD', initialBalance: 0}
+  summaryTotal = 0;
+  accountsGroups: GroupAccount[] = [];
+  componentSubs: Subscription[] = [];
 
-  ];
-
-  accountsCash: Account[] = [
-    {id: 3, name: 'Pocket', type: 'Cash', includeInTotal: true, balance: 100.00, currency: 'USD', initialBalance: 0},
-    {id: 4, name: 'Nichka', type: 'Cash', includeInTotal: true, balance: 200.00, currency: 'USD', initialBalance: 0}
-
-  ];
-  accountsGroups: GroupAccount[] = [
-    {name: 'Saving', accountList: this.accountsSaving, balance: 755.67},
-    {name: 'Cash', accountList: this.accountsCash, balance: 300.00}
-  ];
-
-  constructor() { }
+  constructor(private summariesService: SummariesService) { }
 
   ngOnInit() {
+    this.componentSubs.push(this.summariesService.groupsChanged
+      .subscribe((groups: GroupAccount[]) => {
+        this.accountsGroups = groups;
+        this.getSummaryTotal();
+    }));
+    this.summariesService.getSummaryByAccounts();
+  }
+
+  private getSummaryTotal() {
+    this.accountsGroups.forEach(group => {
+      group.accountList.forEach(acc => {
+        if (acc.includeInTotal) {
+          this.summaryTotal += acc.balance;
+        }
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.componentSubs.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AccountModel} from '../expence/expence.component';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import {Account} from '../../models/account.model';
 
 @Component({
   selector: 'app-transfer',
@@ -11,7 +11,7 @@ import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 })
 export class TransferComponent implements OnInit {
 
-  accounts: AccountModel[] = [{id: 1, name: 'Chase', type: 'Saving'}, {id: 2, name: 'BofA', type: 'Saving'}];
+  accounts: Account[] = [];
   expenseForm: FormGroup;
 
   ngOnInit(): void {

@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: 'http://localhost:2019',
+  authUrl: 'http://localhost:8087',
+  // baseUrl: 'https://lanu-home-budget.herokuapp.com',
+  budgetId: 1
 };
 
 /*
