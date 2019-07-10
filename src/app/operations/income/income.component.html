@@ -1,14 +1,18 @@
 <div class="expense-component">
-  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="incomeForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
       <label for="date" class="col-sm-2 col-form-label">Date</label>
       <div class="col-sm-12">
         <div class="input-group">
           <input class="form-control form-control-sm" placeholder="yyyy-mm-dd"
-                 name="date" id="date" formControlName="date" ngbDatepicker #d2="ngbDatepicker">
+                 name="date" id="date" formControlName="date" ngbDatepicker #d2="ngbDatepicker"
+                 [ngClass]="{'is-invalid': incomeForm.get('date').invalid && incomeForm.get('date').touched}">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+          </div>
+          <div *ngIf="incomeForm.get('date').invalid && incomeForm.get('date').touched" class="invalid-feedback">
+            Date is required.
           </div>
         </div>
       </div>
@@ -17,9 +21,10 @@
     <div class="form-group">
       <label for="category" class="col-sm-2">Category</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="category" id="category">
-          <option *ngFor="let account of accounts" [value]="account.id">
-            {{account.type}} / {{account.name}}
+        <select class="form-control form-control-sm" formControlName="category" id="category" (change)="onSelectCategory($event.target.value)"
+                [ngClass]="{'is-invalid': incomeForm.get('category').invalid && incomeForm.get('category').touched}">
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
           </option>
           <option>
             <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">
@@ -27,15 +32,19 @@
             </div>
           </option>
         </select>
+        <div *ngIf="incomeForm.get('category').invalid && incomeForm.get('category').touched" class="invalid-feedback">
+          Category is required.
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="subCategory" class="col-sm-2">Subcategory</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="subcategory" id="subCategory">
-          <option *ngFor="let account of accounts" [value]="account.id">
-            {{account.type}} / {{account.name}}
+        <select class="form-control form-control-sm" formControlName="subCategory" id="subCategory"
+                [ngClass]="{'is-invalid': incomeForm.get('subCategory').invalid && incomeForm.get('subCategory').touched}">
+          <option *ngFor="let sub of subcategories" [value]="sub.id">
+            {{sub.name}}
           </option>
           <option>
             <div fxLayout="row" fxLayoutAlign="center" (click)="onAddAccount()">
@@ -43,13 +52,17 @@
             </div>
           </option>
         </select>
+        <div *ngIf="incomeForm.get('subCategory').invalid && incomeForm.get('subCategory').touched" class="invalid-feedback">
+          Subcategory is required.
+        </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="acc" class="col-sm-2">Account</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="account" id="acc">
+        <select class="form-control form-control-sm" formControlName="account" id="acc"
+                [ngClass]="{'is-invalid': incomeForm.get('account').invalid && incomeForm.get('account').touched}">
           <option *ngFor="let account of accounts" [value]="account.id">
             {{account.type}} / {{account.name}}
           </option>
@@ -59,6 +72,9 @@
             </div>
           </option>
         </select>
+        <div *ngIf="incomeForm.get('account').invalid && incomeForm.get('account').touched" class="invalid-feedback">
+          Account is required.
+        </div>
       </div>
     </div>
 
@@ -66,7 +82,11 @@
       <label for="amount" class="col-sm-2">Amount</label>
       <div class="col-sm-12">
         <input type="number" class="form-control form-control-sm"
-               id="amount" placeholder="Amount" formControlName="amount">
+               id="amount" placeholder="Amount" formControlName="amount"
+               [ngClass]="{'is-invalid': incomeForm.get('amount').invalid && incomeForm.get('amount').touched}">
+        <div *ngIf="incomeForm.get('amount').invalid && incomeForm.get('amount').touched" class="invalid-feedback">
+          Amount is required.
+        </div>
       </div>
     </div>
 
@@ -81,7 +101,7 @@
     <hr>
     <div style="text-align: center">
       <button type="submit" class="btn btn-primary btn-sm"
-              [disabled]="expenseForm.invalid || expenseForm.untouched">SAVE EXPENSE</button>
+              [disabled]="incomeForm.invalid || incomeForm.untouched">SAVE INCOME</button>
     </div>
   </form>
 </div>
