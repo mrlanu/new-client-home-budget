@@ -50,12 +50,12 @@ export class ExpenseComponent implements OnInit {
 
   private initForm() {
     this.expenseForm = new FormGroup({
-      date: new FormControl(new Date()),
+      date: new FormControl(new Date(), Validators.required),
       type: new FormControl('EXPENSE'),
-      amount: new FormControl(0.0),
-      account: new FormControl('Account...'),
+      amount: new FormControl(null, Validators.required),
+      account: new FormControl(null, Validators.required),
       category: new FormControl(null, Validators.required),
-      subCategory: new FormControl(),
+      subCategory: new FormControl(null, Validators.required),
       description: new FormControl()
     });
     this.expenseForm.controls['subCategory'].disable();
