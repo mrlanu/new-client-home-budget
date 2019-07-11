@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import {Subscription} from 'rxjs';
@@ -13,7 +13,7 @@ import {Account} from '../../models/account.model';
   styleUrls: ['./expense.component.css'],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
-export class ExpenseComponent implements OnInit {
+export class ExpenseComponent implements OnInit, OnDestroy {
 
   expenseForm: FormGroup;
 
@@ -91,6 +91,12 @@ export class ExpenseComponent implements OnInit {
         // this.summaryService.getBrief();
         // this.router.navigate(['main', 'dashboard', 'summaries']);
       }));
+  }
+
+  ngOnDestroy(): void {
+    this.componentSubs.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 
 }

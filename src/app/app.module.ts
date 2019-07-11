@@ -16,6 +16,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OperationsService} from './services/operations.service';
 import {SummariesService} from './services/summaries.service';
 import {AuthInterceptor} from './services/auth.interceptor';
+import { TransactionsListComponent } from './transactions-list/transactions-list.component';
+import {TransactionsService} from './services/transactions.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import {AuthInterceptor} from './services/auth.interceptor';
     TransferComponent,
     SummaryComponent,
     TestGridComponent,
+    TransactionsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import {AuthInterceptor} from './services/auth.interceptor';
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [OperationsService, SummariesService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [OperationsService, SummariesService, TransactionsService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
