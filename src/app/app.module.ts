@@ -16,9 +16,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UtilityService} from './services/utility.service';
 import {SummariesService} from './services/summaries.service';
 import {AuthInterceptor} from './services/auth.interceptor';
-import { TransactionsListComponent } from './transactions-list/transactions-list.component';
+import {TransactionsListComponent} from './transactions-list/transactions-list.component';
 import {TransactionsService} from './services/transactions.service';
-import { SortableDirective } from './transactions-list/sortable.directive';
+import {SortableDirective} from './transactions-list/sortable.directive';
+import {SidebarComponent} from './navigation/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SortableDirective } from './transactions-list/sortable.directive';
     TestGridComponent,
     TransactionsListComponent,
     SortableDirective,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
