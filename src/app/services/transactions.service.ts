@@ -37,8 +37,8 @@ function sort(transactions: TransactionView[], column: string, direction: string
 
 function matches(transaction: TransactionView, term: string) {
   return transaction.category.toLowerCase().includes(term)
-    || transaction.subCategory.includes(term)
-    || transaction.account.includes(term);
+    || transaction.subCategory.toLowerCase().includes(term)
+    || transaction.account.toLowerCase().includes(term);
 }
 
 @Injectable()
