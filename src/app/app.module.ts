@@ -13,7 +13,7 @@ import {SummaryComponent} from './summary/summary.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {TestGridComponent} from './test-grid/test-grid.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {OperationsService} from './services/operations.service';
+import {UtilityService} from './services/utility.service';
 import {SummariesService} from './services/summaries.service';
 import {AuthInterceptor} from './services/auth.interceptor';
 import { TransactionsListComponent } from './transactions-list/transactions-list.component';
@@ -41,7 +41,7 @@ import { SortableDirective } from './transactions-list/sortable.directive';
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [OperationsService, SummariesService, TransactionsService,
+  providers: [UtilityService, SummariesService, TransactionsService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

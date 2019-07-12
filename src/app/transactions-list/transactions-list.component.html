@@ -1,7 +1,7 @@
-<div class="container my-wrapper">
+<div class="my-wrapper">
   <form>
     <div class="form-group form-inline table__search">
-      Search: <input class="form-control form-control-sm ml-2" type="text" name="searchTerm" [(ngModel)]="transactionsService.searchTerm" />
+      Search: <input class="form-control form-control-sm ml-2 mr-4" type="text" name="searchTerm" [(ngModel)]="transactionsService.searchTerm" />
       <span class="ml-3" *ngIf="transactionsService.loading$ | async">Loading...</span>
     </div>
 

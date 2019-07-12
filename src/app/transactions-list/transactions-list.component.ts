@@ -27,7 +27,6 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.componentSubs.push(this.transactionsService.transactionsListChanged
       .subscribe((transitions: TransactionView[]) => {
-        console.log(transitions);
         this.transactionsList = transitions;
       }));
     this.transactionsService.getAllTransactions(new Date());

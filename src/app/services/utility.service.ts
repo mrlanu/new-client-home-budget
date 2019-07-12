@@ -5,10 +5,9 @@ import {Category} from '../models/category.model';
 import {Subject} from 'rxjs';
 import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
-import {Transaction} from '../models/transaction.model';
 
 @Injectable()
-export class OperationsService {
+export class UtilityService {
 
   baseUrl = environment.baseUrl;
   accountsChanged = new Subject<Account[]>();
@@ -16,11 +15,6 @@ export class OperationsService {
   subcategoryChanged = new Subject<Subcategory[]>();
 
   constructor(private httpClient: HttpClient) { }
-
-  createTransaction(transaction: Transaction) {
-    const url = `${this.baseUrl}/transactions`;
-    return this.httpClient.post(url, transaction);
-  }
 
   getAllAccounts() {
     const url = `${this.baseUrl}/accounts`;

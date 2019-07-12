@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {TransactionView} from '../models/transaction-view.model';
 import {SortDirection} from '../transactions-list/sortable.directive';
 import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
+import {Transaction} from '../models/transaction.model';
 
 interface SearchResult {
   transactions: TransactionView[];
@@ -44,6 +45,7 @@ function matches(transaction: TransactionView, term: string) {
 export class TransactionsService {
 
   baseUrl = environment.baseUrl;
+  transactionAdded = new Subject<TransactionView>();
   transactionsList: TransactionView[] = [];
   transactionsListChanged = new Subject<TransactionView[]>();
 
@@ -75,14 +77,23 @@ export class TransactionsService {
     this._search$.next();
   }
 
+  createTransaction(transaction: Transaction) {
+    const url = `${this.baseUrl}/transactions`;
+    this.httpClient.post(url, transaction)
+      .subscribe((trans: TransactionView) => {
+      this.transactionAdded.next(trans);
+      this.getAllTransactions(new Date());
+    });
+  }
+
   getAllTransactions(date: Date) {
     const url = `${this.baseUrl}/transactions`;
     const params = new HttpParams().set('date', date.toString());
     this.httpClient.get<TransactionView[]>(url, { params })
       .subscribe(trans => {
         this.transactionsList = trans;
-        this._search$.next();
         this.transactionsListChanged.next(trans);
+        this._search$.next();
     });
   }
 

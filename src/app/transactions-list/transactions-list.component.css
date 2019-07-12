@@ -8,6 +8,7 @@ td {
 
 .table__search {
   font-size: 14px;
+  margin-left: 20px;
 }
 
 @media (min-width: 40rem) {

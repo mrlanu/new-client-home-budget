@@ -2,10 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import {Subscription} from 'rxjs';
-import {OperationsService} from '../../services/operations.service';
+import {UtilityService} from '../../services/utility.service';
 import {Category} from '../../models/category.model';
 import {Subcategory} from '../../models/subcategory.model';
 import {Account} from '../../models/account.model';
+import {TransactionsService} from '../../services/transactions.service';
 
 @Component({
   selector: 'app-expense',
@@ -25,27 +26,33 @@ export class ExpenseComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
 
-  constructor(private operationsService: OperationsService) {}
+  constructor(private utilityService: UtilityService, private transactionsService: TransactionsService) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.componentSubs.push(this.operationsService.accountsChanged
+    this.componentSubs.push(this.utilityService.accountsChanged
       .subscribe((accounts: Account[]) => {
         this.accounts = accounts;
       }));
-    this.componentSubs.push(this.operationsService.categoryChanged
+    this.componentSubs.push(this.utilityService.categoryChanged
       .subscribe((categories: Category[]) => {
-        console.log(categories);
         this.categories = categories.filter(category => {
           return category.type === this.typeCategory;
         });
       }));
-    this.componentSubs.push(this.operationsService.subcategoryChanged
+    this.componentSubs.push(this.utilityService.subcategoryChanged
       .subscribe((subcategories: Subcategory[]) => {
         this.subcategories = subcategories;
       }));
-    this.operationsService.getAllCategories();
-    this.operationsService.getAllAccounts();
+    this.componentSubs.push(this.transactionsService.transactionAdded
+      .subscribe(trans => {
+        this.expenseForm.reset({'date': new Date(), 'type': 'EXPENSE'});
+        // this.uiService.openSnackBar(`${trans.type} has been created`, null, 5000);
+        // this.summaryService.getBrief();
+        // this.router.navigate(['main', 'dashboard', 'summaries']);
+      }));
+    this.utilityService.getAllCategories();
+    this.utilityService.getAllAccounts();
   }
 
   private initForm() {
@@ -65,7 +72,7 @@ export class ExpenseComponent implements OnInit, OnDestroy {
     // check if button hasn't been clicked
     if (categoryId) {
       this.selectedCategoryId = categoryId;
-      this.operationsService.getAllSubcategories(categoryId);
+      this.utilityService.getAllSubcategories(categoryId);
       this.expenseForm.controls['subCategory'].enable();
     }
   }
@@ -84,13 +91,7 @@ export class ExpenseComponent implements OnInit, OnDestroy {
     this.expenseForm.patchValue({amount: -this.expenseForm.value.amount});
     this.expenseForm.patchValue({account: acc, category: cat, subCategory: subcat});
     console.log(this.expenseForm.value);
-    this.componentSubs.push(this.operationsService.createTransaction(this.expenseForm.value)
-      .subscribe(transaction => {
-        this.expenseForm.reset({'date': new Date(), 'type': 'EXPENSE'});
-        // this.uiService.openSnackBar('Expense has been created', null, 5000);
-        // this.summaryService.getBrief();
-        // this.router.navigate(['main', 'dashboard', 'summaries']);
-      }));
+    this.transactionsService.createTransaction(this.expenseForm.value);
   }
 
   ngOnDestroy(): void {
