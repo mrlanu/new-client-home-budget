@@ -1,9 +1,23 @@
-table {
-  font-size: 13px;
-}
-
 td {
   cursor: pointer;
+}
+
+.table-decorator {
+  font-size: 11px;
+}
+
+.table__search {
+  font-size: 14px;
+}
+
+@media (min-width: 40rem) {
+  .table-decorator {
+    font-size: 14px;
+  }
+
+  .table__search {
+    font-size: 14px;
+  }
 }
 
 .custom-select {

@@ -29,7 +29,6 @@ export class OperationsService {
     });
   }
 
-
   getAllCategories() {
     const url = `${this.baseUrl}/categories`;
     this.httpClient.get(url)
