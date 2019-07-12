@@ -16,8 +16,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {OperationsService} from './services/operations.service';
 import {SummariesService} from './services/summaries.service';
 import {AuthInterceptor} from './services/auth.interceptor';
-import { TransactionsListComponent } from './transactions-list/transactions-list.component';
+import { TransactionsListComponent } from './operations/transactions-list/transactions-list.component';
 import {TransactionsService} from './services/transactions.service';
+import { SortableDirective } from './operations/transactions-list/sortable.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {TransactionsService} from './services/transactions.service';
     SummaryComponent,
     TestGridComponent,
     TransactionsListComponent,
+    SortableDirective,
   ],
   imports: [
     BrowserModule,
