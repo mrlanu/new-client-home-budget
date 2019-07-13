@@ -20,6 +20,7 @@ import {TransactionsListComponent} from './transactions-list/transactions-list.c
 import {TransactionsService} from './services/transactions.service';
 import {SortableDirective} from './transactions-list/sortable.directive';
 import {SidebarComponent} from './navigation/sidebar/sidebar.component';
+import {BriefComponent} from './brief/brief.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {SidebarComponent} from './navigation/sidebar/sidebar.component';
     TestGridComponent,
     TransactionsListComponent,
     SortableDirective,
-    SidebarComponent
+    SidebarComponent,
+    BriefComponent
   ],
   imports: [
     BrowserModule,

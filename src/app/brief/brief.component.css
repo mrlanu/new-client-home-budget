@@ -1,0 +1,38 @@
+.my__container {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  z-index: 2000;
+  background: #465181;
+  color: whitesmoke;
+  font-weight: bold;
+  height: 46px;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #263238;
+}
+
+.klin {
+  height: 86px;
+}
+
+@media (min-width: 68rem) {
+  .my__container {
+    top: 0;
+    right: 50px;
+    height: 56px;
+    width: 600px;
+    font-size: 18px;
+  }
+
+  .klin {
+    height: 56px;
+  }
+}
+
+/*.item:hover {
+  font-size: 26px;
+  cursor: none;
+}*/
+
