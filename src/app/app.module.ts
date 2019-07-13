@@ -9,7 +9,6 @@ import {IncomeComponent} from './operations/income/income.component';
 import {TransferComponent} from './operations/transfer/transfer.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SummaryComponent} from './summary/summary.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {TestGridComponent} from './test-grid/test-grid.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -21,7 +20,10 @@ import {TransactionsService} from './services/transactions.service';
 import {SortableDirective} from './transactions-list/sortable.directive';
 import {SidebarComponent} from './navigation/sidebar/sidebar.component';
 import {BriefComponent} from './brief/brief.component';
-import { HeaderComponent } from './navigation/header/header.component';
+import {HeaderComponent} from './navigation/header/header.component';
+import {SummaryAccComponent} from './summary/summary-acc/summary-acc.component';
+import { SummaryComponent } from './summary/summary.component';
+import { SummaryExpIncComponent } from './summary/summary-exp-inc/summary-exp-inc.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { HeaderComponent } from './navigation/header/header.component';
     OperationsComponent,
     IncomeComponent,
     TransferComponent,
-    SummaryComponent,
     TestGridComponent,
     TransactionsListComponent,
     SortableDirective,
     SidebarComponent,
     BriefComponent,
-    HeaderComponent
+    HeaderComponent,
+    SummaryAccComponent,
+    SummaryComponent,
+    SummaryExpIncComponent
   ],
   imports: [
     BrowserModule,

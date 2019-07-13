@@ -1,0 +1,23 @@
+<div class="view-port">
+  <div class="accordion" id="accordion">
+    <div class="test" *ngFor="let i of accountsGroups; let j = index;">
+        <a fxLayout="row" fxLayoutAlign="space-between" class="" data-toggle="collapse" [href]="'#' + i.name"
+           role="button" aria-expanded="false" aria-controls="collapse">
+          <div style="padding: 10px">{{ i.name }}</div>
+          <div style="padding: 10px">{{ i.balance | currency}}</div>
+        </a>
+
+        <div [id]="i.name" class="collapse">
+          <div class="acc-names" *ngFor="let k of i.accountList" fxLayout="row" fxLayoutAlign="space-between">
+            <div style="padding: 10px">{{ k.name }}</div>
+            <div style="padding: 10px">{{ k.balance | currency}}</div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <hr class="summary__hr">
+</div>
+<div class="summary__container--total" fxLayout="row" fxLayoutAlign="space-between">
+  <div>Total:</div>
+  <div><strong>{{ summaryTotal | currency }}</strong></div>
+</div>

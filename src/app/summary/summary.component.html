@@ -1,26 +1,30 @@
 <div class="my-wrapper">
-  <div class="view-port">
-    <div class="accordion" id="accordion">
-      <div class="test" *ngFor="let i of accountsGroups; let j = index;">
-        <a fxLayout="row" fxLayoutAlign="space-between" class="" data-toggle="collapse" [href]="'#' + i.name"
-           role="button" aria-expanded="false" aria-controls="collapse">
-          <div style="padding: 10px">{{ i.name }}</div>
-          <div style="padding: 10px">{{ i.balance | currency}}</div>
-        </a>
 
-        <div [id]="i.name" class="collapse">
-          <div class="acc-names" *ngFor="let k of i.accountList" fxLayout="row" fxLayoutAlign="space-between">
-            <div style="padding: 10px">{{ k.name }}</div>
-            <div style="padding: 10px">{{ k.balance | currency}}</div>
-          </div>
+  <ngb-tabset justify="center">
+
+    <ngb-tab id="tab_1" title="Accounts">
+      <ng-template ngbTabContent>
+        <div class="my-border">
+          <app-summary-acc></app-summary-acc>
         </div>
-      </div>
-    </div>
+      </ng-template>
+    </ngb-tab>
 
-  </div>
-  <hr class="summary__hr">
-  <div class="summary__container--total" fxLayout="row" fxLayoutAlign="space-between">
-    <div>Total:</div>
-    <div><strong>{{ summaryTotal | currency }}</strong></div>
-  </div>
+    <ngb-tab id="tab_2" title="Expenses">
+      <ng-template ngbTabContent>
+        <div class="my-border">
+          <app-summary-exp-inc typeOfTransactions="EXPENSE"></app-summary-exp-inc>
+        </div>
+      </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="tab_3" title="Incomes">
+      <ng-template ngbTabContent>
+        <div class="my-border">
+          <app-summary-exp-inc typeOfTransactions="INCOME"></app-summary-exp-inc>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+
 </div>

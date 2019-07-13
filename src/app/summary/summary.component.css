@@ -1,36 +1,14 @@
-a {
-  text-decoration: none;
-  display: block;
+.my-wrapper {
+  width: 340px;
+  margin-top: 5vh;
 }
 
-.my-wrapper {
-  position: relative;
-  margin-top: 5vh;
-  padding: 20px;
-  width: 340px;
-  height: 595px;
+.my-border {
+  height: 550px;
+  padding: 20px 20px 20px 20px;
   border: 1px solid lightgrey;
-  border-radius: 7px;
+  border-top: none;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-.view-port {
-  height: 480px;
-  overflow-y: auto;
-}
-
-.summary__container--total {
-  height: 110px;
-  padding: 45px 15px;
-}
-
-.acc-names {
-  margin-left: 20px;
-}
-
-.summary__hr {
-  width: 300px;
-  position: absolute;
-  bottom: 50px;
-}
-

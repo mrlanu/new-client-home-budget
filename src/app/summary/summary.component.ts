@@ -1,6 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GroupAccount} from '../models/group-account.model';
-import {Subscription} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import {SummariesService} from '../services/summaries.service';
 
 @Component({
@@ -8,37 +6,25 @@ import {SummariesService} from '../services/summaries.service';
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
-export class SummaryComponent implements OnInit, OnDestroy {
-
-  summaryTotal = 0;
-  accountsGroups: GroupAccount[] = [];
-  componentSubs: Subscription[] = [];
+export class SummaryComponent implements OnInit {
 
   constructor(private summariesService: SummariesService) { }
 
   ngOnInit() {
-    this.componentSubs.push(this.summariesService.groupsChanged
-      .subscribe((groups: GroupAccount[]) => {
-        this.accountsGroups = groups;
-        this.getSummaryTotal();
-    }));
-    this.summariesService.getSummaryByAccounts();
   }
 
-  private getSummaryTotal() {
-    this.accountsGroups.forEach(group => {
-      group.accountList.forEach(acc => {
-        if (acc.includeInTotal) {
-          this.summaryTotal += acc.balance;
-        }
-      });
-    });
+  onTest(ev){
+    console.log(ev);
   }
 
-  ngOnDestroy(): void {
-    this.componentSubs.forEach(sub => {
-      sub.unsubscribe();
-    });
-  }
+  /*onTabChange(event) {
+    if (event === 1) {
+      this.summariesService.getSummaryByCategories(new Date(), this.tabs[event]);
+    } else if (event === 2) {
+      this.summaryService.getSummaryByCategories(new Date(), this.tabs[event]);
+    } else {
+      this.summaryService.getSummaryByAccount();
+    }
+  }*/
 
 }
