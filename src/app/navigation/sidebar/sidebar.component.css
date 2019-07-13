@@ -25,9 +25,36 @@ ul ul a {
   background: #6d7fcc;
 }
 
-a[data-toggle="collapse"] {
-  position: relative;
+.btn {
+  width: 56px;
+  height: 40px;
 }
+
+.gap {
+  height: 90px;
+}
+
+@media (min-width: 41rem) {
+  .gap {
+    height: 60px;
+  }
+}
+
+.btn {
+  width: 56px;
+  height: 40px;
+}
+
+.shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 800;
+  background: rgba(0, 0, 0, 0.65);
+  width: 100vw;
+  height: 100vh;
+}
+
 
 .main-wrapper {
   height: 100%;
@@ -47,15 +74,7 @@ a[data-toggle="collapse"] {
 }
 
 #sidebar.active {
-  margin-left: -250px;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+  margin-left: 0;
 }
 
 @media (max-width: 768px) {
@@ -69,6 +88,11 @@ a[data-toggle="collapse"] {
 
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
+  position: fixed;
+  top: 56px;
+  left: 0;
+  z-index: 900;
+  margin-left: -250px;
   min-width: 250px;
   max-width: 250px;
   min-height: 100vh;
