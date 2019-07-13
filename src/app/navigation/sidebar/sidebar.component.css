@@ -30,16 +30,6 @@ ul ul a {
   height: 40px;
 }
 
-.gap {
-  height: 90px;
-}
-
-@media (min-width: 41rem) {
-  .gap {
-    height: 60px;
-  }
-}
-
 .btn {
   width: 56px;
   height: 40px;
@@ -55,41 +45,10 @@ ul ul a {
   height: 100vh;
 }
 
-
-.main-wrapper {
-  height: 100%;
-}
-
-.wrapper {
-  display: flex;
-  align-items: stretch;
-}
-
-.nav__main {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 1000;
-  width: 100%;
-}
-
-#sidebar.active {
-  margin-left: 0;
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-}
-
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
   position: fixed;
-  top: 56px;
+  top: 100px;
   left: 0;
   z-index: 900;
   margin-left: -250px;
@@ -99,6 +58,18 @@ ul ul a {
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: 0;
+}
+
+
+
+@media (min-width: 68rem) {
+  #sidebar {
+    top: 56px;
+  }
 }
 
 #sidebar .sidebar-header {

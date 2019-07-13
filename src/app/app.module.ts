@@ -21,6 +21,7 @@ import {TransactionsService} from './services/transactions.service';
 import {SortableDirective} from './transactions-list/sortable.directive';
 import {SidebarComponent} from './navigation/sidebar/sidebar.component';
 import {BriefComponent} from './brief/brief.component';
+import { HeaderComponent } from './navigation/header/header.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {BriefComponent} from './brief/brief.component';
     TransactionsListComponent,
     SortableDirective,
     SidebarComponent,
-    BriefComponent
+    BriefComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

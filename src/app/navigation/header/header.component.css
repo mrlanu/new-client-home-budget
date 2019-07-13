@@ -1,0 +1,18 @@
+
+.gap {
+  height: 90px;
+}
+
+@media (min-width: 41rem) {
+  .gap {
+    height: 60px;
+  }
+}
+
+.nav__main {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 100%;
+}
