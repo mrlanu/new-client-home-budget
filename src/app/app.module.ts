@@ -22,8 +22,12 @@ import {SidebarComponent} from './navigation/sidebar/sidebar.component';
 import {BriefComponent} from './brief/brief.component';
 import {HeaderComponent} from './navigation/header/header.component';
 import {SummaryAccComponent} from './summary/summary-acc/summary-acc.component';
-import { SummaryComponent } from './summary/summary.component';
-import { SummaryExpIncComponent } from './summary/summary-exp-inc/summary-exp-inc.component';
+import {SummaryComponent} from './summary/summary.component';
+import {SummaryExpIncComponent} from './summary/summary-exp-inc/summary-exp-inc.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
+import {LanuMonthPaginatorComponent} from './shared/lanu-month-paginator/lanu-month-paginator.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,8 @@ import { SummaryExpIncComponent } from './summary/summary-exp-inc/summary-exp-in
     HeaderComponent,
     SummaryAccComponent,
     SummaryComponent,
-    SummaryExpIncComponent
+    SummaryExpIncComponent,
+    LanuMonthPaginatorComponent
   ],
   imports: [
     BrowserModule,
@@ -49,10 +54,16 @@ import { SummaryExpIncComponent } from './summary/summary-exp-inc/summary-exp-in
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [UtilityService, SummariesService, TransactionsService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    library.add(faAngleLeft);
+    library.add(faAngleRight);
+  }
+}

@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {SummariesService} from '../../services/summaries.service';
 import {Group} from '../../models/group.model';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-summary-exp-inc',
@@ -15,6 +16,9 @@ export class SummaryExpIncComponent implements OnInit, OnDestroy {
   groups: Group[] = [];
   componentSubs: Subscription[] = [];
   totalSpent: number;
+
+  title = 'app';
+  faCoffee = faCoffee;
 
   constructor(private summaryService: SummariesService, private router: Router) { }
 

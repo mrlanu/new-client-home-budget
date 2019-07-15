@@ -22,8 +22,11 @@
   <hr class="summary__hr">
 </div>
 <div class="summary__container--total" fxLayout="row" fxLayoutAlign="space-between">
-  <div>Total:</div>
-  <div><strong>{{ totalSpent | currency }}</strong></div>
+  <div fxLayout="row" fxLayoutGap="5px">
+    <div>Total:</div>
+    <div><strong>{{ totalSpent | currency }}</strong></div>
+  </div>
+  <app-lanu-month-paginator></app-lanu-month-paginator>
 </div>
 
 <!--
