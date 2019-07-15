@@ -1,8 +1,12 @@
 <div class="my-wrapper">
   <form>
-    <div class="form-group form-inline table__search">
-      Search: <input class="form-control form-control-sm ml-2 mr-4" type="text" name="searchTerm" [(ngModel)]="transactionsService.searchTerm" />
-      <span class="ml-3" *ngIf="transactionsService.loading$ | async">Loading...</span>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div class="form-group ml-2 form-inline">
+        Search: <input class="form-control form-control-sm ml-2 mr-4 table__search" type="text" name="searchTerm" [(ngModel)]="transactionsService.searchTerm" />
+      </div>
+      <div class="spinner-border text-primary" role="status" *ngIf="transactionsService.loading$ | async">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
 
     <table class="table table-sm table-hover table-decorator">

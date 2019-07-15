@@ -19,8 +19,7 @@ td {
 }
 
 .table__search {
-  font-size: 14px;
-  margin-left: 20px;
+  max-width: 160px;
 }
 
 @media (min-width: 40rem) {
