@@ -3,7 +3,6 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {SummariesService} from '../../services/summaries.service';
 import {Group} from '../../models/group.model';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-summary-exp-inc',
@@ -17,15 +16,11 @@ export class SummaryExpIncComponent implements OnInit, OnDestroy {
   componentSubs: Subscription[] = [];
   totalSpent: number;
 
-  title = 'app';
-  faCoffee = faCoffee;
-
   constructor(private summaryService: SummariesService, private router: Router) { }
 
   ngOnInit() {
     this.componentSubs.push(this.summaryService.categoryGroupsChanged
       .subscribe((groups: Group[]) => {
-        console.log(groups);
         this.groups = groups;
         this.totalSpent = 0;
         this.groups.forEach(group => {
@@ -55,7 +50,6 @@ export class SummaryExpIncComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.componentSubs.forEach(sub => {
-      console.log('Destroy');
       sub.unsubscribe();
     });
   }

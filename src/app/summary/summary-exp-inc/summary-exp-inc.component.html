@@ -22,33 +22,9 @@
   <hr class="summary__hr">
 </div>
 <div class="summary__container--total" fxLayout="row" fxLayoutAlign="space-between">
+  <app-lanu-month-paginator (monthChange)="onMonthChange($event)"></app-lanu-month-paginator>
   <div fxLayout="row" fxLayoutGap="5px">
     <div>Total:</div>
     <div><strong>{{ totalSpent | currency }}</strong></div>
   </div>
-  <app-lanu-month-paginator></app-lanu-month-paginator>
 </div>
-
-<!--
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let group of groups" style="margin-bottom: 1px" (opened)="onCategorySelect(group.name)">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <div fxFlex fxLayout fxLayoutAlign="space-between">
-          <div style="margin-left: 15px">{{ group.name }}</div>
-          <div>{{ group.spent | currency }}</div>
-        </div>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-nav-list>
-      <a mat-list-item *ngFor="let subGroup of group.groupSubcategoryList"
-         (click)="onSubcategorySelect(subGroup.name)">
-        <div fxFlex fxLayout fxLayoutAlign="space-between">
-          <div style="margin-left: 15px">{{ subGroup.name }}</div>
-          <div>{{ subGroup.spent | currency }}</div>
-        </div>
-      </a>
-    </mat-nav-list>
-  </mat-expansion-panel>
-</mat-accordion>
--->
