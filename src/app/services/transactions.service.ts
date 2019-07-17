@@ -8,7 +8,6 @@ import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
 import {Transaction} from '../models/transaction.model';
 import {GroupAccount} from '../models/group-account.model';
 import {Group} from '../models/group.model';
-import {GroupSubcategories} from '../models/group-subcategories.model';
 
 interface SearchResult {
   transactions: TransactionView[];
@@ -50,10 +49,10 @@ export class TransactionsService {
   baseUrl = environment.baseUrl;
   transactionAdded = new Subject<TransactionView>();
 
-  // from all Transactions request
+  // for filtering
   transactionsList: TransactionView[] = [];
-  // from Group request
-  transactionsListFromGroup: TransactionView[] = [];
+  // from all Transactions request
+  transactionsListImmutable: TransactionView[] = [];
 
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
@@ -102,7 +101,8 @@ export class TransactionsService {
     const params = new HttpParams().set('date', date.toString());
     this.httpClient.get<TransactionView[]>(url, { params })
       .subscribe(trans => {
-        this.transactionsList = trans;
+        this.transactionsListImmutable = trans;
+        this.transactionsList = this.transactionsListImmutable;
         this._search$.next();
     });
   }
@@ -156,34 +156,20 @@ export class TransactionsService {
     const params = new HttpParams().set('date', date.toString()).set('type', type);
     this.httpClient.get<Group[]>(url, { params })
       .subscribe(groups => {
-        // this.groups = groups;
-        this.mergeTransactionsViewFromGroups(groups);
         this.categoryGroupsChanged.next(groups);
       });
   }
 
-  private mergeTransactionsViewFromGroups(groups: Group[]) {
-    let result: TransactionView[] = [];
-    groups.forEach((gr: Group) => {
-      gr.groupSubcategoryList.forEach((sbcl: GroupSubcategories) => {
-        result = [...result, ...sbcl.transactionList];
-      });
-    });
-    this.transactionsListFromGroup = result;
-    this._search$.next();
-  }
-
   filterTransactionsViewByAccountType(accountType: string) {
-    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+    const result: TransactionView[] = this.transactionsListImmutable.filter(transaction => {
       return transaction.accountType === accountType;
     });
-    console.log(result);
     this.transactionsList = result;
     this._search$.next();
   }
 
   filterTransactionsViewByAccount(accountName: string) {
-    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+    const result: TransactionView[] = this.transactionsListImmutable.filter(transaction => {
       return transaction.account === accountName;
     });
     this.transactionsList = result;
@@ -191,7 +177,7 @@ export class TransactionsService {
   }
 
   filterTransactionsViewByCategory(category: string, type: string) {
-    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+    const result: TransactionView[] = this.transactionsListImmutable.filter(transaction => {
       return (transaction.category === category && transaction.type === type);
     });
     this.transactionsList = result;
@@ -199,7 +185,7 @@ export class TransactionsService {
   }
 
   filterTransactionsViewBySubcategory(category: string, type: string) {
-    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+    const result: TransactionView[] = this.transactionsListImmutable.filter(transaction => {
       return (transaction.subCategory === category && transaction.type === type);
     });
     this.transactionsList = result;

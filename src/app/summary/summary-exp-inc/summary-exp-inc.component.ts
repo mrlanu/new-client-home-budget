@@ -30,10 +30,12 @@ export class SummaryExpIncComponent implements OnInit, OnDestroy {
         });
       }));
     this.transactionsService.getSummaryByCategories(new Date(), this.typeOfTransactions);
+    this.transactionsService.getAllTransactions(new Date());
   }
 
   onMonthChange(date: Date) {
     this.transactionsService.getSummaryByCategories(date, this.typeOfTransactions);
+    this.transactionsService.getAllTransactions(date);
   }
 
   onCategorySelect(categoryName: string) {

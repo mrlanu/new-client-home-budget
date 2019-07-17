@@ -23,6 +23,7 @@ export class SummaryAccComponent implements OnInit, OnDestroy {
         this.getSummaryTotal();
     }));
     this.transactionsService.getSummaryByAccounts();
+    this.transactionsService.getAllTransactions(new Date());
   }
 
   private getSummaryTotal() {
