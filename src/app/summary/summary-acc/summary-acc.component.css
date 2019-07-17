@@ -3,27 +3,12 @@ a {
   display: block;
 }
 
-.my-wrapper {
-  position: relative;
-  margin-top: 5vh;
-  padding: 20px;
-  width: 340px;
-  height: 595px;
-  border: 1px solid lightgrey;
-  border-radius: 7px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 .view-port {
   position: relative;
   height: 480px;
   overflow-y: auto;
 }
 
-.summary__container--total {
-  height: 110px;
-  padding: 5px 15px;
-}
 
 a.category-names {
   margin-left: 0;
@@ -38,9 +23,19 @@ a.category-names {
   background: whitesmoke;
 }
 
-.summary__hr {
-  width: 100%;
+.summary__container--total {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
+  left: 20px;
+  width: 85%;
 }
+
+.summary__hr {
+  width: 90%;
+  position: absolute;
+  bottom: 50px;
+  left: 15px;
+}
+
+
 
