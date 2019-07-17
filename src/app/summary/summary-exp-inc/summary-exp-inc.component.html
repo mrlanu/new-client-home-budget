@@ -1,8 +1,8 @@
 <div class="view-port">
   <div class="accordion" id="accordion">
     <div class="test" *ngFor="let group of groups">
-      <a fxLayout="row" fxLayoutAlign="space-between" class="" data-toggle="collapse" [href]="'#' + group.name"
-         role="button" aria-expanded="false" aria-controls="collapse">
+      <a fxLayout="row" fxLayoutAlign="space-between" class="category-names" data-toggle="collapse" [href]="'#' + group.name"
+         role="button" aria-expanded="false" aria-controls="collapse" (click)="onCategorySelect(group.name)">
         <div fxFlex fxLayout fxLayoutAlign="space-between">
           <div style="padding: 10px">{{ group.name }}</div>
           <div style="padding: 10px">{{ group.spent | currency }}</div>
@@ -10,9 +10,9 @@
       </a>
 
       <div [id]="group.name" class="collapse">
-        <div class="acc-names" *ngFor="let subGroup of group.groupSubcategoryList" fxLayout="row" fxLayoutAlign="space-between">
+        <div class="category-names" *ngFor="let subGroup of group.groupSubcategoryList" fxLayout="row" fxLayoutAlign="space-between">
           <div fxFlex fxLayout fxLayoutAlign="space-between">
-            <div style="padding: 10px">{{ subGroup.name }}</div>
+            <div style="padding: 10px" (click)="onSubcategorySelect(subGroup.name)">{{ subGroup.name }}</div>
             <div style="padding: 10px">{{ subGroup.spent | currency }}</div>
           </div>
         </div>

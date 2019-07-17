@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GroupAccount} from '../../models/group-account.model';
 import {Subscription} from 'rxjs';
-import {SummariesService} from '../../services/summaries.service';
+import {TransactionsService} from '../../services/transactions.service';
 
 @Component({
   selector: 'app-summary-acc',
@@ -14,15 +14,15 @@ export class SummaryAccComponent implements OnInit, OnDestroy {
   accountsGroups: GroupAccount[] = [];
   componentSubs: Subscription[] = [];
 
-  constructor(private summariesService: SummariesService) { }
+  constructor(private transactionsService: TransactionsService) { }
 
   ngOnInit() {
-    this.componentSubs.push(this.summariesService.groupsChanged
+    this.componentSubs.push(this.transactionsService.accGroupsChanged
       .subscribe((groups: GroupAccount[]) => {
         this.accountsGroups = groups;
         this.getSummaryTotal();
     }));
-    this.summariesService.getSummaryByAccounts();
+    this.transactionsService.getSummaryByAccounts();
   }
 
   private getSummaryTotal() {
@@ -33,6 +33,14 @@ export class SummaryAccComponent implements OnInit, OnDestroy {
         }
       });
     });
+  }
+
+  onAccountTypeSelect(accountName: string) {
+    this.transactionsService.filterTransactionsViewByAccountType(accountName);
+  }
+
+  onAccountSelect(accountName: string) {
+    this.transactionsService.filterTransactionsViewByAccount(accountName);
   }
 
   ngOnDestroy(): void {

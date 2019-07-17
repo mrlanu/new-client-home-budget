@@ -20,13 +20,23 @@ a {
   overflow-y: auto;
 }
 
+
+a.category-names {
+  margin-left: 0;
+}
+
+.category-names {
+  margin-left: 20px;
+}
+
+.category-names:hover {
+  cursor: pointer;
+  background: whitesmoke;
+}
+
 .summary__container--total {
   height: 110px;
   padding: 5px 15px;
-}
-
-.acc-names {
-  margin-left: 20px;
 }
 
 .summary__hr {

@@ -25,8 +25,17 @@ a {
   padding: 5px 15px;
 }
 
-.acc-names {
+a.category-names {
+  margin-left: 0;
+}
+
+.category-names {
   margin-left: 20px;
+}
+
+.category-names:hover {
+  cursor: pointer;
+  background: whitesmoke;
 }
 
 .summary__hr {

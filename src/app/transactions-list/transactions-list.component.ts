@@ -11,7 +11,6 @@ import {SortableDirective, SortEvent} from './sortable.directive';
 })
 export class TransactionsListComponent implements OnInit, OnDestroy {
 
-  transactionsList: TransactionView[] = [];
   componentSubs: Subscription[] = [];
 
   transactionsList$: Observable<TransactionView[]>;
@@ -25,10 +24,6 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.componentSubs.push(this.transactionsService.transactionsListChanged
-      .subscribe((transitions: TransactionView[]) => {
-        this.transactionsList = transitions;
-      }));
     this.transactionsService.getAllTransactions(new Date());
   }
 

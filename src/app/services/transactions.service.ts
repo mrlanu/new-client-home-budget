@@ -6,6 +6,9 @@ import {TransactionView} from '../models/transaction-view.model';
 import {SortDirection} from '../transactions-list/sortable.directive';
 import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
 import {Transaction} from '../models/transaction.model';
+import {GroupAccount} from '../models/group-account.model';
+import {Group} from '../models/group.model';
+import {GroupSubcategories} from '../models/group-subcategories.model';
 
 interface SearchResult {
   transactions: TransactionView[];
@@ -46,8 +49,11 @@ export class TransactionsService {
 
   baseUrl = environment.baseUrl;
   transactionAdded = new Subject<TransactionView>();
+
+  // from all Transactions request
   transactionsList: TransactionView[] = [];
-  transactionsListChanged = new Subject<TransactionView[]>();
+  // from Group request
+  transactionsListFromGroup: TransactionView[] = [];
 
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
@@ -61,6 +67,11 @@ export class TransactionsService {
     sortColumn: '',
     sortDirection: ''
   };
+
+  // Summary Service
+
+  accGroupsChanged = new Subject<GroupAccount[]>();
+  categoryGroupsChanged = new Subject<Group[]>();
 
   constructor(private httpClient: HttpClient) {
     this._search$.pipe(
@@ -92,7 +103,6 @@ export class TransactionsService {
     this.httpClient.get<TransactionView[]>(url, { params })
       .subscribe(trans => {
         this.transactionsList = trans;
-        this.transactionsListChanged.next(trans);
         this._search$.next();
     });
   }
@@ -128,5 +138,71 @@ export class TransactionsService {
     // 3. paginate
     transactions = transactions.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
     return of({transactions, total});
+  }
+
+  // Summary Service
+
+  getSummaryByAccounts() {
+    const budgetId = 1;
+    const url = `${this.baseUrl}/summaries/accounts`;
+    const params = new HttpParams().set('budgetId', budgetId.toString());
+    this.httpClient.get(url, {params}).subscribe((groups: GroupAccount[]) => {
+      this.accGroupsChanged.next(groups);
+    });
+  }
+
+  getSummaryByCategories(date: Date, type: string) {
+    const url = `${this.baseUrl}/summaries/categories`;
+    const params = new HttpParams().set('date', date.toString()).set('type', type);
+    this.httpClient.get<Group[]>(url, { params })
+      .subscribe(groups => {
+        // this.groups = groups;
+        this.mergeTransactionsViewFromGroups(groups);
+        this.categoryGroupsChanged.next(groups);
+      });
+  }
+
+  private mergeTransactionsViewFromGroups(groups: Group[]) {
+    let result: TransactionView[] = [];
+    groups.forEach((gr: Group) => {
+      gr.groupSubcategoryList.forEach((sbcl: GroupSubcategories) => {
+        result = [...result, ...sbcl.transactionList];
+      });
+    });
+    this.transactionsListFromGroup = result;
+    this._search$.next();
+  }
+
+  filterTransactionsViewByAccountType(accountType: string) {
+    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+      return transaction.accountType === accountType;
+    });
+    console.log(result);
+    this.transactionsList = result;
+    this._search$.next();
+  }
+
+  filterTransactionsViewByAccount(accountName: string) {
+    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+      return transaction.account === accountName;
+    });
+    this.transactionsList = result;
+    this._search$.next();
+  }
+
+  filterTransactionsViewByCategory(category: string, type: string) {
+    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+      return (transaction.category === category && transaction.type === type);
+    });
+    this.transactionsList = result;
+    this._search$.next();
+  }
+
+  filterTransactionsViewBySubcategory(category: string, type: string) {
+    const result: TransactionView[] = this.transactionsListFromGroup.filter(transaction => {
+      return (transaction.subCategory === category && transaction.type === type);
+    });
+    this.transactionsList = result;
+    this._search$.next();
   }
 }
