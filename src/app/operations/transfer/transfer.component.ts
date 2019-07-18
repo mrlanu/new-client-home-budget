@@ -1,8 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import {Account} from '../../models/account.model';
 import {Subscription} from 'rxjs';
+import {TransactionsService} from '../../services/transactions.service';
+import {UtilityService} from '../../services/utility.service';
 
 @Component({
   selector: 'app-transfer',
@@ -12,21 +14,50 @@ import {Subscription} from 'rxjs';
 })
 export class TransferComponent implements OnInit, OnDestroy {
 
+  transferForm: FormGroup;
   accounts: Account[] = [];
-  expenseForm: FormGroup;
+
   componentSubs: Subscription[] = [];
 
-  ngOnInit(): void {
-    this.expenseForm = new FormGroup({
+  constructor(private transactionsService: TransactionsService, private utilityService: UtilityService) { }
+
+  ngOnInit() {
+    this.initForm();
+    this.componentSubs.push(this.utilityService.accountsChanged
+      .subscribe((accounts: Account[]) => {
+        this.accounts = accounts;
+      }));
+    this.componentSubs.push(this.transactionsService.transactionAdded
+      .subscribe(res => {
+        // this.uiService.openSnackBar('Transfer has been done', null, 5000);
+        this.transferForm.reset({'date': new Date()});
+      }));
+
+    this.utilityService.getAllAccounts();
+  }
+
+  initForm() {
+    this.transferForm = new FormGroup({
       date: new FormControl(new Date()),
-      amount: new FormControl(0.0),
-      accountFrom: new FormControl('Account...'),
-      accountTo: new FormControl('Account...')
+      fromAccount: new FormControl(null, [Validators.required]),
+      toAccount: new FormControl(null, [Validators.required]),
+      amount: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(/^([0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)$/)
+      ]),
     });
   }
 
   onSubmit() {
-    console.log(this.expenseForm.value);
+    this.transferForm.patchValue({
+      'fromAccount': this.accounts.find(acc => {
+        return acc.id === +this.transferForm.value.fromAccount;
+      }),
+      'toAccount': this.accounts.find(acc => {
+        return acc.id === +this.transferForm.value.toAccount;
+      })
+    });
+    this.transactionsService.createTransfer(this.transferForm.value);
   }
 
   ngOnDestroy(): void {
@@ -34,5 +65,4 @@ export class TransferComponent implements OnInit, OnDestroy {
       sub.unsubscribe();
     });
   }
-
 }

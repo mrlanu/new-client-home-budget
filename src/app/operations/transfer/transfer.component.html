@@ -1,5 +1,5 @@
 <div class="expense-component">
-  <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
       <label for="date" class="col-sm-2 col-form-label">Date</label>
@@ -17,7 +17,7 @@
     <div class="form-group">
       <label for="accFrom" class="col-sm-12">From Account</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="accountFrom" id="accFrom">
+        <select class="form-control form-control-sm" formControlName="fromAccount" id="accFrom">
           <option *ngFor="let account of accounts" [value]="account.id">
             {{account.type}} / {{account.name}}
           </option>
@@ -33,7 +33,7 @@
     <div class="form-group">
       <label for="accTo" class="col-sm-12">To Account</label>
       <div class="col-sm-12">
-        <select class="form-control form-control-sm" formControlName="accountTo" id="accTo">
+        <select class="form-control form-control-sm" formControlName="toAccount" id="accTo">
           <option *ngFor="let account of accounts" [value]="account.id">
             {{account.type}} / {{account.name}}
           </option>
@@ -57,7 +57,7 @@
     <hr>
     <div style="text-align: center">
       <button type="submit" class="btn btn-primary btn-sm"
-              [disabled]="expenseForm.invalid || expenseForm.untouched">SAVE EXPENSE</button>
+              [disabled]="transferForm.invalid || transferForm.untouched">SAVE EXPENSE</button>
     </div>
   </form>
 </div>

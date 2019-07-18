@@ -8,6 +8,7 @@ import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
 import {Transaction} from '../models/transaction.model';
 import {GroupAccount} from '../models/group-account.model';
 import {Group} from '../models/group.model';
+import {Transfer} from '../models/transfer.model';
 
 interface SearchResult {
   transactions: TransactionView[];
@@ -47,7 +48,7 @@ function matches(transaction: TransactionView, term: string) {
 export class TransactionsService {
 
   baseUrl = environment.baseUrl;
-  transactionAdded = new Subject<TransactionView>();
+  transactionAdded = new Subject<any>();
 
   // for filtering
   transactionsList: TransactionView[] = [];
@@ -90,10 +91,19 @@ export class TransactionsService {
   createTransaction(transaction: Transaction) {
     const url = `${this.baseUrl}/transactions`;
     this.httpClient.post(url, transaction)
-      .subscribe((trans: TransactionView) => {
+      .subscribe(trans => {
       this.transactionAdded.next(trans);
       this.getAllTransactions(new Date());
     });
+  }
+
+  createTransfer(transfer: Transfer) {
+    const url = `${this.baseUrl}/transfers`;
+    this.httpClient.post(url, transfer)
+      .subscribe(result => {
+        this.transactionAdded.next(result);
+        this.getAllTransactions(new Date());
+      });
   }
 
   getAllTransactions(date: Date) {
