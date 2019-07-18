@@ -30,6 +30,7 @@ import {LanuMonthPaginatorComponent} from './shared/lanu-month-paginator/lanu-mo
 import { SummaryPageComponent } from './pages/summary-page/summary-page.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import { MainComponent } from './main/main.component';
+import { OperationsPageComponent } from './pages/operations-page/operations-page.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MainComponent } from './main/main.component';
     LanuMonthPaginatorComponent,
     SummaryPageComponent,
     WelcomePageComponent,
-    MainComponent
+    MainComponent,
+    OperationsPageComponent
   ],
   imports: [
     BrowserModule,
