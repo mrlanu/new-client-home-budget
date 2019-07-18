@@ -1,0 +1,10 @@
+
+.gap {
+  height: 120px;
+}
+
+@media (min-width: 41rem) {
+  .gap {
+    height: 160px;
+  }
+}
