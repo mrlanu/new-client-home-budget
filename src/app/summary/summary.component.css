@@ -1,11 +1,9 @@
 .my-wrapper {
-  width: 340px;
-  margin: 5vh auto auto;
-
+  position: relative;
 }
 
 .my-border {
-  position: relative;
+  width: 340px;
   height: 550px;
   padding: 20px 20px 20px 20px;
   border: 1px solid lightgrey;

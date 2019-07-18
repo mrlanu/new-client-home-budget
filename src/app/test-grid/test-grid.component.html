@@ -1,17 +1,14 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<!-- Page Content -->
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-6 col-xl-3">
-      <app-operations></app-operations>
-    </div>
-    <div class="col-lg-6 col-xl-3">
-      <app-summary></app-summary>
-    </div>
-    <div class="col-lg-12 col-xl-6">
-      <app-transactions-list></app-transactions-list>
-    </div>
+<div class="wrapper" style="margin-top: 150px" fxLayout="row wrap" fxLayoutAlign="space-evenly">
+  <div class="item">
+    <app-operations></app-operations>
+  </div>
+  <div class="item">
+    <app-summary></app-summary>
+  </div>
+  <div class="item">
+    <app-transactions-list></app-transactions-list>
   </div>
 </div>
 

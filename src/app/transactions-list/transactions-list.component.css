@@ -4,14 +4,11 @@ td {
 
 .my-wrapper {
   min-height: 592px;
-  /*padding: 20px 20px 20px 20px;*/
   padding-top: 20px;
-  max-width: 800px;
-  /*min-width: 370px;*/
+  min-width: 370px;
   border: 1px solid lightgrey;
   border-radius: 7px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 5vh auto auto;
 }
 
 .table-decorator {
@@ -22,7 +19,10 @@ td {
   max-width: 160px;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 53rem) {
+  .my-wrapper {
+    width: 700px;
+  }
   .table-decorator {
     font-size: 14px;
   }

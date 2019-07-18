@@ -5,7 +5,7 @@ a {
 
 .view-port {
   position: relative;
-  height: 480px;
+  height: 450px;
   overflow-y: auto;
 }
 
