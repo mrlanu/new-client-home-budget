@@ -1,14 +1,11 @@
 .my-wrapper {
-  position: relative;
+  /*min-width: 290px;*/
 }
 
 .my-border {
-  width: 370px;
-  height: 550px;
-  padding: 20px 20px 20px 20px;
-  border: 1px solid lightgrey;
+  padding: 1rem 1rem 4.75rem;
+  border: 1px solid rgba(0,0,0,.125);
   border-top: none;
-  border-bottom-left-radius: 7px;
-  border-bottom-right-radius: 7px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
 }

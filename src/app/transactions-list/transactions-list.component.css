@@ -3,28 +3,24 @@ td {
 }
 
 .my-wrapper {
-  min-height: 592px;
-  padding-top: 20px;
-  min-width: 370px;
-  border: 1px solid lightgrey;
-  border-radius: 7px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0.5rem;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
 }
 
 .table-decorator {
-  font-size: 11px;
+  font-size: 0.7rem;
 }
 
 .table__search {
   max-width: 160px;
 }
-
-@media (min-width: 53rem) {
+@media (min-width: 35rem) {
   .my-wrapper {
     width: 700px;
   }
   .table-decorator {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .table__search {
