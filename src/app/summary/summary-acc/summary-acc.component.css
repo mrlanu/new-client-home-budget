@@ -18,10 +18,10 @@ a.category-names {
   margin-left: 20px;
 }
 
-.category-names:hover {
+/*.category-names:hover {
   cursor: pointer;
   background: whitesmoke;
-}
+}*/
 
 .summary__container--total {
   position: absolute;
@@ -35,6 +35,15 @@ a.category-names {
   position: absolute;
   bottom: 50px;
   left: 25px;
+}
+
+.my-active {
+  background: rgba(0, 0, 0, 0.15);
+  color: black;
+}
+
+.collapse-back {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 

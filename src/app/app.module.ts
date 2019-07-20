@@ -25,7 +25,7 @@ import {SummaryComponent} from './summary/summary.component';
 import {SummaryExpIncComponent} from './summary/summary-exp-inc/summary-exp-inc.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faAngleLeft, faAngleRight, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faAngleLeft, faAngleRight, faCalendarAlt, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {LanuMonthPaginatorComponent} from './shared/lanu-month-paginator/lanu-month-paginator.component';
 import { SummaryPageComponent } from './pages/summary-page/summary-page.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
@@ -74,5 +74,6 @@ export class AppModule {
     library.add(faAngleLeft);
     library.add(faAngleRight);
     library.add(faPlus);
+    library.add(faCalendarAlt);
   }
 }
