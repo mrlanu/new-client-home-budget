@@ -1,5 +1,6 @@
 .my-wrapper {
   /*min-width: 290px;*/
+  margin-top: 2rem;
 }
 
 .my-border {
@@ -9,4 +10,10 @@
   border-top: none;
   border-bottom-left-radius: .25rem;
   border-bottom-right-radius: .25rem;
+}
+
+@media (min-width: 48rem) {
+  .my-wrapper {
+    margin-top: 0;
+  }
 }

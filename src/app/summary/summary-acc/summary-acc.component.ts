@@ -11,7 +11,6 @@ import {TransactionsService} from '../../services/transactions.service';
 export class SummaryAccComponent implements OnInit, OnDestroy {
 
   summaryTotal = 0;
-  name = '';
   accountsGroups: GroupAccount[] = [];
   componentSubs: Subscription[] = [];
 
@@ -38,7 +37,6 @@ export class SummaryAccComponent implements OnInit, OnDestroy {
   }
 
   onAccountTypeSelect(accountName: string) {
-    this.name = accountName;
     this.transactionsService.filterTransactionsViewByAccountType(accountName);
   }
 

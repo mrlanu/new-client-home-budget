@@ -1,14 +1,16 @@
 <div class="view-port">
   <div class="accordion" id="accordion">
     <div class="test" *ngFor="let i of accountsGroups; let j = index;">
-        <a fxLayout="row" fxLayoutAlign="space-between" class="list-group-item list-group-item-action" [ngClass]="{'my-active': name===i.name}"
+        <a fxLayout="row" fxLayoutAlign="space-between" class="list-group-item list-group-item-action"
            data-toggle="collapse" [href]="'#' + i.name"
            role="button" aria-expanded="false" aria-controls="collapse" (click)="onAccountTypeSelect(i.name)">
-          <div style="padding: 10px">{{ i.name }}</div>
+          <div style="padding: 10px">
+            <span style="margin-right: 10px"><fa-icon icon="angle-double-down" size="md"></fa-icon></span>{{ i.name }}
+          </div>
           <div style="padding: 10px">{{ i.balance | currency}}</div>
         </a>
 
-        <div [id]="i.name" class="collapse" [ngClass]="{'collapse-back': name===i.name}">
+        <div [id]="i.name" class="collapse">
           <div class="category-names" *ngFor="let k of i.accountList" fxLayout="row" fxLayoutAlign="space-between"
                (click)="onAccountSelect(k.name)">
             <div style="padding: 10px">{{ k.name }}</div>

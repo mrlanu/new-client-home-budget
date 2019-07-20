@@ -13,8 +13,9 @@ td {
 }
 
 .table__search {
-  max-width: 160px;
+
 }
+
 @media (min-width: 35rem) {
   .my-wrapper {
     width: 700px;
@@ -24,7 +25,7 @@ td {
   }
 
   .table__search {
-    font-size: 14px;
+
   }
 }
 
