@@ -36,7 +36,6 @@ export class IncomeComponent implements OnInit, OnDestroy {
       }));
     this.componentSubs.push(this.utilityService.categoryChanged
       .subscribe((categories: Category[]) => {
-        console.log(categories);
         this.categories = categories.filter(category => {
           return category.type === this.typeCategory;
         });

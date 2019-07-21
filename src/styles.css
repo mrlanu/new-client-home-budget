@@ -1,9 +1,16 @@
 html, body {
   background-color: #f8f9fa!important;
-  font-family: 'Roboto', sans-serif;
+  /*font-family: 'Roboto', sans-serif;*/
   height: 100%;
 }
 
 body {
-  margin: 0;
+  padding-top: 8rem;
+}
+
+
+@media (min-width: 41rem) {
+  body {
+    height: 4rem;
+  }
 }
