@@ -32,6 +32,7 @@ import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import { MainComponent } from './main/main.component';
 import { OperationsPageComponent } from './pages/operations-page/operations-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AddAccountComponent } from './modals/add-account/add-account.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     WelcomePageComponent,
     MainComponent,
     OperationsPageComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddAccountComponent
   ],
   imports: [
     BrowserModule,

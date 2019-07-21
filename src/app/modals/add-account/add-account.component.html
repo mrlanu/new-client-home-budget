@@ -1,0 +1,74 @@
+<!-- Modal -->
+<div class="modal fade" id="accModal" tabindex="-1" role="dialog" aria-labelledby="accModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="accModalLabel">Add New Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group" [formGroup]="addAccForm">
+
+          <!--Acc Name-->
+          <div class="form-group">
+            <label for="name">Account name</label>
+            <input type="text" class="form-control form-control-sm" id="name" formControlName="name"
+                   placeholder="My Wallet, Chase, Mom's credit card, etc."
+                   [ngClass]="{'is-invalid': addAccForm.get('name').invalid && addAccForm.get('name').touched}">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+            <div *ngIf="addAccForm.get('name').invalid && addAccForm.get('name').touched" class="invalid-feedback">
+              Name is required.
+            </div>
+          </div>
+
+          <!--Acc Type-->
+          <div class="form-group">
+            <label for="type">Account type</label>
+            <input type="text" class="form-control form-control-sm" id="type" formControlName="type"
+                   placeholder="Checking, Cash, Credit, etc."
+                   [ngClass]="{'is-invalid': addAccForm.get('type').invalid && addAccForm.get('type').touched}">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+            <div *ngIf="addAccForm.get('type').invalid && addAccForm.get('type').touched" class="invalid-feedback">
+              Type is required.
+            </div>
+          </div>
+
+          <!--Currency-->
+          <div class="form-group">
+            <label for="currency">Currency</label>
+            <select class="form-control form-control-sm" id="currency" formControlName="currency">
+              <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+            </select>
+          </div>
+
+          <!--Initial balance-->
+          <div class="form-group">
+            <label for="balance">Initial Balance</label>
+            <input type="number" class="form-control form-control-sm" id="balance" formControlName="initialBalance"
+                   placeholder="$">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+          </div>
+
+          <div class="form-group">
+            <label class="mr-3">Include in total ?</label>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="includeInTotal" formControlName="includeInTotal" class="custom-control-input" [value]="true">
+                <label class="custom-control-label" for="customRadioInline1">Yes</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="includeInTotal" formControlName="includeInTotal" class="custom-control-input" [value]="false">
+                <label class="custom-control-label" for="customRadioInline2">No</label>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmit()" class="btn btn-primary" data-dismiss="modal"
+        [disabled]="addAccForm.invalid || addAccForm.untouched">Save Account</button>
+      </div>
+    </div>
+  </div>
+</div>

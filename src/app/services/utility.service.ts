@@ -23,6 +23,11 @@ export class UtilityService {
     });
   }
 
+  createAccount(account: Account) {
+    const url = `${this.baseUrl}/accounts`;
+    return this.httpClient.post(url, account);
+  }
+
   getAllCategories() {
     const url = `${this.baseUrl}/categories`;
     this.httpClient.get(url)
