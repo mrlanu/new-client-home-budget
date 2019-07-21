@@ -5,12 +5,12 @@ html, body {
 }
 
 body {
-  padding-top: 8rem;
+  padding-top: 7rem;
 }
 
 
 @media (min-width: 41rem) {
   body {
-    height: 4rem;
+    padding-top: 4rem;
   }
 }
