@@ -1,32 +1,11 @@
-<nav class="navbar navbar-expand-xl navbar-dark bg-primary nav__main w-100">
-  <button type="button" id="sidebarCollapse" class="navbar-toggler mr-2">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">Home Budget</a>
-  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="navbar-collapse collapse" id="navbarsExample04" style="">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="main/summary" routerLinkActive="active">Summary</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="main/operations" routerLinkActive="active">Operations</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lists</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown04">
-          <a class="dropdown-item" href="#">Budgets</a>
-          <a class="dropdown-item" href="#">Accounts</a>
-          <a class="dropdown-item" href="#">Category</a>
-          <a class="dropdown-item" href="#">Subcategory</a>
-        </div>
-      </li>
-    </ul>
+<nav class="main-nav navbar-dark navbar-expand-xl p-3" fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout>
+    <button type="button" id="sidebarCollapse" class="navbar-toggler collapsed mr-2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-brand" fxHide.lt-sm>Home Budget</div>
   </div>
-  <app-brief></app-brief>
+  <div>
+    <app-brief></app-brief>
+  </div>
 </nav>

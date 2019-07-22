@@ -1,18 +1,18 @@
 .my__container {
   z-index: 2000;
-  background: #374066;
+  background: #272C66;
   border: 1px solid whitesmoke;
   color: whitesmoke;
   font-weight: bold;
   height: 46px;
   width: 100%;
   text-align: center;
-  margin-top: 0.35rem;
+ /* margin-top: 0.35rem;*/
 }
 
 @media (min-width: 68rem) {
   .my__container {
-    margin-top: unset;
+    /*margin-top: unset;*/
   }
 }
 

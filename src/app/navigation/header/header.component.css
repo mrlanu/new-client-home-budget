@@ -4,3 +4,14 @@
   left: 0;
   z-index: 1000;
 }
+
+.main-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100vw;
+  background: #467BFF;
+  color: whitesmoke;
+  height: 3.5rem;
+}

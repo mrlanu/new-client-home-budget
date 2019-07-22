@@ -31,7 +31,7 @@ ul ul a {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 800;
+  z-index: 80;
   background: rgba(0, 0, 0, 0.65);
   width: 100vw;
   height: 100vh;
@@ -40,9 +40,9 @@ ul ul a {
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
   position: fixed;
-  top: 100px;
+  top: 56px;
   left: 0;
-  z-index: 900;
+  z-index: 90;
   margin-left: -200px;
   min-width: 200px;
   max-width: 200px;
@@ -60,7 +60,6 @@ ul ul a {
 
 @media (min-width: 75rem) {
   #sidebar {
-    top: 56px;
     margin-left: 0;
   }
 }
