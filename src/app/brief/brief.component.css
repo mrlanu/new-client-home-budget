@@ -1,40 +1,19 @@
 .my__container {
-  top: 56px;
-  right: 0;
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-top: 7px;
   z-index: 2000;
-  background: #454c54;
+  background: #374066;
+  border: 1px solid whitesmoke;
   color: whitesmoke;
   font-weight: bold;
   height: 46px;
   width: 100%;
-  font-size: 1rem;
   text-align: center;
-}
-
-.klin {
-  height: 86px;
+  margin-top: 0.35rem;
 }
 
 @media (min-width: 68rem) {
   .my__container {
     margin-top: unset;
-    /*top: 0;*/
-    /*right: 50px;*/
-    /*height: 56px;*/
-    /*width: 600px;*/
-    /*font-size: 18px;*/
-  }
-
-  .klin {
-    height: 56px;
   }
 }
 
-/*.item:hover {
-  font-size: 26px;
-  cursor: none;
-}*/
 

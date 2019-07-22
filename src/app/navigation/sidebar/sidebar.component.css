@@ -14,7 +14,7 @@ a, a:hover, a:focus {
 ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: #6d7fcc;
+  background: #374066;
 }
 
 .btn {
@@ -47,7 +47,7 @@ ul ul a {
   min-width: 250px;
   max-width: 250px;
   min-height: 100vh;
-  background: #7386D5;
+  background: #374066;
   color: #fff;
   transition: all 0.3s;
 }
@@ -71,7 +71,7 @@ ul ul a {
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  border-bottom: 1px solid #23248b;
 }
 
 #sidebar ul p {
@@ -85,11 +85,11 @@ ul ul a {
   display: block;
 }
 #sidebar ul li a:hover {
-  color: #7386D5;
+  color: #374066;
   background: #fff;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #fff;
-  background: #6d7fcc;
+  background: #272c66;
 }
