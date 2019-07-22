@@ -43,9 +43,9 @@ ul ul a {
   top: 100px;
   left: 0;
   z-index: 900;
-  margin-left: -250px;
-  min-width: 250px;
-  max-width: 250px;
+  margin-left: -200px;
+  min-width: 200px;
+  max-width: 200px;
   min-height: 100vh;
   background: #374066;
   color: #fff;
@@ -58,9 +58,10 @@ ul ul a {
 
 
 
-@media (min-width: 68rem) {
+@media (min-width: 75rem) {
   #sidebar {
     top: 56px;
+    margin-left: 0;
   }
 }
 
