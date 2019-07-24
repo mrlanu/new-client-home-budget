@@ -1,23 +1,16 @@
-<div class="">
-  <div class="row mr-0 ml-0">
-    <div class="col-xl-2">
-    </div>
-    <div class="col-xl-9 pl-0 pr-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <app-summary></app-summary>
-          </div>
-          <div class="col-md-6">
-            <app-operations></app-operations>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <app-transactions-list></app-transactions-list>
-          </div>
-        </div>
+<div fxLayout="row">
+  <div fxFlex="250px" fxHide.lt-md></div>
+  <div fxLayout="column" fxFlex>
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+      <div class="item">
+        <app-summary></app-summary>
       </div>
+      <div class="item">
+        <app-operations></app-operations>
+      </div>
+    </div>
+    <div class="item">
+      <app-transactions-list></app-transactions-list>
     </div>
   </div>
 </div>

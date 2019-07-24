@@ -3,9 +3,8 @@ td {
 }
 
 .my-wrapper {
-  padding: 0.5rem;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: .25rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .table-decorator {
@@ -17,9 +16,6 @@ td {
 }
 
 @media (min-width: 35rem) {
-  .my-wrapper {
-    width: 700px;
-  }
   .table-decorator {
     font-size: 1rem;
   }
