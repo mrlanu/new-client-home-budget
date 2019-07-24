@@ -77,6 +77,10 @@ export class IncomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  onAccCreated(accId: number) {
+    this.incomeForm.patchValue({account: accId});
+  }
+
   onSubmit() {
     const acc = this.accounts.find(account => {
       return account.id === +this.incomeForm.value.account;
