@@ -48,4 +48,9 @@ export class UtilityService {
         this.subcategoryChanged.next(subcategories);
       });
   }
+
+  createSubcategory(categoryId: number, subcategory: Subcategory) {
+    const url = `${this.baseUrl}/categories/${categoryId}/subcategories`;
+    return this.httpClient.post(url, subcategory);
+  }
 }

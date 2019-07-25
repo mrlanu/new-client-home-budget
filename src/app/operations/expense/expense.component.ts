@@ -83,6 +83,11 @@ export class ExpenseComponent implements OnInit, OnDestroy {
 
   onCategoryCreated(catId: number) {
     this.expenseForm.patchValue({category: catId});
+    this.onSelectCategory(catId);
+  }
+
+  onSubCategoryCreated(subId: number) {
+    this.expenseForm.patchValue({subCategory: subId});
   }
 
   onSubmit() {

@@ -15,17 +15,10 @@ export interface TypeOfCategory {
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent implements OnInit, OnDestroy {
-
-  @Input()action: string;
   @Input()typeOf: string;
   @Output()categoryCreated = new EventEmitter<number>();
   addCategoryForm: FormGroup;
   componentSubs: Subscription[] = [];
-
-  types: TypeOfCategory[] = [
-    {value: 0, name: 'EXPENSE'},
-    {value: 1, name: 'INCOME'}
-  ];
 
   constructor(private utilityService: UtilityService) { }
 
@@ -42,14 +35,13 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.componentSubs.push(this.utilityService.createCategory(this.addCategoryForm.value)
-      .subscribe((category: Category) => {
-        console.log(category);
-        this.utilityService.getAllCategories();
-        this.categoryCreated.emit(category.id);
-        this.addCategoryForm.reset({type: this.typeOf === 'EXPENSE' ? 1 : 0});
-        this.ngOnDestroy();
-      }));
+      this.componentSubs.push(this.utilityService.createCategory(this.addCategoryForm.value)
+        .subscribe((category: Category) => {
+          this.utilityService.getAllCategories();
+          this.categoryCreated.emit(category.id);
+          this.addCategoryForm.reset({type: this.typeOf === 'EXPENSE' ? 0 : 1});
+          this.ngOnDestroy();
+        }));
   }
 
   ngOnDestroy(): void {
