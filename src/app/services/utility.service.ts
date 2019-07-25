@@ -36,6 +36,11 @@ export class UtilityService {
       });
   }
 
+  createCategory(category: Category) {
+    const url = `${this.baseUrl}/categories`;
+    return this.httpClient.post(url, category);
+  }
+
   getAllSubcategories(categoryId: number) {
     const url = `${this.baseUrl}/categories/${categoryId}/subcategories`;
     this.httpClient.get(url)

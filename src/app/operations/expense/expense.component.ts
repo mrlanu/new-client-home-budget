@@ -81,6 +81,10 @@ export class ExpenseComponent implements OnInit, OnDestroy {
     this.expenseForm.patchValue({account: accId});
   }
 
+  onCategoryCreated(catId: number) {
+    this.expenseForm.patchValue({category: catId});
+  }
+
   onSubmit() {
     const acc = this.accounts.find(account => {
       return account.id === +this.expenseForm.value.account;

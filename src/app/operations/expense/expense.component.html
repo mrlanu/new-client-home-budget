@@ -32,7 +32,8 @@
           </select>
           <div class="input-group-append">
             <button class="btn btn-sm btn-outline-secondary" type="button"
-                    data-toggle="tooltip" data-placement="left" title="New Category">
+                    data-toggle="tooltip" data-placement="left" title="New Category"
+                    data-toggle="modal" data-target="#categoryModal">
               <fa-icon icon="plus" size="md"></fa-icon>
             </button>
           </div>
@@ -40,6 +41,7 @@
             Category is required.
           </div>
       </div>
+      <app-add-category [action]="'Category'" [typeOf]="'EXPENSE'" (categoryCreated)="onCategoryCreated($event)"></app-add-category>
     </div>
 
     <div class="form-group">

@@ -33,6 +33,7 @@ import { MainComponent } from './main/main.component';
 import { OperationsPageComponent } from './pages/operations-page/operations-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddAccountComponent } from './modals/add-account/add-account.component';
+import { AddCategoryComponent } from './modals/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { AddAccountComponent } from './modals/add-account/add-account.component'
     MainComponent,
     OperationsPageComponent,
     DashboardComponent,
-    AddAccountComponent
+    AddAccountComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
