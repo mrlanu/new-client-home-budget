@@ -27,7 +27,7 @@
         <select class="form-control form-control-sm" formControlName="fromAccount" id="accFrom"
                 [ngClass]="{'is-invalid': transferForm.get('fromAccount').invalid && transferForm.get('fromAccount').touched}"
                 #fromAcc>
-          <option *ngFor="let account of accounts" [value]="account.id">
+          <option *ngFor="let account of accounts" [value]="account.id" [disabled]="toAcc.value == account.id">
             {{account.type}} / {{account.name}}
           </option>
         </select>
