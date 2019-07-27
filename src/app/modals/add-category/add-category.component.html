@@ -13,7 +13,7 @@
 
           <!--Name-->
           <div class="form-group">
-            <label for="name">Category name</label>
+            <label for="name">Name</label>
             <input type="text" class="form-control form-control-sm" id="name" formControlName="name"
                    [placeholder]="'Category name'"
                    [ngClass]="{'is-invalid': addCategoryForm.get('name').invalid && addCategoryForm.get('name').touched}">
@@ -23,17 +23,6 @@
             </div>
           </div>
 
-          <!--&lt;!&ndash;Acc Type&ndash;&gt;
-          <div class="form-group">
-            <label for="type">Account type</label>
-            <input type="text" class="form-control form-control-sm" id="type" formControlName="type"
-                   placeholder="Checking, Cash, Credit, etc."
-                   [ngClass]="{'is-invalid': addAccForm.get('type').invalid && addAccForm.get('type').touched}">
-            &lt;!&ndash;<small id="nameHelp" class="form-text text-muted">Some Text</small>&ndash;&gt;
-            <div *ngIf="addAccForm.get('type').invalid && addAccForm.get('type').touched" class="invalid-feedback">
-              Type is required.
-            </div>
-          </div>-->
         </form>
       </div>
       <div class="modal-footer">
