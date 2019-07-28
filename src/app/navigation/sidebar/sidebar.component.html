@@ -7,9 +7,9 @@
     <div class="user">
       <div style="color: lightgray">Welcome</div>
       <a href="#">
-        <img src="../../../assets/images/random-user.jpg" alt="user">
+        <img [src]="randomUser?.image" alt="user">
       </a>
-      <div class="user-name">Melinda Ross</div>
+      <div class="user-name">{{ randomUser?.name }}</div>
     </div>
     <li class="active">
           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>

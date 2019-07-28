@@ -5,6 +5,7 @@ import {Category} from '../models/category.model';
 import {Subject} from 'rxjs';
 import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class UtilityService {
@@ -52,5 +53,14 @@ export class UtilityService {
   createSubcategory(categoryId: number, subcategory: Subcategory) {
     const url = `${this.baseUrl}/categories/${categoryId}/subcategories`;
     return this.httpClient.post(url, subcategory);
+  }
+
+  getRandomUser() {
+    return this.httpClient.get<any>('https://randomuser.me/api/').pipe(map(o => {
+      return {
+        name: `${o.results[0].name.title} ${o.results[0].name.first} ${o.results[0].name.last}`,
+        image: o.results[0].picture.medium
+      };
+    }));
   }
 }
