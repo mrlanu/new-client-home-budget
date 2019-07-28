@@ -13,6 +13,13 @@
   border-bottom-right-radius: .25rem;
 }
 
+.title {
+  font-size: 2rem;
+  color: #272C66;
+  padding-left: 2rem;
+  text-shadow: #999999 2px 2px 3px;
+}
+
 @media (min-width: 60rem) {
   .my-wrapper {
     width: 450px;
