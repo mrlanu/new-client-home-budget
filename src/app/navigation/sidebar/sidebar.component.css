@@ -65,7 +65,6 @@ ul ul a {
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
   border-bottom: 1px solid #23248b;
 }
 
@@ -87,4 +86,22 @@ ul ul a {
 #sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #fff;
   background: #272c66;
+}
+
+.user {
+  text-align: center;
+  padding: 1rem;
+}
+
+.user img{
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  /*background-size: cover;
+  background: url("../../../assets/images/random-user.jpg") center;*/
+}
+
+.user-name {
+  font-size: 1.5rem;
 }
