@@ -7,8 +7,15 @@ td {
   margin: auto;
 }
 
+.title {
+  font-size: 2rem;
+  color: #272C66;
+  padding-left: 2rem;
+  text-shadow: #999999 2px 2px 3px;
+}
+
 .table-decorator {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
 }
 
 .table__search {

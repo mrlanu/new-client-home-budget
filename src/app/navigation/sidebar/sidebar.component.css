@@ -22,11 +22,6 @@ ul ul a {
   height: 40px;
 }
 
-.btn {
-  width: 56px;
-  height: 40px;
-}
-
 .shadow {
   position: fixed;
   top: 0;
@@ -40,7 +35,7 @@ ul ul a {
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
   position: fixed;
-  top: 56px;
+  top: 4.5rem;
   left: 0;
   z-index: 90;
   margin-left: -250px;

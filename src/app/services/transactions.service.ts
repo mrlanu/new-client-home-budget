@@ -62,7 +62,7 @@ export class TransactionsService {
 
   private _state: State = {
     page: 1,
-    pageSize: 10,
+    pageSize: 50,
     searchTerm: '',
     sortColumn: '',
     sortDirection: ''

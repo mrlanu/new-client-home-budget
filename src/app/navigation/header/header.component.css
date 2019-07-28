@@ -13,5 +13,12 @@
   width: 100vw;
   background: #467BFF;
   color: whitesmoke;
-  height: 3.5rem;
+  height: 4.5rem;
 }
+
+#brand {
+  font-family: 'Aladin', cursive;
+  font-size: 2rem;
+  text-shadow: #272C66 3px 3px 3px;
+}
+

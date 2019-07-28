@@ -3,8 +3,9 @@
   background: #272C66;
   border: 1px solid whitesmoke;
   color: whitesmoke;
-  font-weight: bold;
-  height: 46px;
+  font-size: 1rem;
+  font-weight: normal;
+  height: 4rem;
   width: 100%;
   text-align: center;
  /* margin-top: 0.35rem;*/
@@ -12,7 +13,8 @@
 
 @media (min-width: 68rem) {
   .my__container {
-    /*margin-top: unset;*/
+    font-size: 1.2rem;
+    font-weight: normal;
   }
 }
 

@@ -1,7 +1,12 @@
-<div fxLayout="row">
-  <div fxFlex="250px" fxHide.lt-md></div>
-  <div fxLayout="column" fxFlex>
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+<div fxLayout="row" fxLayoutAlign="space-evenly">
+
+  <div fxFlex="300px" fxHide.lt-md></div>
+
+  <div fxLayout="row wrap" fxFlex>
+    <div class="item" fxFlex="55" fxFlex.lt-lg="100">
+      <app-transactions-list></app-transactions-list>
+    </div>
+    <div fxLayout="column" fxFlex>
       <div class="item">
         <app-summary></app-summary>
       </div>
@@ -9,8 +14,6 @@
         <app-operations></app-operations>
       </div>
     </div>
-    <div class="item">
-      <app-transactions-list></app-transactions-list>
-    </div>
   </div>
+
 </div>

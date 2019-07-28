@@ -1,3 +1,6 @@
+<hr>
+<div class="title mt-3">Transactions</div>
+<hr>
 <div class="table-responsive pt-3 mb-3 shadow bg-white rounded my-wrapper" style="margin-top: 1rem">
   <form>
     <div fxLayout="row" fxLayoutGap="10px">
@@ -44,9 +47,9 @@
 
       <label for="pageSize"></label>
         <select class="custom-select" style="width: auto" name="pageSize" id="pageSize" [(ngModel)]="transactionsService.pageSize">
-          <option [ngValue]="2">2 items per page</option>
-          <option [ngValue]="5">5 items per page</option>
           <option [ngValue]="10">10 items per page</option>
+          <option [ngValue]="20">20 items per page</option>
+          <option [ngValue]="50">50 items per page</option>
         </select>
     </div>
   </form>
