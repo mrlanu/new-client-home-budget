@@ -24,6 +24,13 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
+
+    this.componentSubs.push(this.utilityService.categoryCreated
+      .subscribe((cat: Category) => {
+        this.categoryCreated.emit(cat.id);
+        this.addCategoryForm.reset({type: this.typeOf === 'EXPENSE' ? 0 : 1});
+        this.ngOnDestroy();
+      }));
   }
 
   initForm() {
@@ -35,13 +42,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-      this.componentSubs.push(this.utilityService.createCategory(this.addCategoryForm.value)
-        .subscribe((category: Category) => {
-          this.utilityService.getAllCategories();
-          this.categoryCreated.emit(category.id);
-          this.addCategoryForm.reset({type: this.typeOf === 'EXPENSE' ? 0 : 1});
-          this.ngOnDestroy();
-        }));
+      this.utilityService.createCategory(this.addCategoryForm.value);
   }
 
   ngOnDestroy(): void {

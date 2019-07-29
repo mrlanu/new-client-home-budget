@@ -83,6 +83,7 @@ export class IncomeComponent implements OnInit, OnDestroy {
 
   onCategoryCreated(catId: number) {
     this.incomeForm.patchValue({category: catId});
+    this.onSelectCategory(catId);
   }
 
   onSubCategoryCreated(subId: number) {
@@ -94,7 +95,6 @@ export class IncomeComponent implements OnInit, OnDestroy {
       return account.id === +this.incomeForm.value.account;
     });
     const cat = this.categories.find(category => {
-      console.log(category);
       return category.id === +this.incomeForm.value.category;
     });
     const subcat = this.subcategories.find(subcategory => {
@@ -102,7 +102,6 @@ export class IncomeComponent implements OnInit, OnDestroy {
     });
 
     this.incomeForm.patchValue({account: acc, category: cat, subCategory: subcat});
-    console.log(this.incomeForm.value);
     this.transactionsService.createTransaction(this.incomeForm.value);
   }
 

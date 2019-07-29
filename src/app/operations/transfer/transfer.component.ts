@@ -16,6 +16,7 @@ export class TransferComponent implements OnInit, OnDestroy {
 
   transferForm: FormGroup;
   accounts: Account[] = [];
+  fromAcca = true;
 
   componentSubs: Subscription[] = [];
 
@@ -46,6 +47,20 @@ export class TransferComponent implements OnInit, OnDestroy {
         Validators.pattern(/^([0-9]*[1-9][0-9]*(\.[0-9]+)?|[0]+\.[0-9]*[1-9][0-9]*)$/)
       ]),
     });
+    this.transferForm.controls['toAccount'].disable();
+  }
+
+  onAccCreated(accId: number) {
+    console.log(this.fromAcca);
+    if (this.fromAcca) {
+      this.transferForm.patchValue({fromAccount: accId});
+    } else {
+      this.transferForm.patchValue({toAccount: accId});
+    }
+  }
+
+  onSelectFromAcc() {
+    this.transferForm.controls['toAccount'].enable();
   }
 
   onSubmit() {

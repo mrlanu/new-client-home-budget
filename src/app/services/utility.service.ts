@@ -6,16 +6,20 @@ import {Subject} from 'rxjs';
 import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
 import {map} from 'rxjs/operators';
+import {SummariesService} from './summaries.service';
 
 @Injectable()
 export class UtilityService {
 
   baseUrl = environment.baseUrl;
   accountsChanged = new Subject<Account[]>();
+  accountCreated = new Subject<Account>();
   categoryChanged = new Subject<Category[]>();
+  categoryCreated = new Subject<Category>();
   subcategoryChanged = new Subject<Subcategory[]>();
+  subcategoryCreated = new Subject<Subcategory>();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private summariesService: SummariesService) { }
 
   getAllAccounts() {
     const url = `${this.baseUrl}/accounts`;
@@ -26,7 +30,12 @@ export class UtilityService {
 
   createAccount(account: Account) {
     const url = `${this.baseUrl}/accounts`;
-    return this.httpClient.post(url, account);
+    this.httpClient.post<Account>(url, account)
+      .subscribe(acc => {
+        this.getAllAccounts();
+        this.summariesService.getBrief();
+        this.accountCreated.next(acc);
+      });
   }
 
   getAllCategories() {
@@ -39,7 +48,11 @@ export class UtilityService {
 
   createCategory(category: Category) {
     const url = `${this.baseUrl}/categories`;
-    return this.httpClient.post(url, category);
+    this.httpClient.post<Category>(url, category)
+      .subscribe(cat => {
+        this.getAllCategories();
+        this.categoryCreated.next(cat);
+      });
   }
 
   getAllSubcategories(categoryId: number) {
@@ -52,13 +65,17 @@ export class UtilityService {
 
   createSubcategory(categoryId: number, subcategory: Subcategory) {
     const url = `${this.baseUrl}/categories/${categoryId}/subcategories`;
-    return this.httpClient.post(url, subcategory);
+    this.httpClient.post<Subcategory>(url, subcategory)
+      .subscribe(subc => {
+        this.getAllSubcategories(categoryId);
+        this.subcategoryCreated.next(subc);
+      });
   }
 
   getRandomUser() {
     return this.httpClient.get<any>('https://randomuser.me/api/').pipe(map(o => {
       return {
-        name: `${o.results[0].name.title} ${o.results[0].name.first} ${o.results[0].name.last}`,
+        name: `${o.results[0].name.first} ${o.results[0].name.last}`,
         image: o.results[0].picture.medium
       };
     }));

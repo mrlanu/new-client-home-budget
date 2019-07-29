@@ -9,6 +9,7 @@ import {Transaction} from '../models/transaction.model';
 import {GroupAccount} from '../models/group-account.model';
 import {Group} from '../models/group.model';
 import {Transfer} from '../models/transfer.model';
+import {SummariesService} from './summaries.service';
 
 interface SearchResult {
   transactions: TransactionView[];
@@ -73,7 +74,7 @@ export class TransactionsService {
   accGroupsChanged = new Subject<GroupAccount[]>();
   categoryGroupsChanged = new Subject<Group[]>();
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private summariesService: SummariesService) {
     this._search$.pipe(
       tap(() => this._loading$.next(true)),
       debounceTime(200),
@@ -94,6 +95,7 @@ export class TransactionsService {
       .subscribe(trans => {
       this.transactionAdded.next(trans);
       this.getAllTransactions(new Date());
+        this.summariesService.getBrief();
     });
   }
 
@@ -103,6 +105,7 @@ export class TransactionsService {
       .subscribe(result => {
         this.transactionAdded.next(result);
         this.getAllTransactions(new Date());
+        this.summariesService.getBrief();
       });
   }
 

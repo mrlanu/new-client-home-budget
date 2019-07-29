@@ -25,6 +25,7 @@
       <label for="accFrom" class="col-sm-4">From Account</label>
       <div class="input-group col-sm-12">
         <select class="form-control form-control-sm" formControlName="fromAccount" id="accFrom"
+                (change)="onSelectFromAcc()"
                 [ngClass]="{'is-invalid': transferForm.get('fromAccount').invalid && transferForm.get('fromAccount').touched}"
                 #fromAcc>
           <option *ngFor="let account of accounts" [value]="account.id" [disabled]="toAcc.value == account.id">
@@ -34,7 +35,8 @@
         <div class="input-group-append">
           <button class="btn btn-sm btn-outline-secondary" type="button"
                   data-toggle="tooltip" data-placement="left" title="New Account"
-                  data-toggle="modal" data-target="#accModal">
+                  data-toggle="modal" data-target="#accModal"
+                  (click)="fromAcca = true">
             <fa-icon icon="plus" size="md"></fa-icon>
           </button>
         </div>
@@ -57,7 +59,8 @@
         <div class="input-group-append">
           <button class="btn btn-sm btn-outline-secondary" type="button"
                   data-toggle="tooltip" data-placement="left" title="New Account"
-                  data-toggle="modal" data-target="#accModal">
+                  data-toggle="modal" data-target="#accModal"
+                  (click)="fromAcca = false">
             <fa-icon icon="plus" size="md"></fa-icon>
           </button>
         </div>
@@ -65,7 +68,7 @@
           Account is required.
         </div>
       </div>
-      <app-add-account></app-add-account>
+      <app-add-account (accCreated)="onAccCreated($event)"></app-add-account>
     </div>
 
     <div class="form-group">

@@ -15,19 +15,26 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   addAccForm: FormGroup;
   currencies: string[] = ['USD'];
   componentSubs: Subscription[] = [];
-  @Output('acc-created') accCreated = new EventEmitter<number>();
+  @Output() accCreated = new EventEmitter<number>();
 
-  constructor(private utilityService: UtilityService, private summariesService: SummariesService) { }
+  constructor(private utilityService: UtilityService) { }
 
   ngOnInit() {
     this.initForm();
+
+    this.componentSubs.push(this.utilityService.accountCreated
+      .subscribe((acc: Account) => {
+        this.accCreated.emit(acc.id);
+        this.addAccForm.reset({currency: 'USD', includeInTotal: true, initialBalance: 0});
+        this.ngOnDestroy();
+      }));
   }
 
   initForm() {
     this.addAccForm = new FormGroup({
       id: new FormControl(),
-      name: new FormControl(null, Validators.required,),
-      type: new FormControl(null, Validators.required,),
+      name: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
       currency: new FormControl('USD'),
       initialBalance: new FormControl(0),
       includeInTotal: new FormControl(true)
@@ -35,14 +42,7 @@ export class AddAccountComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.componentSubs.push(this.utilityService.createAccount(this.addAccForm.value)
-      .subscribe((acc: Account) => {
-        this.utilityService.getAllAccounts();
-        this.summariesService.getBrief();
-        this.accCreated.emit(acc.id);
-        this.addAccForm.reset({currency: 'USD', includeInTotal: true, initialBalance: 0});
-        this.ngOnDestroy();
-      }));
+    this.utilityService.createAccount(this.addAccForm.value);
   }
 
   ngOnDestroy(): void {

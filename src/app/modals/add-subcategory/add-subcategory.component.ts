@@ -19,6 +19,13 @@ export class AddSubcategoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initForm();
+
+    this.componentSubs.push(this.utilityService.subcategoryCreated
+      .subscribe((subc: Subcategory) => {
+        this.subcategoryCreated.emit(subc.id);
+        this.addCategoryForm.reset();
+        this.ngOnDestroy();
+    }));
   }
 
   initForm() {
@@ -29,13 +36,7 @@ export class AddSubcategoryComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-      this.componentSubs.push(this.utilityService.createSubcategory(this.categoryId, this.addCategoryForm.value)
-        .subscribe((subcategory: Subcategory) => {
-          this.utilityService.getAllSubcategories(this.categoryId);
-          this.subcategoryCreated.emit(subcategory.id);
-          this.addCategoryForm.reset();
-          this.ngOnDestroy();
-        }));
+      this.utilityService.createSubcategory(this.categoryId, this.addCategoryForm.value);
   }
 
   ngOnDestroy(): void {

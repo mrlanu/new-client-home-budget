@@ -95,7 +95,6 @@ export class ExpenseComponent implements OnInit, OnDestroy {
       return account.id === +this.expenseForm.value.account;
     });
     const cat = this.categories.find(category => {
-      console.log(category);
       return category.id === +this.expenseForm.value.category;
     });
     const subcat = this.subcategories.find(subcategory => {
@@ -103,7 +102,6 @@ export class ExpenseComponent implements OnInit, OnDestroy {
     });
     this.expenseForm.patchValue({amount: -this.expenseForm.value.amount});
     this.expenseForm.patchValue({account: acc, category: cat, subCategory: subcat});
-    console.log(this.expenseForm.value);
     this.transactionsService.createTransaction(this.expenseForm.value);
   }
 
