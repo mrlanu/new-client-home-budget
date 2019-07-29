@@ -19,7 +19,7 @@
   text-shadow: #999999 2px 2px 3px;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 38rem) {
   .my-wrapper {
     width: 450px;
   }

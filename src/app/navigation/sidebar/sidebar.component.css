@@ -96,10 +96,19 @@ ul ul a {
 .user img{
   border: 1px solid whitesmoke;
   border-radius: 50%;
+  padding: 0.2rem;
   width: 5rem;
   height: 5rem;
 }
 
+img:hover {
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
+}
+
 .user-name {
   font-size: 1.5rem;
+}
+
+.user-name:hover {
+  text-shadow: #8d8d8d 2px 2px 2px;
 }

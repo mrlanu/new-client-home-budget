@@ -1,8 +1,8 @@
 <div fxLayout="row" fxLayoutAlign="space-evenly">
 
-  <div fxFlex="300px" fxHide.lt-md></div>
+  <div fxFlex="300px" fxFlex.lt-lg="280px" fxHide.lt-md></div>
 
-  <div fxLayout="row wrap" fxFlex>
+  <div fxLayout="row wrap" fxLayoutGap="1rem" fxLayoutGap.lt-md="0" fxFlex>
     <div class="item" fxFlex="55" fxFlex.lt-lg="100">
       <app-transactions-list></app-transactions-list>
     </div>
