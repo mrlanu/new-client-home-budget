@@ -7,7 +7,7 @@ import {ExpenseComponent} from './operations/expense/expense.component';
 import {OperationsComponent} from './operations/operations.component';
 import {IncomeComponent} from './operations/income/income.component';
 import {TransferComponent} from './operations/transfer/transfer.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateAdapter, NgbDateNativeAdapter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -35,6 +35,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddAccountComponent } from './modals/add-account/add-account.component';
 import { AddCategoryComponent } from './modals/add-category/add-category.component';
 import { AddSubcategoryComponent } from './modals/add-subcategory/add-subcategory.component';
+import { EditTransactionComponent } from './modals/edit-transaction/edit-transaction.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AddSubcategoryComponent } from './modals/add-subcategory/add-subcategor
     DashboardComponent,
     AddAccountComponent,
     AddCategoryComponent,
-    AddSubcategoryComponent
+    AddSubcategoryComponent,
+    EditTransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { AddSubcategoryComponent } from './modals/add-subcategory/add-subcategor
     FontAwesomeModule
   ],
   providers: [UtilityService, SummariesService, TransactionsService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

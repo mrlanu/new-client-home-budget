@@ -50,6 +50,7 @@ export class TransactionsService {
 
   baseUrl = environment.baseUrl;
   transactionAdded = new Subject<any>();
+  transactionChanged = new Subject<Transaction>();
 
   // for filtering
   transactionsList: TransactionView[] = [];
@@ -89,14 +90,45 @@ export class TransactionsService {
     this._search$.next();
   }
 
+  getAllTransactions(date: Date) {
+    const url = `${this.baseUrl}/transactions`;
+    const params = new HttpParams().set('date', date.toString());
+    this.httpClient.get<TransactionView[]>(url, { params })
+      .subscribe(trans => {
+        this.transactionsListImmutable = trans;
+        this.transactionsList = this.transactionsListImmutable;
+        this._search$.next();
+      });
+  }
+
+  getTransaction(transactionId: number) {
+    const url = `${this.baseUrl}/transactions/${transactionId}`;
+    this.httpClient.get<Transaction>(url).subscribe(trans => {
+      this.transactionChanged.next(trans);
+    });
+  }
+
   createTransaction(transaction: Transaction) {
     const url = `${this.baseUrl}/transactions`;
-    this.httpClient.post(url, transaction)
+    this.httpClient.post<Transaction>(url, transaction)
       .subscribe(trans => {
-      this.transactionAdded.next(trans);
-      this.getAllTransactions(new Date());
-        this.summariesService.getBrief();
+      this.updateAllRegardTransaction(trans);
     });
+  }
+
+  editTransaction(transaction: Transaction) {
+    const url = `${this.baseUrl}/transactions`;
+    this.httpClient.put<Transaction>(url, transaction)
+      .subscribe(trans => {
+        this.updateAllRegardTransaction(trans);
+      });
+  }
+
+  private updateAllRegardTransaction(trans: Transaction) {
+    this.transactionAdded.next(trans);
+    this.getAllTransactions(new Date());
+    this.summariesService.getBrief();
+    this.getSummaryByAccounts();
   }
 
   createTransfer(transfer: Transfer) {
@@ -106,18 +138,8 @@ export class TransactionsService {
         this.transactionAdded.next(result);
         this.getAllTransactions(new Date());
         this.summariesService.getBrief();
+        this.getSummaryByAccounts();
       });
-  }
-
-  getAllTransactions(date: Date) {
-    const url = `${this.baseUrl}/transactions`;
-    const params = new HttpParams().set('date', date.toString());
-    this.httpClient.get<TransactionView[]>(url, { params })
-      .subscribe(trans => {
-        this.transactionsListImmutable = trans;
-        this.transactionsList = this.transactionsListImmutable;
-        this._search$.next();
-    });
   }
 
   get transactions$() { return this._transactions$.asObservable(); }

@@ -3,6 +3,7 @@ import {TransactionsService} from '../services/transactions.service';
 import {TransactionView} from '../models/transaction-view.model';
 import {Observable, Subscription} from 'rxjs';
 import {SortableDirective, SortEvent} from './sortable.directive';
+import {UtilityService} from '../services/utility.service';
 
 @Component({
   selector: 'app-transactions-list',
@@ -15,16 +16,21 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
 
   transactionsList$: Observable<TransactionView[]>;
   total$: Observable<number>;
+  sterti: TransactionView;
 
   @ViewChildren(SortableDirective) headers: QueryList<SortableDirective>;
 
-  constructor(public transactionsService: TransactionsService) {
+  constructor(public transactionsService: TransactionsService, private utilityService: UtilityService) {
     this.transactionsList$ = transactionsService.transactions$;
     this.total$ = transactionsService.total$;
   }
 
   ngOnInit(): void {
     this.transactionsService.getAllTransactions(new Date());
+  }
+
+  onTransactionSelect(trans: TransactionView) {
+    this.transactionsService.getTransaction(trans.id);
   }
 
   onSort({column, direction}: SortEvent) {

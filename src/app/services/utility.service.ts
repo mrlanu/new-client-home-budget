@@ -7,6 +7,7 @@ import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
 import {map} from 'rxjs/operators';
 import {SummariesService} from './summaries.service';
+import {TransactionView} from '../models/transaction-view.model';
 
 @Injectable()
 export class UtilityService {
@@ -19,11 +20,16 @@ export class UtilityService {
   subcategoryChanged = new Subject<Subcategory[]>();
   subcategoryCreated = new Subject<Subcategory>();
 
+  private _accounts: Account[] = [];
+  private _categories: Category[] = [];
+  private _subcategories: Subcategory[] = [];
+
   constructor(private httpClient: HttpClient, private summariesService: SummariesService) { }
 
   getAllAccounts() {
     const url = `${this.baseUrl}/accounts`;
     this.httpClient.get(url).subscribe((accounts: Account[]) => {
+      this._accounts = accounts;
       this.accountsChanged.next(accounts);
     });
   }
@@ -42,6 +48,7 @@ export class UtilityService {
     const url = `${this.baseUrl}/categories`;
     this.httpClient.get(url)
       .subscribe((categories: Category[]) => {
+        this._categories = categories;
         this.categoryChanged.next(categories);
       });
   }
@@ -59,6 +66,7 @@ export class UtilityService {
     const url = `${this.baseUrl}/categories/${categoryId}/subcategories`;
     this.httpClient.get(url)
       .subscribe((subcategories: Subcategory[]) => {
+        this._subcategories = subcategories;
         this.subcategoryChanged.next(subcategories);
       });
   }
@@ -79,5 +87,17 @@ export class UtilityService {
         image: o.results[0].picture.medium
       };
     }));
+  }
+
+  get accounts(): Account[] {
+    return [...this._accounts];
+  }
+
+  get categories(): Category[] {
+    return [...this._categories];
+  }
+
+  get subcategories(): Subcategory[] {
+    return [...this._subcategories];
   }
 }

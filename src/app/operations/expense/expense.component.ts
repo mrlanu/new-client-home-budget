@@ -12,7 +12,7 @@ import {TransactionsService} from '../../services/transactions.service';
   selector: 'app-expense',
   templateUrl: './expense.component.html',
   styleUrls: ['./expense.component.css'],
-  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
+  providers: []
 })
 export class ExpenseComponent implements OnInit, OnDestroy {
 
