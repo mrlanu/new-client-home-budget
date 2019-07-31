@@ -1,0 +1,13 @@
+.title {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #272C66;
+  text-shadow: #999999 2px 2px 3px;
+}
+
+
+@media (min-width: 60rem) {
+  .title {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,22 @@
+<div fxLayout="column" fxFlex>
+  <div class="title mt-5 mb-3">
+      Spent on the {{ category}} for last 12 month
+  </div>
+  <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType">
+
+  </canvas>
+  <div fxLayout fxLayoutAlign="center">
+        <select fxFlex="50" class="form-control form-control-sm" placeholder="Category" (change)="onSelectCategory($event.target.value)">
+          <option *ngFor="let cat of categories" [value]="cat.id">
+            {{ cat.name }}
+          </option>
+        </select>
+  </div>
+</div>
+

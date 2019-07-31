@@ -27,15 +27,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {faAngleDoubleDown, faAngleLeft, faAngleRight, faCalendarAlt, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {LanuMonthPaginatorComponent} from './shared/lanu-month-paginator/lanu-month-paginator.component';
-import { SummaryPageComponent } from './pages/summary-page/summary-page.component';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import { MainComponent } from './main/main.component';
-import { OperationsPageComponent } from './pages/operations-page/operations-page.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AddAccountComponent } from './modals/add-account/add-account.component';
 import { AddCategoryComponent } from './modals/add-category/add-category.component';
 import { AddSubcategoryComponent } from './modals/add-subcategory/add-subcategory.component';
 import { EditTransactionComponent } from './modals/edit-transaction/edit-transaction.component';
+import {BarChartComponent} from './charts/bar-chart/bar-chart.component';
+import {ChartsModule} from 'ng2-charts';
+import { ChartsComponent } from './pages/charts/charts.component';
+import {LineChartComponent} from './charts/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -53,15 +55,16 @@ import { EditTransactionComponent } from './modals/edit-transaction/edit-transac
     SummaryComponent,
     SummaryExpIncComponent,
     LanuMonthPaginatorComponent,
-    SummaryPageComponent,
     WelcomePageComponent,
     MainComponent,
-    OperationsPageComponent,
     DashboardComponent,
     AddAccountComponent,
     AddCategoryComponent,
     AddSubcategoryComponent,
-    EditTransactionComponent
+    EditTransactionComponent,
+    BarChartComponent,
+    ChartsComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ import { EditTransactionComponent } from './modals/edit-transaction/edit-transac
     ReactiveFormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartsModule
   ],
   providers: [UtilityService, SummariesService, TransactionsService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

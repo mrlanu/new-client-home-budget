@@ -15,7 +15,7 @@ export class UtilityService {
   baseUrl = environment.baseUrl;
   accountsChanged = new Subject<Account[]>();
   accountCreated = new Subject<Account>();
-  categoryChanged = new Subject<Category[]>();
+  categoriesChanged = new Subject<Category[]>();
   categoryCreated = new Subject<Category>();
   subcategoryChanged = new Subject<Subcategory[]>();
   subcategoryCreated = new Subject<Subcategory>();
@@ -49,7 +49,7 @@ export class UtilityService {
     this.httpClient.get(url)
       .subscribe((categories: Category[]) => {
         this._categories = categories;
-        this.categoryChanged.next(categories);
+        this.categoriesChanged.next(categories);
       });
   }
 
