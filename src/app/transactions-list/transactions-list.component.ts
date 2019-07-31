@@ -30,7 +30,11 @@ export class TransactionsListComponent implements OnInit, OnDestroy {
   }
 
   onTransactionSelect(trans: TransactionView) {
-    this.transactionsService.getTransaction(trans.id);
+    if (trans.type === 'TRANSFER') {
+      this.transactionsService.getTransfer(trans.id);
+    } else {
+      this.transactionsService.getTransaction(trans.id);
+    }
   }
 
   onSort({column, direction}: SortEvent) {

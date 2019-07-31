@@ -3,14 +3,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="transactionModalLabel">Edit Transaction</h5>
+        <h5 class="modal-title" *ngIf="transferSelected">Edit Transfer</h5>
+        <h5 class="modal-title" *ngIf="!transferSelected">Edit Transaction</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="transForm">
 
+        <!--For TRANSACTION Edit-->
+        <form *ngIf="!transferSelected" [formGroup]="transForm">
           <div class="form-group">
             <label for="date" class="col-sm-2 col-form-label">Date</label>
             <div class="input-group col-sm-12">
@@ -96,11 +98,89 @@
           </div>
 
         </form>
+
+        <!--For TRANSFER Edit-->
+        <form [formGroup]="transfForm" *ngIf="transferSelected">
+
+          <div class="form-group">
+            <label for="date2" class="col-sm-2 col-form-label">Date</label>
+            <div class="input-group col-sm-12">
+              <div class="input-group">
+                <input class="form-control form-control-sm" placeholder="yyyy-mm-dd"
+                       name="date" id="date2" formControlName="date" ngbDatepicker #d2="ngbDatepicker"
+                       [ngClass]="{'is-invalid': transfForm.get('date').invalid && transfForm.get('date').touched}">
+                <div class="input-group-append">
+                  <button class="btn btn-sm btn-outline-secondary" (click)="d2.toggle()" type="button"
+                          data-toggle="tooltip" data-placement="left" title="Select Date">
+                    <fa-icon icon="calendar-alt" size="md"></fa-icon>
+                  </button>
+                </div>
+                <div *ngIf="transfForm.get('date').invalid && transfForm.get('date').touched" class="invalid-feedback">
+                  Date is required.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="accFrom" class="col-sm-4">From Account</label>
+            <div class="input-group col-sm-12">
+              <select class="form-control form-control-sm" formControlName="fromAccount" id="accFrom"
+                      (change)="onSelectFromAcc($event.target.value)"
+                      [ngClass]="{'is-invalid': transfForm.get('fromAccount').invalid && transfForm.get('fromAccount').touched}"
+                      #fromAcc>
+                <option *ngFor="let account of accounts" [value]="account.id">
+                  {{account.type}} / {{account.name}}
+                </option>
+              </select>
+              <div *ngIf="transfForm.get('fromAccount').invalid && transfForm.get('fromAccount').touched" class="invalid-feedback">
+                Account is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="accTo" class="col-sm-4">To Account</label>
+            <div class="input-group col-sm-12">
+              <select class="form-control form-control-sm" formControlName="toAccount" id="accTo"
+                      [ngClass]="{'is-invalid': transfForm.get('toAccount').invalid && transfForm.get('toAccount').touched}"
+                      #toAcc>
+                <option *ngFor="let account of accounts" [value]="account.id">
+                  {{account.type}} / {{account.name}}
+                </option>
+              </select>
+              <div *ngIf="transfForm.get('toAccount').invalid && transfForm.get('toAccount').touched" class="invalid-feedback">
+                Account is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount2" class="col-sm-2">Amount</label>
+            <div class="col-sm-12">
+              <input type="number" class="form-control form-control-sm"
+                     id="amount2" placeholder="Amount" formControlName="amount"
+                     [ngClass]="{'is-invalid': transfForm.get('amount').invalid && transfForm.get('amount').touched}">
+              <div *ngIf="transfForm.get('amount').invalid && transfForm.get('amount').touched" class="invalid-feedback">
+                Amount is required.
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="modal-footer">
+
+      <!--For TRANSACTION Edit-->
+      <div class="modal-footer" *ngIf="!transferSelected">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" (click)="onSubmit()" class="btn btn-primary" data-dismiss="modal"
-        [disabled]="transForm.invalid || transForm.untouched">Save</button>
+        <button type="button" (click)="onSubmit('TRANSACTION')" class="btn btn-primary" data-dismiss="modal"
+                [disabled]="transForm.invalid || transForm.untouched">Save</button>
+      </div>
+
+      <!--For TRANSFER Edit-->
+      <div class="modal-footer" *ngIf="transferSelected">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmit('TRANSFER')" class="btn btn-primary" data-dismiss="modal"
+                [disabled]="transfForm.invalid || transfForm.untouched">Save</button>
       </div>
     </div>
   </div>

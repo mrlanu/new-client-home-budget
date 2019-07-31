@@ -51,6 +51,7 @@ export class TransactionsService {
   baseUrl = environment.baseUrl;
   transactionAdded = new Subject<any>();
   transactionChanged = new Subject<Transaction>();
+  transferChanged = new Subject<Transfer>();
 
   // for filtering
   transactionsList: TransactionView[] = [];
@@ -125,10 +126,19 @@ export class TransactionsService {
   }
 
   private updateAllRegardTransaction(trans: Transaction) {
-    this.transactionAdded.next(trans);
+    if (trans) {
+      this.transactionAdded.next(trans);
+    }
     this.getAllTransactions(new Date());
     this.summariesService.getBrief();
     this.getSummaryByAccounts();
+  }
+
+  getTransfer(transferId: number) {
+    const url = `${this.baseUrl}/transfers/${transferId}`;
+    this.httpClient.get<Transfer>(url).subscribe(transf => {
+      this.transferChanged.next(transf);
+    });
   }
 
   createTransfer(transfer: Transfer) {
@@ -140,6 +150,13 @@ export class TransactionsService {
         this.summariesService.getBrief();
         this.getSummaryByAccounts();
       });
+  }
+
+  editTransfer(transfer: Transfer) {
+    const url = `${this.baseUrl}/transfers`;
+    this.httpClient.put<Transfer>(url, transfer).subscribe(transf => {
+      this.updateAllRegardTransaction(null);
+    });
   }
 
   get transactions$() { return this._transactions$.asObservable(); }

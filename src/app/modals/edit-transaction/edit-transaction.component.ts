@@ -6,6 +6,8 @@ import {UtilityService} from '../../services/utility.service';
 import {TransactionView} from '../../models/transaction-view.model';
 import {TransactionsService} from '../../services/transactions.service';
 import {Transaction} from '../../models/transaction.model';
+import {Transfer} from '../../models/transfer.model';
+import {Account} from '../../models/account.model';
 
 @Component({
   selector: 'app-edit-transaction',
@@ -16,16 +18,21 @@ export class EditTransactionComponent implements OnInit {
 
   @Input() transactionForEdit: TransactionView;
   transForm: FormGroup;
+  transfForm: FormGroup;
   componentSubs: Subscription[] = [];
+  transferSelected = false;
 
   categories: Category[] = [];
+  accounts: Account[] = [];
 
   constructor(private utilityService: UtilityService, private transactionsService: TransactionsService) { }
 
   ngOnInit() {
-    this.initForm();
+    this.initTransForm();
+    this.initTransfForm();
     this.componentSubs.push(this.transactionsService.transactionChanged
       .subscribe((trans: Transaction) => {
+        this.transferSelected = false;
         this.categories = this.utilityService.categories.filter(category => {
           return trans.category.type === category.type;
         });
@@ -41,9 +48,21 @@ export class EditTransactionComponent implements OnInit {
           description: trans.description
         });
     }));
+    this.componentSubs.push(this.transactionsService.transferChanged
+      .subscribe((transfer: Transfer) => {
+        this.transferSelected = true;
+        this.accounts = this.utilityService.accounts;
+        this.transfForm.patchValue({
+          id: transfer.id,
+          date: new Date(transfer.date),
+          fromAccount: transfer.fromAccount.id,
+          toAccount: transfer.toAccount.id,
+          amount: transfer.amount
+        });
+      }));
   }
 
-  initForm() {
+  initTransForm() {
     this.transForm = new FormGroup({
       id: new FormControl(),
       date: new FormControl(new Date(), Validators.required),
@@ -56,30 +75,55 @@ export class EditTransactionComponent implements OnInit {
     });
   }
 
+  initTransfForm() {
+    this.transfForm = new FormGroup({
+      id: new FormControl(),
+      date: new FormControl(new Date(), Validators.required),
+      amount: new FormControl(null, Validators.required),
+      fromAccount: new FormControl(null, Validators.required),
+      toAccount: new FormControl(null, Validators.required)
+    });
+  }
+
   onSelectCategory(categoryId) {
     if (categoryId) {
       this.utilityService.getAllSubcategories(categoryId);
     }
   }
 
+  onSelectFromAcc(s: any) {
+    console.log(s);
+  }
 
-  onSubmit() {
-    const acc = this.utilityService.accounts.find(account => {
-      return account.id === +this.transForm.value.account;
-    });
-    const cat = this.utilityService.categories.find(category => {
-      return category.id === +this.transForm.value.category;
-    });
-    const subcat = this.utilityService.subcategories.find(subcategory => {
-      return subcategory.id === +this.transForm.value.subCategory;
-    });
+  onSubmit(from: string) {
+    if (from === 'TRANSACTION') {
+      if (this.transForm.value.type === 'EXPENSE') {
+        this.transForm.patchValue({amount: -this.transForm.value.amount});
+      }
+      this.transForm.patchValue({
+        account: this.utilityService.accounts.find(account => {
+          return account.id === +this.transForm.value.account;
+        }),
+        category: this.utilityService.categories.find(category => {
+          return category.id === +this.transForm.value.category;
+        }),
+        subCategory: this.utilityService.subcategories.find(subcategory => {
+          return subcategory.id === +this.transForm.value.subCategory;
+        })
+      });
+      this.transactionsService.editTransaction(this.transForm.value);
 
-    if (this.transForm.value.type === 'EXPENSE') {
-      this.transForm.patchValue({amount: -this.transForm.value.amount});
+    } else if (from === 'TRANSFER') {
+      this.transfForm.patchValue({
+        'fromAccount': this.accounts.find(acc => {
+          return acc.id === this.transfForm.value.fromAccount;
+        }),
+        'toAccount': this.accounts.find(acc => {
+          return acc.id === this.transfForm.value.toAccount;
+        })
+      });
+      this.transactionsService.editTransfer(this.transfForm.value);
     }
-
-    this.transForm.patchValue({account: acc, category: cat, subCategory: subcat});
-    this.transactionsService.editTransaction(this.transForm.value);
   }
 
 }
