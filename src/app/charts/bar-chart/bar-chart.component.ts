@@ -56,11 +56,6 @@ export class BarChartComponent implements OnInit, OnDestroy {
   constructor(private summariesService: SummariesService) { }
 
   ngOnInit() {
-    $('#canvas').outerHeight($(window).height() - $('#canvas').offset().top - Math.abs($('#canvas').outerHeight(true) - $('#canvas').outerHeight()));
-    $(window).on('resize', function() {
-      $('#canvas').outerHeight($(window).height() - $('#canvas').offset().top - Math.abs($('#canvas').outerHeight(true) - $('#canvas').outerHeight()));
-    });
-
     this.componentSubs.push(this.summariesService.getSumsOfIncomesExpensesForYearByMonth()
       .subscribe((result: YearMonthSum[]) => {
         this.barChartData[0].data = result[0].sum;

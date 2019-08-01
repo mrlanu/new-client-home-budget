@@ -1,3 +1,7 @@
+#canvas {
+  width: 100%;
+}
+
 .title {
   font-size: 1.1rem;
   text-align: center;

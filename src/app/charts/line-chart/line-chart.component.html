@@ -1,8 +1,8 @@
 <div fxLayout="column" fxFlex>
-  <div class="title mt-5 mb-3">
+  <div class="title mt-3 mb-2">
       Spent on the {{ category}} for last 12 month
   </div>
-  <canvas baseChart
+  <canvas id="canvas" baseChart
             [datasets]="lineChartData"
             [labels]="lineChartLabels"
             [options]="lineChartOptions"

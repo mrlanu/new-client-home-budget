@@ -1,22 +1,19 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly">
+<div gdColumns="1fr 1fr" gdRows="auto auto" gdAreas="chart-1 chart-2 | chart-3 chart-4" gdGap="1rem"
+     [ngStyle]="{'padding-right': '2rem'}"
+     gdColumns.lt-lg="auto" gdRows.lt-lg="auto" gdAreas.lt-lg="chart-1 | chart-2 | chart-3 | chart-4" gdGap.lt-lg="1rem"
+     [ngStyle.lt-md]="{'padding-right': '1rem'}">
 
-  <div fxFlex="350px" fxFlex.lt-lg="280px" fxHide.lt-md></div>
-
-  <div fxLayout="row wrap" fxLayoutGap="5rem" fxLayoutGap.lt-lg="0" fxFlex>
-
-    <div class="item" fxFlex="40" fxFlex.lt-lg="95" fxFlex.lt-md="100">
+    <div gdArea="chart-1">
       <app-bar-chart></app-bar-chart>
     </div>
-    <div class="item" fxFlex="40" fxFlex.lt-lg="95" fxFlex.lt-md="100">
+    <div gdArea="chart-2">
       <app-line-chart></app-line-chart>
     </div>
-    <div class="item" fxFlex="40" fxFlex.lt-lg="95" fxFlex.lt-md="100">
+    <div gdArea="chart-3">
       <app-bar-chart></app-bar-chart>
     </div>
-    <div class="item" fxFlex="40" fxFlex.lt-lg="95" fxFlex.lt-md="100">
+    <div gdArea="chart-4">
       <app-bar-chart></app-bar-chart>
     </div>
-
-  </div>
 
 </div>
