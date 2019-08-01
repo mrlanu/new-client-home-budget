@@ -4,11 +4,13 @@ import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {MainComponent} from './main/main.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BarChartComponent} from './charts/bar-chart/bar-chart.component';
+import {LineChartComponent} from './charts/line-chart/line-chart.component';
 
 const routes: Routes = [
   {path: 'welcome-page', component: WelcomePageComponent},
   {path: 'main', component: MainComponent, /*canActivateChild: [AuthGuard],*/ children: [
           {path: 'charts/income-vs-expenses', component: BarChartComponent},
+          {path: 'charts/spent-by-category', component: LineChartComponent},
           {path: 'dashboard', component: DashboardComponent},
           /*{path: 'charts', component: ChartsComponent},
           {path: 'budgets', component: BudgetsComponent},
