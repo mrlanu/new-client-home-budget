@@ -1,19 +1,14 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly">
-
-  <div fxFlex="300px" fxFlex.lt-lg="280px" fxHide.lt-md></div>
-
-  <div fxLayout="row wrap" fxLayoutGap="1rem" fxLayoutGap.lt-md="0" fxFlex>
-    <div class="item" fxFlex="55" fxFlex.lt-lg="100">
-      <app-transactions-list></app-transactions-list>
+<div fxLayout="row wrap" fxLayoutGap="1rem" fxLayoutGap.lt-sm="0" fxFlex>
+  <div class="item" fxFlex="55" fxFlex.lt-lg="100">
+    <app-transactions-list></app-transactions-list>
+  </div>
+  <div fxLayout="column" fxFlex>
+    <div class="item">
+      <app-summary></app-summary>
     </div>
-    <div fxLayout="column" fxFlex>
-      <div class="item">
-        <app-summary></app-summary>
-      </div>
-      <div class="item">
-        <app-operations></app-operations>
-      </div>
+    <div class="item">
+      <app-operations></app-operations>
     </div>
   </div>
-
 </div>
+

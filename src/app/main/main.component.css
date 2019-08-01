@@ -1,0 +1,19 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 320px auto;
+  grid-auto-rows: 4.5rem auto;
+  grid-template-areas: 'header header'
+                       'sidebar main';
+}
+
+.item-header {
+  grid-area: header;
+}
+
+.item-sidebar {
+  grid-area: sidebar;
+}
+
+.item-main {
+  grid-area: main;
+}
