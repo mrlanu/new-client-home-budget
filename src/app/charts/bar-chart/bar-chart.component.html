@@ -1,10 +1,13 @@
-<div class="title mt-3 mb-2">Incomes vs Expenses for last 12 month</div>
-<div style="display: block">
-  <canvas id="canvas" baseChart
-          [datasets]="barChartData"
-          [labels]="barChartLabels"
-          [options]="barChartOptions"
-          [colors]="barChartColors"
-          [legend]="barChartLegend"
-          [chartType]="barChartType"></canvas>
-</div>
+<main fxLayout="column" fxLayoutAlign="center center">
+  <div class="title mt-3 mb-2">Incomes vs Expenses for last 12 month</div>
+  <div [ngStyle]="{'width': '80%'}" [ngStyle.lt-sm]="{'width': '90%'}">
+    <canvas id="canvas" baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [colors]="barChartColors"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"></canvas>
+  </div>
+  <div class="title mt-4">Some Table</div>
+</main>

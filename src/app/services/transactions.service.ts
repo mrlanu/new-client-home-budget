@@ -132,6 +132,7 @@ export class TransactionsService {
     this.getAllTransactions(new Date());
     this.summariesService.getBrief();
     this.getSummaryByAccounts();
+    this.getSummaryByCategories(new Date(), trans.type);
   }
 
   getTransfer(transferId: number) {
