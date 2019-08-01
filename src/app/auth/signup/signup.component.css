@@ -1,0 +1,20 @@
+mat-form-field {
+  width: 280px;
+}
+
+#formBack {
+  border-radius: 15px;
+  width: 300px;
+  padding: 30px;
+  background: whitesmoke;
+  opacity: 1;
+}
+
+a{
+  text-decoration: none;
+  color: #ff6e06;
+}
+
+a:hover, a:active{
+  color: #FFA726;
+}

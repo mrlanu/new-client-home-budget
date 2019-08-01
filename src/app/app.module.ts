@@ -37,6 +37,8 @@ import { EditTransactionComponent } from './shared/modals/edit-transaction/edit-
 import {BarChartComponent} from './pages/charts/bar-chart/bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import {LineChartComponent} from './pages/charts/line-chart/line-chart.component';
+import {LoginComponent} from './auth/login/login.component';
+import {SignupComponent} from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import {LineChartComponent} from './pages/charts/line-chart/line-chart.component
     AddSubcategoryComponent,
     EditTransactionComponent,
     BarChartComponent,
-    LineChartComponent
+    LineChartComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -7,3 +7,19 @@
     <app-select-budget *ngIf="isShowBudgetSelect"></app-select-budget>
   </div>
 </div>-->
+
+<main class="background" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+  <section fxLayout="column" fxFlex="50" fxFlex.lt-lg="50" fxHide.lt-md>
+    <div class="slogan">
+      Money likes to be counted...
+    </div>
+    <div class="resume">
+      Do you like saving money ?
+      HomeBudget by Lanu.io is a good place to do it. You can track and see your expenses and incomes, planing your budget, sorting the transactions in different way etc.
+    </div>
+  </section>
+  <div class="" fxFlex="30" fxFlex.lt-lg="40" fxFlex.lt-md="80" fxFlex.lt-sm="95">
+    <app-login *ngIf="isLogin && !isShowBudgetSelect"></app-login>
+    <app-signup *ngIf="!isLogin && !isShowBudgetSelect"></app-signup>
+  </div>
+</main>
