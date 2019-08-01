@@ -34,7 +34,7 @@ export class ExpenseComponent implements OnInit, OnDestroy {
       .subscribe((accounts: Account[]) => {
         this.accounts = accounts;
       }));
-    this.componentSubs.push(this.utilityService.categoryChanged
+    this.componentSubs.push(this.utilityService.categoriesChanged
       .subscribe((categories: Category[]) => {
         this.categories = categories.filter(category => {
           return category.type === this.typeCategory;
