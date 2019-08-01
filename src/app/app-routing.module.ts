@@ -3,8 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {WelcomePageComponent} from './welcome-page/welcome-page.component';
 import {MainComponent} from './main/main.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
-import {BarChartComponent} from './charts/bar-chart/bar-chart.component';
-import {LineChartComponent} from './charts/line-chart/line-chart.component';
+import {BarChartComponent} from './pages/charts/bar-chart/bar-chart.component';
+import {LineChartComponent} from './pages/charts/line-chart/line-chart.component';
 
 const routes: Routes = [
   {path: 'welcome-page', component: WelcomePageComponent},

@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {TransactionView} from '../models/transaction-view.model';
-import {SortDirection} from '../transactions-list/sortable.directive';
+import {SortDirection} from '../pages/dashboard/transactions-list/sortable.directive';
 import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
 import {Transaction} from '../models/transaction.model';
 import {GroupAccount} from '../models/group-account.model';
