@@ -11,7 +11,7 @@ export class SummariesService {
   baseUrl = environment.baseUrl;
 
   briefChanged = new Subject<Brief>();
-  spentMonthToMonthByCategoryChange = new Subject<YearMonthSum>();
+  spentMonthToMonthByCategoryChange = new Subject<YearMonthSum[]>();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class SummariesService {
   getSpentMonthToMonthByCategory(categoryId: number) {
     const url = `${this.baseUrl}/charts/spentMonthToMonthByCategory`;
     const params = new HttpParams().set('categoryId', categoryId.toString());
-    this.httpClient.get(url, {params}).subscribe((res: YearMonthSum) => {
+    this.httpClient.get(url, {params}).subscribe((res: YearMonthSum[]) => {
       this.spentMonthToMonthByCategoryChange.next(res);
     });
   }

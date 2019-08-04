@@ -1,4 +1,5 @@
 export interface YearMonthSum {
-  date: string[];
-  sum: number[];
+  date: string;
+  expenseSum: number;
+  incomeSum: number;
 }

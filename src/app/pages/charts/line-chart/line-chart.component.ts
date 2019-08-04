@@ -48,9 +48,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
         });
       }));
     this.componentSubs.push(this.summariesService.spentMonthToMonthByCategoryChange
-      .subscribe((result: YearMonthSum) => {
-        this.lineChartData[0].data = result.sum;
-        this.lineChartLabels = result.date;
+      .subscribe((result: YearMonthSum[]) => {
+        this.lineChartData[0].data = result.map(r => -r.expenseSum);
+        this.lineChartLabels = result.map(r => r.date);
         this.category = this.categories.find(c => {
           return c.id === +this.selectedCategoryId;
         }).name;

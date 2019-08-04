@@ -58,9 +58,9 @@ export class BarChartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.componentSubs.push(this.summariesService.getSumsOfIncomesExpensesForYearByMonth()
       .subscribe((result: YearMonthSum[]) => {
-        this.barChartData[0].data = result[0].sum;
-        this.barChartData[1].data = result[1].sum;
-        this.barChartLabels = result[0].date;
+        this.barChartData[0].data = result.map(r => r.incomeSum);
+        this.barChartData[1].data = result.map(r => -r.expenseSum);
+        this.barChartLabels = result.map(r => r.date);
       }));
   }
 
