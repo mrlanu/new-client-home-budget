@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
+import {UiService} from '../services/ui.service';
 /*import {UiService} from '../../shared/ui.service';*/
 
 @Component({
@@ -13,17 +14,17 @@ export class WelcomePageComponent implements OnInit, OnDestroy {
   isLogin = true;
   isShowBudgetSelect = false;
 
-  constructor(/*private uiService: UiService*/) { }
+  constructor(private uiService: UiService) { }
 
   ngOnInit() {
-    /*this.componentSubs.push(this.uiService.isLoginChanged
+    this.componentSubs.push(this.uiService.isLoginChanged
       .subscribe(result => {
         this.isLogin = result;
       }));
     this.componentSubs.push(this.uiService.isShowBudgetSelectChanged
       .subscribe(result => {
         this.isShowBudgetSelect = result;
-      }));*/
+      }));
   }
 
   ngOnDestroy(): void {

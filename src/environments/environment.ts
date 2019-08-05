@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:2019',
-  authUrl: 'http://localhost:8087',
+  baseUrl: 'http://localhost:8080',
+  // authUrl: 'http://localhost:8087',
   // baseUrl: 'https://lanu-home-budget.herokuapp.com',
-  budgetId: 1
+  budgetId: 0
 };
 
 /*

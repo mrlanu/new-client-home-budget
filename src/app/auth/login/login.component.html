@@ -1,16 +1,16 @@
 <div>
-  <form class="form-back">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-back">
     <div class="text-center mb-4">
       <div class="mb-5 mt-4">Welcome</div>
     </div>
 
     <div class="form-label-group">
-      <input type="text" id="inputUsername" class="form-control" placeholder="Your username" required="" autofocus="">
+      <input type="text" id="inputUsername" class="form-control" placeholder="Your username" autofocus="" formControlName="username">
       <label for="inputUsername">Username</label>
     </div>
 
     <div class="form-label-group mt-3">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password">
       <label for="inputPassword">Password</label>
     </div>
 

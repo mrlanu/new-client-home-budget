@@ -13,7 +13,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UtilityService} from './services/utility.service';
 import {SummariesService} from './services/summaries.service';
-import {AuthInterceptor} from './services/auth.interceptor';
 import {TransactionsListComponent} from './pages/dashboard/transactions-list/transactions-list.component';
 import {TransactionsService} from './services/transactions.service';
 import {SortableDirective} from './pages/dashboard/transactions-list/sortable.directive';
@@ -39,6 +38,10 @@ import {ChartsModule} from 'ng2-charts';
 import {LineChartComponent} from './pages/charts/line-chart/line-chart.component';
 import {LoginComponent} from './auth/login/login.component';
 import {SignupComponent} from './auth/signup/signup.component';
+import {AuthService} from './auth/auth.service';
+import {UiService} from './services/ui.service';
+import { SelectBudgetComponent } from './auth/select-budget/select-budget.component';
+import {AuthInterceptor} from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,8 @@ import {SignupComponent} from './auth/signup/signup.component';
     BarChartComponent,
     LineChartComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SelectBudgetComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,7 @@ import {SignupComponent} from './auth/signup/signup.component';
     FontAwesomeModule,
     ChartsModule
   ],
-  providers: [UtilityService, SummariesService, TransactionsService,
+  providers: [UtilityService, SummariesService, TransactionsService, AuthService, UiService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
   bootstrap: [AppComponent]

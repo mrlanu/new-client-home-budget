@@ -21,5 +21,6 @@
   <div class="" fxFlex="30" fxFlex.lt-lg="40" fxFlex.lt-md="80" fxFlex.lt-sm="95">
     <app-login *ngIf="isLogin && !isShowBudgetSelect"></app-login>
     <app-signup *ngIf="!isLogin && !isShowBudgetSelect"></app-signup>
+    <app-select-budget *ngIf="isShowBudgetSelect"></app-select-budget>
   </div>
 </main>
