@@ -20,9 +20,13 @@
       </label>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" *ngIf="!isLoading">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" disabled *ngIf="isLoading">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Checking...
+    </button>
 
-    <div class="mt-4 register" fxLayout="row" fxLayoutAlign="end" *ngIf="!isLoading">
+    <div class="mt-4 register" fxLayout="row" fxLayoutAlign="end">
       <a style="font-size: 1.2rem; cursor:pointer;" (click)="onRegister()">Register</a>
     </div>
 
