@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://lanu-home-budget.herokuapp.com',
+  budgetId: 0
 };
