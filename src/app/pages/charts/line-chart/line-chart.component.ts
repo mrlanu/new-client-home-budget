@@ -19,7 +19,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
 
   // lineChart
   public lineChartData: Array<any> = [
-    {data: [], label: 'Spent'},
+    {data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'Spent'},
   ];
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
