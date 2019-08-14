@@ -1,11 +1,11 @@
 <div class="my-container" fxLayout fxLayoutAlign="center center">
-  <button fxFlex="20" class="btn btn-light" (click)="onMonthChange('back')">
+  <button fxFlex="18" class="btn btn-light" (click)="onMonthChange('back')">
     <fa-icon icon="angle-left" size="lg"></fa-icon>
   </button>
-  <div class="" fxFlex="60" style="text-align: center; vertical-align: center">
+  <div class="ml-2 mr-2" fxFlex="64" style="text-align: center; vertical-align: center">
     {{ viewDate }}
   </div>
-  <button fxFlex="20" class="btn btn-light" (click)="onMonthChange('forward')" [disabled]="isCurrentMonth">
+  <button fxFlex="18" class="btn btn-light" (click)="onMonthChange('forward')" [disabled]="isCurrentMonth">
     <fa-icon icon="angle-right" size="lg"></fa-icon>
   </button>
 </div>
