@@ -16,6 +16,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   selectedCategoryId: number;
   category = 'Nothing';
+  result: YearMonthSum[] = [];
 
   // lineChart
   public lineChartData: Array<any> = [
@@ -54,6 +55,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
         this.category = this.categories.find(c => {
           return c.id === +this.selectedCategoryId;
         }).name;
+        this.result = result.reverse();
       }));
     this.utilityService.getAllCategories();
   }

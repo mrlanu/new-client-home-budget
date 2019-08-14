@@ -5,6 +5,9 @@
   text-shadow: #999999 2px 2px 3px;
 }
 
+#canvas {
+  width: 100%;
+}
 
 @media (min-width: 60rem) {
   .title {
