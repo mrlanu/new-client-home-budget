@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isLoading = result;
       }));
     this.loginForm = new FormGroup({
-      username: new FormControl('',
+      username: new FormControl('demo',
         {validators: [Validators.required]}),
-      password: new FormControl('',
+      password: new FormControl('demo',
         {validators: [Validators.required]})
     });
   }

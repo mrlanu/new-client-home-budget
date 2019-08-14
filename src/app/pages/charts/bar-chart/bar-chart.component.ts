@@ -14,7 +14,7 @@ declare var $: any;
 export class BarChartComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
-
+  result: YearMonthSum[] = [];
   // lineChart
   public barChartData: Array<any> = [
     {data: [], label: 'Incomes'},
@@ -61,6 +61,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
         this.barChartData[0].data = result.map(r => r.incomeSum);
         this.barChartData[1].data = result.map(r => -r.expenseSum);
         this.barChartLabels = result.map(r => r.date);
+        this.result = result.reverse();
       }));
   }
 

@@ -196,10 +196,8 @@ export class TransactionsService {
   // Summary Service
 
   getSummaryByAccounts() {
-    const budgetId = 1;
     const url = `${this.baseUrl}/summaries/accounts`;
-    const params = new HttpParams().set('budgetId', budgetId.toString());
-    this.httpClient.get(url, {params}).subscribe((groups: GroupAccount[]) => {
+    this.httpClient.get(url).subscribe((groups: GroupAccount[]) => {
       this.accGroupsChanged.next(groups);
     });
   }
