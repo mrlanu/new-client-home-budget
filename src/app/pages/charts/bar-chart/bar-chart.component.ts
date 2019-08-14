@@ -15,6 +15,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
   result: YearMonthSum[] = [];
+  chartDelay = false;
   // lineChart
   public barChartData: Array<any> = [
     {data: [], label: 'Incomes'},
@@ -62,6 +63,9 @@ export class BarChartComponent implements OnInit, OnDestroy {
         this.barChartData[1].data = result.map(r => -r.expenseSum);
         this.barChartLabels = result.map(r => r.date);
         this.result = result.reverse();
+        setTimeout(p => {
+          this.chartDelay = true;
+        }, 1000);
       }));
   }
 
