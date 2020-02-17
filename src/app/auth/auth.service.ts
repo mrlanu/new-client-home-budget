@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from './user.model';
 import {AuthData} from './auth-data.model';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
@@ -86,9 +85,10 @@ export class AuthService {
 
 
   getLoggedInUser() {
-    this.httpClient.get(this.baseUrl + '/user')
-      .subscribe((user: UserInfo) => {
+    this.httpClient.get<UserInfo>(this.baseUrl + '/user')
+      .subscribe((user) => {
         this.loggedUser = user;
+        environment.loggedUser = user;
       this.userChange.next(user);
     });
   }

@@ -2,12 +2,19 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {Budget} from '../app/models/budget.model';
+
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:8080',
   // authUrl: 'http://localhost:8087',
   // baseUrl: 'https://lanu-home-budget.herokuapp.com',
-  budgetId: 0
+  budgetId: 0,
+  loggedUser: {
+    userId: 0,
+    username: '',
+    budgets: null
+  }
 };
 
 /*
