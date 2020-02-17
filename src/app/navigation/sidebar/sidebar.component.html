@@ -7,8 +7,8 @@
     <div class="user">
       <div style="color: lightgray">Welcome</div>
       <a routerLink="/main/user-details">
-        <img src="http://localhost:8080/mrlanu/image/download" alt="user">
-        <!--<div class="user-name">{{ randomUser?.name }}</div>-->
+        <img [src]="profileImageSrc" alt="user">
+        <div class="user-name">{{ loggedUser.username }}</div>
       </a>
     </div>
     <!--<li class="active">

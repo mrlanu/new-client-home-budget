@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UtilityService} from '../../services/utility.service';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../auth/auth.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,13 +11,17 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
-  randomUser: {name: string, image: string} = {name: '', image: ''};
+  baseUrl = environment.baseUrl;
+  loggedUser = environment.loggedUser;
+  profileImageSrc = '';
   componentSubs: Subscription[] = [];
+  // randomUser: {name: string, image: string} = {name: '', image: ''};
 
   constructor(private utilityService: UtilityService,
               private authService: AuthService) { }
 
   ngOnInit() {
+    this.profileImageSrc = `${this.baseUrl}/${this.loggedUser.username}/image/download`;
     /*this.componentSubs.push(this.utilityService.getRandomUser()
       .subscribe(res => {
         this.randomUser = res;
