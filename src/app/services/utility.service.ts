@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Category} from '../models/category.model';
 import {Subject} from 'rxjs';
@@ -7,7 +7,6 @@ import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
 import {map} from 'rxjs/operators';
 import {SummariesService} from './summaries.service';
-import {TransactionView} from '../models/transaction-view.model';
 import {Budget} from '../models/budget.model';
 
 @Injectable()
@@ -92,13 +91,41 @@ export class UtilityService {
       });
   }
 
-  getRandomUser() {
+  /*getRandomUser() {
     return this.httpClient.get<any>('https://randomuser.me/api/').pipe(map(o => {
       return {
         name: `${o.results[0].name.first} ${o.results[0].name.last}`,
         image: o.results[0].picture.medium
       };
     }));
+  }*/
+
+  downloadProfileImage() {
+    const url = `${this.baseUrl}/image/download`;
+    return this.httpClient.get(url, { responseType: 'text' });
+  }
+
+  uploadProfileImage(data) {
+    const url = `${this.baseUrl}/image/upload`;
+    return this.httpClient.post<any>(url, data, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(map((event) => {
+
+        switch (event.type) {
+
+          case HttpEventType.UploadProgress:
+            let progress = Math.round(100 * event.loaded / event.total);
+            if (progress >= 100) { progress = 100; }
+            return { status: 'progress', message: progress };
+
+          case HttpEventType.Response:
+            return event.body;
+          default:
+            return `Unhandled event: ${event.type}`;
+        }
+      })
+    );
   }
 
   get accounts(): Account[] {

@@ -13,13 +13,23 @@ export class SidebarComponent implements OnInit, OnDestroy {
   randomUser: {name: string, image: string} = {name: '', image: ''};
   componentSubs: Subscription[] = [];
 
-  constructor(private utilityService: UtilityService, private authService: AuthService) { }
+  imageSrc: any = '';
+
+  constructor(private utilityService: UtilityService,
+              private authService: AuthService) { }
 
   ngOnInit() {
-    this.componentSubs.push(this.utilityService.getRandomUser()
+    this.getImageFromService();
+    /*this.componentSubs.push(this.utilityService.getRandomUser()
       .subscribe(res => {
         this.randomUser = res;
-      }));
+      }));*/
+  }
+
+  getImageFromService() {
+    this.utilityService.downloadProfileImage().subscribe(response => {
+      this.imageSrc = 'data:image/jpeg;base64,' + response;
+    });
   }
 
   onLogout() {

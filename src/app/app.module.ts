@@ -42,6 +42,7 @@ import {AuthService} from './auth/auth.service';
 import {UiService} from './services/ui.service';
 import { SelectBudgetComponent } from './auth/select-budget/select-budget.component';
 import {AuthInterceptor} from './auth/auth.interceptor';
+import { UserDetailsComponent } from './pages/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {AuthInterceptor} from './auth/auth.interceptor';
     LineChartComponent,
     LoginComponent,
     SignupComponent,
-    SelectBudgetComponent
+    SelectBudgetComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
