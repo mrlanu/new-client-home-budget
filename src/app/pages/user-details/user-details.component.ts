@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UtilityService} from '../../services/utility.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -12,6 +13,8 @@ export class UserDetailsComponent implements OnInit {
   form: FormGroup;
   error = '';
   uploadResponse = { status: '', message: '', filePath: '' };
+  files: File[] = [];
+  filesChanged = new Subject<File[]>();
 
   constructor(private formBuilder: FormBuilder,
               private utilityService: UtilityService) { }
@@ -20,23 +23,30 @@ export class UserDetailsComponent implements OnInit {
     this.form = this.formBuilder.group({
       avatar: ['']
     });
+    this.filesChanged.subscribe((files: File[]) => {
+      this.files = files;
+    });
   }
 
-  onFileChange(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('avatar').setValue(file);
-    }
+  onSelect(event) {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+    this.filesChanged.next(this.files);
+  }
+
+  onRemove(event) {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
   }
 
   onSubmit() {
     const formData = new FormData();
-    formData.append('file', this.form.get('avatar').value);
+    formData.append('file', this.files[0]);
 
     this.utilityService.uploadProfileImage(formData).subscribe(
       (res) => {
         if (res) {
-        this.uploadResponse = res;
+          this.uploadResponse = res;
         }
       },
       (err) => this.error = err

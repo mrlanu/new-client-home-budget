@@ -17,6 +17,7 @@
 .settings/
 *.sublime-workspace
 
+/.firebase
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -37,4 +38,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/.firebase/**

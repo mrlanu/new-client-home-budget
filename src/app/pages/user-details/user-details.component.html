@@ -1,26 +1,39 @@
-<div>
-  <h1>Upload your Avatar!</h1>
-  <div>
-    <!--<div *ngIf="error">
-      {{ error.toString() }}
-    </div>
-    <div *ngIf="uploadResponse.status === 'error'">
-      {{ uploadResponse.message }}
-    </div>-->
-    <div *ngIf="uploadResponse.status === 'progress'">
+<div class="card mt-3" fxLayout="column" style="margin: auto" fxFlex="50" fxFlex.lt-md="90">
+  <div class="card-header">
+    User profile
+  </div>
+  <div class="card-body">
+    <div>
+      <div>
+        <div *ngIf="error">
+          {{ error.toString() }}
+        </div>
+        <div *ngIf="uploadResponse.status === 'error'">
+          {{ uploadResponse.message }}
+        </div>
+        <div *ngIf="uploadResponse.status === 'progress'">
+          <div role="progressbar" [style.width.%]="uploadResponse.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            {{uploadResponse.message}}%
+          </div>
+        </div>
 
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-      <div role="progressbar" [style.width.%]="uploadResponse.message" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-        {{uploadResponse.message}}%
+          <div ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>
+              <div>
+                <h2>Choose your profile image</h2>
+              </div>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-image-preview>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Upload</button>
+
+        </form>
       </div>
-
     </div>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-      <input type="file" name="avatar" (change)="onFileChange($event)" />
-      <button type="submit">Upload</button>
-
-    </form>
   </div>
 </div>
