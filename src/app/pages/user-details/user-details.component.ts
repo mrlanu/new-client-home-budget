@@ -29,13 +29,11 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSelect(event) {
-    console.log(event);
     this.files.push(...event.addedFiles);
     this.filesChanged.next(this.files);
   }
 
   onRemove(event) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
