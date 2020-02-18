@@ -43,6 +43,7 @@ import {UiService} from './services/ui.service';
 import { SelectBudgetComponent } from './auth/select-budget/select-budget.component';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import {NgxDropzoneModule} from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { UserDetailsComponent } from './pages/user-details/user-details.componen
     FlexLayoutModule,
     HttpClientModule,
     FontAwesomeModule,
-    ChartsModule
+    ChartsModule,
+    NgxDropzoneModule
   ],
   providers: [UtilityService, SummariesService, TransactionsService, AuthService, UiService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
