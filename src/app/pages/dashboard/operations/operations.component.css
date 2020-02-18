@@ -19,6 +19,15 @@
   text-shadow: #999999 2px 2px 3px;
 }
 
+.a-button {
+  cursor: pointer;
+  color: #dc3545!important;
+}
+
+.a-button:hover {
+  color: #c82333!important;
+}
+
 @media (min-width: 38rem) {
   .my-wrapper {
     width: 450px;

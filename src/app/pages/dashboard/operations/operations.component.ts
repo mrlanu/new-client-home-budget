@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UiService} from '../../../services/ui.service';
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-operations',
@@ -8,6 +9,7 @@ import {UiService} from '../../../services/ui.service';
 })
 export class OperationsComponent implements OnInit {
 
+  faTimesCircle = faTimesCircle;
   constructor(private uiService: UiService) { }
 
   ngOnInit() {

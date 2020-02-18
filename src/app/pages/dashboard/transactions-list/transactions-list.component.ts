@@ -4,6 +4,7 @@ import {TransactionView} from '../../../models/transaction-view.model';
 import {Observable, Subscription} from 'rxjs';
 import {SortableDirective, SortEvent} from './sortable.directive';
 import {UiService} from '../../../services/ui.service';
+import {faCartPlus, faHome, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-transactions-list',
@@ -13,6 +14,9 @@ import {UiService} from '../../../services/ui.service';
 export class TransactionsListComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
+
+  faTimesCircle = faTimesCircle;
+  faCartPlus = faCartPlus;
 
   transactionsList$: Observable<TransactionView[]>;
   total$: Observable<number>;

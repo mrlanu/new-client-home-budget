@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="1rem" fxLayoutGap.lt-sm="0" fxFlex>
   <div class="item" fxFlex="55" fxFlex.lt-lg="100">
-    <app-transactions-list></app-transactions-list>
+    <app-transactions-list [fxHide.lt-lg]="viewChange"></app-transactions-list>
   </div>
   <div fxLayout="column" fxFlex>
     <div class="item">

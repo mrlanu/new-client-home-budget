@@ -2,7 +2,10 @@
   <hr>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div class="title">Transactions</div>
-    <button type="button" class="btn btn-danger btn-sm" (click)="onClose()">X</button>
+    <a role="button" (click)="onClose()" class="a-button mr-4">
+      <span style="margin-right: 0.5rem">
+        <fa-icon [icon]="faTimesCircle" size="lg"></fa-icon>
+      </span></a>
   </div>
   <hr>
   <ngb-tabset justify="center">
