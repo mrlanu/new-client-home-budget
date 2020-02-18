@@ -7,6 +7,7 @@ import {Category} from '../../../../models/category.model';
 import {Subcategory} from '../../../../models/subcategory.model';
 import {Account} from '../../../../models/account.model';
 import {TransactionsService} from '../../../../services/transactions.service';
+import {UiService} from '../../../../services/ui.service';
 
 @Component({
   selector: 'app-expense',
@@ -26,7 +27,9 @@ export class ExpenseComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
 
-  constructor(private utilityService: UtilityService, private transactionsService: TransactionsService) {}
+  constructor(private utilityService: UtilityService,
+              private transactionsService: TransactionsService,
+              private uiService: UiService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -103,6 +106,7 @@ export class ExpenseComponent implements OnInit, OnDestroy {
     this.expenseForm.patchValue({amount: -this.expenseForm.value.amount});
     this.expenseForm.patchValue({account: acc, category: cat, subCategory: subcat});
     this.transactionsService.createTransaction(this.expenseForm.value);
+    this.uiService.isSummaryTransactionsChange.next(false);
   }
 
   ngOnDestroy(): void {

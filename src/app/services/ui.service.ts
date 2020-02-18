@@ -9,4 +9,5 @@ export class UiService {
   isLoadingChanged = new Subject<boolean>();
   isLoginChanged = new Subject<boolean>();
   isShowBudgetSelectChanged = new Subject<boolean>();
+  isSummaryTransactionsChange = new Subject<boolean>();
 }

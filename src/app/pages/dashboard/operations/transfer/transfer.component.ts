@@ -5,6 +5,7 @@ import {Account} from '../../../../models/account.model';
 import {Subscription} from 'rxjs';
 import {TransactionsService} from '../../../../services/transactions.service';
 import {UtilityService} from '../../../../services/utility.service';
+import {UiService} from '../../../../services/ui.service';
 
 @Component({
   selector: 'app-transfer',
@@ -20,7 +21,9 @@ export class TransferComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
 
-  constructor(private transactionsService: TransactionsService, private utilityService: UtilityService) { }
+  constructor(private transactionsService: TransactionsService,
+              private utilityService: UtilityService,
+              private uiService: UiService) { }
 
   ngOnInit() {
     this.initForm();
@@ -73,6 +76,7 @@ export class TransferComponent implements OnInit, OnDestroy {
       })
     });
     this.transactionsService.createTransfer(this.transferForm.value);
+    this.uiService.isSummaryTransactionsChange.next(false);
   }
 
   ngOnDestroy(): void {

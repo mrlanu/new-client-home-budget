@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UiService} from '../../../services/ui.service';
 
 @Component({
   selector: 'app-operations',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private uiService: UiService) { }
 
   ngOnInit() {
 
+  }
+
+  onClose() {
+    this.uiService.isSummaryTransactionsChange.next(false);
   }
 
 }

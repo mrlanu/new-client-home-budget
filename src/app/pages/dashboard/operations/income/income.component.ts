@@ -7,6 +7,7 @@ import {Subcategory} from '../../../../models/subcategory.model';
 import {Subscription} from 'rxjs';
 import {UtilityService} from '../../../../services/utility.service';
 import {TransactionsService} from '../../../../services/transactions.service';
+import {UiService} from '../../../../services/ui.service';
 
 @Component({
   selector: 'app-income',
@@ -26,7 +27,9 @@ export class IncomeComponent implements OnInit, OnDestroy {
 
   componentSubs: Subscription[] = [];
 
-  constructor(private utilityService: UtilityService, private transactionsService: TransactionsService) {}
+  constructor(private utilityService: UtilityService,
+              private transactionsService: TransactionsService,
+              private uiService: UiService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -103,6 +106,7 @@ export class IncomeComponent implements OnInit, OnDestroy {
 
     this.incomeForm.patchValue({account: acc, category: cat, subCategory: subcat});
     this.transactionsService.createTransaction(this.incomeForm.value);
+    this.uiService.isSummaryTransactionsChange.next(false);
   }
 
   ngOnDestroy(): void {

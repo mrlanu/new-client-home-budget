@@ -4,10 +4,8 @@
   </div>
   <div fxLayout="column" fxFlex>
     <div class="item">
-      <app-summary></app-summary>
-    </div>
-    <div class="item">
-      <app-operations></app-operations>
+      <app-summary *ngIf="!viewChange"></app-summary>
+      <app-operations *ngIf="viewChange"></app-operations>
     </div>
   </div>
 </div>
