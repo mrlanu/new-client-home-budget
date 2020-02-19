@@ -2,13 +2,17 @@ td {
   cursor: pointer;
 }
 
+label {
+  margin: 0;
+}
+
 .my-wrapper {
   max-width: 1200px;
   margin: auto;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: #272C66;
   padding-left: 2rem;
   text-shadow: #999999 2px 2px 3px;
@@ -34,6 +38,10 @@ td {
 @media (min-width: 35rem) {
   .table-decorator {
     font-size: 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
   }
 
   .table__search {
