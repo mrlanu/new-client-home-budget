@@ -6,12 +6,14 @@
       </span>Add</a>
 </div>
 
-<div class="pt-3 mb-3 mt-1 shadow bg-white rounded my-wrapper">
+<div class="pt-2 mb-3 mt-1 shadow bg-white rounded my-wrapper">
   <form>
-    <div class="mt-1 mb-3 ml-3" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-      <label style="margin: unset" for="searchTerm">Search:</label>
-      <input class="form-control form-control-sm ml-2 mr-4 table__search" type="text" name="searchTerm" id="searchTerm" [(ngModel)]="transactionsService.searchTerm">
-      <div class="spinner-border text-primary" role="status" *ngIf="transactionsService.loading$ | async">
+    <div class="m-1 mb-2" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+      <div class="ml-2" fxLayoutAlign fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <label for="searchTerm">Search:</label>
+        <input class="form-control form-control-sm" type="text" name="searchTerm" id="searchTerm" [(ngModel)]="transactionsService.searchTerm">
+      </div>
+      <div class="spinner-border spinner-border-sm text-primary mr-3" role="status" *ngIf="transactionsService.loading$ | async">
         <span class="sr-only">Loading...</span>
       </div>
     </div>

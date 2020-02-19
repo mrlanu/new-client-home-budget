@@ -4,6 +4,8 @@ import {Subscription} from 'rxjs';
 import {AuthService} from '../../auth/auth.service';
 import {environment} from '../../../environments/environment';
 
+declare var $: any;
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -26,6 +28,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.randomUser = res;
       }));*/
+  }
+
+  onOpenSidebar() {
+    $('#sidebar').toggleClass('active');
+    $('#overlay').toggleClass('shadow');
   }
 
   onLogout() {
