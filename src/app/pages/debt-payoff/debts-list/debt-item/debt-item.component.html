@@ -1,10 +1,45 @@
-<div class="card">
-  <div class="card-header">
-    Featured
+<div class="card m-3">
+  <div class="card-header" fxLayout fxLayoutAlign="space-between center">
+    <div class="text-truncate debt-name font-weight-bolder">{{ debtItem.name }}</div>
+    <div fxLayout fxLayoutAlign="center baseline">
+      <div class="mr-1">{{ debtItem.apr }}<span>%</span></div>
+      <div class="text-uppercase balance-hint">apr</div>
+    </div>
+    <div fxLayout fxLayoutGap="10">
+      <button class="btn btn-success btn-circle btn-circle-sm m-1">
+        <fa-icon [icon]="faEdit" class="icon"></fa-icon>
+      </button>
+      <button class="btn btn-danger btn-circle btn-circle-sm m-1">
+        <fa-icon [icon]="faTimes" class="icon"></fa-icon>
+      </button>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="card-body" fxLayout>
+    <div fxFlex="50" fxLayout="column" fxLayoutGap="0.5rem">
+      <div>
+        <div class="balance">{{ debtItem.nextPaymentDue | date }}</div>
+        <div class="text-uppercase balance-hint">payment due</div>
+      </div>
+      <div>
+        <div class="balance">{{ debtItem.paymentsList.length > 0 ? (debtItem.paymentsList[debtItem.paymentsList.length - 1].date | date) : '--'}}</div>
+        <div class="text-uppercase balance-hint">last payment</div>
+      </div>
+    </div>
+    <div fxFlex="50" fxFlexAlign="end" fxLayout="column" fxLayoutGap="0.5rem">
+      <div style="text-align: right">
+        <div class="balance">{{ debtItem.minimumPayment | currency }}</div>
+        <div class="text-uppercase balance-hint">min payment</div>
+      </div>
+      <div style="text-align: right">
+        <div class="balance">{{ debtItem.startBalance | currency }}</div>
+        <div class="text-uppercase balance-hint">current balance</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer" fxLayout fxLayoutAlign="center center">
+    <div class="mr-3">Completed: </div>
+    <div fxFlex>
+      <ngb-progressbar type="success" textType="white" [value]="progress" showValue="true"></ngb-progressbar>
+    </div>
   </div>
 </div>

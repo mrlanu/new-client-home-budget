@@ -1,0 +1,43 @@
+.debt-name {
+  max-width: 150px;
+  color: #272C66;
+}
+
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn-circle i {
+  position: relative;
+  top: -1px;
+}
+
+.btn-circle-sm {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 0.7rem;
+}
+
+.icon {
+  margin-left: 1px;
+}
+
+.balance {
+  font-size: 1rem;
+}
+
+.balance-hint {
+  font-size: 0.6rem;
+}
+
+@media (min-width: 35rem) {
+  .debt-name {
+    max-width: 250px;
+  }
+}
