@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {UtilityService} from '../../services/utility.service';
 import {Subject} from 'rxjs';
+import {UiService} from '../../services/ui.service';
 
 @Component({
   selector: 'app-user-details',
@@ -17,7 +18,8 @@ export class UserDetailsComponent implements OnInit {
   filesChanged = new Subject<File[]>();
 
   constructor(private formBuilder: FormBuilder,
-              private utilityService: UtilityService) { }
+              private utilityService: UtilityService,
+              private uiService: UiService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -41,7 +43,7 @@ export class UserDetailsComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.files[0]);
 
-    this.utilityService.uploadProfileImage(formData).subscribe(
+    this.uiService.uploadProfileImage(formData).subscribe(
       (res) => {
         if (res) {
           this.uploadResponse = res;

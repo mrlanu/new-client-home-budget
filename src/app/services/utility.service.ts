@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEventType} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Category} from '../models/category.model';
 import {Subject} from 'rxjs';
 import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
-import {map} from 'rxjs/operators';
 import {SummariesService} from './summaries.service';
 import {Budget} from '../models/budget.model';
 
@@ -27,7 +26,8 @@ export class UtilityService {
   private _categories: Category[] = [];
   private _subcategories: Subcategory[] = [];
 
-  constructor(private httpClient: HttpClient, private summariesService: SummariesService) { }
+  constructor(private httpClient: HttpClient,
+              private summariesService: SummariesService) { }
 
   getBudgetsByUser() {
     const url = `${this.baseUrl}/budgets`;
@@ -99,34 +99,6 @@ export class UtilityService {
       };
     }));
   }*/
-
-  downloadProfileImage() {
-    const url = `${this.baseUrl}/image/download`;
-    return this.httpClient.get(url, { responseType: 'text' });
-  }
-
-  uploadProfileImage(data) {
-    const url = `${this.baseUrl}/image/upload`;
-    return this.httpClient.post<any>(url, data, {
-      reportProgress: true,
-      observe: 'events'
-    }).pipe(map((event) => {
-
-        switch (event.type) {
-
-          case HttpEventType.UploadProgress:
-            let progress = Math.round(100 * event.loaded / event.total);
-            if (progress >= 100) { progress = 100; }
-            return { status: 'progress', message: progress };
-
-          case HttpEventType.Response:
-            return event.body;
-          default:
-            return `Unhandled event: ${event.type}`;
-        }
-      })
-    );
-  }
 
   get accounts(): Account[] {
     return [...this._accounts];

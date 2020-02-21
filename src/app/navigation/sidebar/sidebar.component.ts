@@ -3,6 +3,7 @@ import {UtilityService} from '../../services/utility.service';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../auth/auth.service';
 import {environment} from '../../../environments/environment';
+import {UiService} from '../../services/ui.service';
 
 declare var $: any;
 
@@ -19,20 +20,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
   imageSrc: any = '';
 
   constructor(private utilityService: UtilityService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private uiService: UiService) { }
 
   ngOnInit() {
-    this.getImageFromService();
+    this.componentSubs.push(this.uiService.isUserProfileImageChanged
+      .subscribe(result => {
+      this.imageSrc = 'data:image/jpeg;base64,' + result;
+    }));
+    this.uiService.downloadProfileImage();
     /*this.componentSubs.push(this.utilityService.getRandomUser()
       .subscribe(res => {
         this.randomUser = res;
       }));*/
-  }
-
-  getImageFromService() {
-    this.utilityService.downloadProfileImage().subscribe(response => {
-      this.imageSrc = 'data:image/jpeg;base64,' + response;
-    });
   }
 
   onOpenSidebar() {
