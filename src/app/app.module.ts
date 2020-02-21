@@ -44,6 +44,9 @@ import { SelectBudgetComponent } from './auth/select-budget/select-budget.compon
 import {AuthInterceptor} from './auth/auth.interceptor';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
 import {NgxDropzoneModule} from 'ngx-dropzone';
+import { DebtPayoffComponent } from './pages/debt-payoff/debt-payoff.component';
+import { DebtsListComponent } from './pages/debt-payoff/debts-list/debts-list.component';
+import { DebtItemComponent } from './pages/debt-payoff/debts-list/debt-item/debt-item.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,10 @@ import {NgxDropzoneModule} from 'ngx-dropzone';
     LoginComponent,
     SignupComponent,
     SelectBudgetComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    DebtPayoffComponent,
+    DebtsListComponent,
+    DebtItemComponent
   ],
   imports: [
     BrowserModule,

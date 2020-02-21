@@ -7,6 +7,7 @@ import {BarChartComponent} from './pages/charts/bar-chart/bar-chart.component';
 import {LineChartComponent} from './pages/charts/line-chart/line-chart.component';
 import {AuthGuard} from './auth/auth.guard';
 import {UserDetailsComponent} from './pages/user-details/user-details.component';
+import {DebtPayoffComponent} from './pages/debt-payoff/debt-payoff.component';
 
 const routes: Routes = [
   {path: 'welcome-page', component: WelcomePageComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
           {path: 'charts/income-vs-expenses', component: BarChartComponent},
           {path: 'charts/spent-by-category', component: LineChartComponent},
           {path: 'dashboard', component: DashboardComponent},
+          {path: 'debt-payoff-planner', component: DebtPayoffComponent},
           {path: 'user-details', component: UserDetailsComponent},
           /*{path: 'charts', component: ChartsComponent},
           {path: 'budgets', component: BudgetsComponent},
