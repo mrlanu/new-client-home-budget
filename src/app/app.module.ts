@@ -47,6 +47,7 @@ import {NgxDropzoneModule} from 'ngx-dropzone';
 import { DebtPayoffComponent } from './pages/debt-payoff/debt-payoff.component';
 import { DebtsListComponent } from './pages/debt-payoff/debts-list/debts-list.component';
 import { DebtItemComponent } from './pages/debt-payoff/debts-list/debt-item/debt-item.component';
+import { DebtControllerComponent } from './pages/debt-payoff/debt-controller/debt-controller.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { DebtItemComponent } from './pages/debt-payoff/debts-list/debt-item/debt
     UserDetailsComponent,
     DebtPayoffComponent,
     DebtsListComponent,
-    DebtItemComponent
+    DebtItemComponent,
+    DebtControllerComponent
   ],
   imports: [
     BrowserModule,
