@@ -1,6 +1,7 @@
 <div class="card m-3">
-  <div class="card-body" fxLayout fxLayoutAlign="space-between center" fxLayoutGap="1rem">
-    <div class="input-group input-group-sm ml-3" fxFlex="45">
+  <div class="card-body" fxLayout.gt-md fxLayoutAlign.gt-md="space-between center">
+
+    <div class="input-group input-group-sm mb-2 mb-md-0" fxFlex.gt-md="45%">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Strategy</label>
       </div>
@@ -8,16 +9,19 @@
         <option *ngFor="let opt of strategy" [value]="opt.value">{{ opt.name }}</option>
       </select>
     </div>
-    <div class="input-group input-group-sm" fxFlex="45">
+
+    <div class="input-group input-group-sm mb-2 mb-md-0" fxFlex.gt-md="45%">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-sm">Payment</span>
       </div>
       <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
-    <div fxFlex>
-      <button class="btn btn-success btn-circle btn-circle-sm mr-3 ml-3">
+
+    <div fxLayout fxLayoutAlign="end" fxFlex.gt-md="5%">
+      <button class="btn btn-success btn-circle btn-circle-sm">
         <fa-icon [icon]="faPlus" class="icon"></fa-icon>
       </button>
     </div>
+
   </div>
 </div>

@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   loggedUser = environment.loggedUser;
   componentSubs: Subscription[] = [];
 
-  imageSrc: string;
+  imageSrc = '';
 
   constructor(private utilityService: UtilityService,
               private authService: AuthService,
