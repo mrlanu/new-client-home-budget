@@ -1,20 +1,24 @@
 <div class="card m-3">
   <div class="card-body" fxLayout.gt-md fxLayoutAlign.gt-md="space-between center">
 
-    <div class="input-group input-group-sm mb-2 mb-md-0" fxFlex.gt-md="45%">
+    <div class="input-group input-group-sm mb-2 mb-md-0" fxFlex.gt-md="55%">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">
+          Min <strong class="ml-1 mr-1">{{ sumMinPayment | currency }}</strong> +</span>
+      </div>
+      <input [value]="extraPayment" (input)="onExtraPaymentChange($event)" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <div class="input-group-append">
+        <span class="input-group-text">=<strong class="ml-1 mr-1">{{ totalPayment | currency }}</strong></span>
+      </div>
+    </div>
+
+    <div class="input-group input-group-sm mb-2 mb-md-0" fxFlex.gt-md="35%">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Strategy</label>
       </div>
       <select class="custom-select" id="inputGroupSelect01">
         <option *ngFor="let opt of strategy" [value]="opt.value">{{ opt.name }}</option>
       </select>
-    </div>
-
-    <div class="input-group input-group-sm mb-2 mb-md-0" fxFlex.gt-md="45%">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Payment</span>
-      </div>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
     </div>
 
     <div fxLayout fxLayoutAlign="end" fxFlex.gt-md="5%">

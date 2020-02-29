@@ -48,6 +48,7 @@ import { DebtPayoffComponent } from './pages/debt-payoff/debt-payoff.component';
 import { DebtsListComponent } from './pages/debt-payoff/debts-list/debts-list.component';
 import { DebtItemComponent } from './pages/debt-payoff/debts-list/debt-item/debt-item.component';
 import { DebtControllerComponent } from './pages/debt-payoff/debt-controller/debt-controller.component';
+import { DebtPayoffService } from './services/debt-payoff.service';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,7 @@ import { DebtControllerComponent } from './pages/debt-payoff/debt-controller/deb
     ChartsModule,
     NgxDropzoneModule
   ],
-  providers: [UtilityService, SummariesService, TransactionsService, AuthService, UiService,
+  providers: [UtilityService, SummariesService, TransactionsService, AuthService, UiService, DebtPayoffService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
   bootstrap: [AppComponent]

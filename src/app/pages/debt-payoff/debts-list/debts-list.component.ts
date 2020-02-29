@@ -1,22 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {DebtPayoffService} from '../../../services/debt-payoff.service';
 import {DebtModel} from '../../../models/debt.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-debts-list',
   templateUrl: './debts-list.component.html',
   styleUrls: ['./debts-list.component.css']
 })
-export class DebtsListComponent implements OnInit {
+export class DebtsListComponent implements OnInit, OnDestroy {
 
-  debtsList: DebtModel[] =
-    [{name: 'City VISA', apr: 12, currentBalance: 1870, minimumPayment: 100, nextPaymentDue: new Date(),
-      paymentsList: [], startBalance: 2000},
-    {name: 'BofA MASTER CARD TEST TEST', apr: 12, currentBalance: 1000, minimumPayment: 100, nextPaymentDue: new Date(),
-      paymentsList: [{amount: 20, date: new Date()}], startBalance: 2000}];
+  debtsList: DebtModel[] = [];
+  componentSubs: Subscription[] = [];
 
-  constructor() { }
+  constructor(private debtPayoffService: DebtPayoffService) { }
 
   ngOnInit() {
+    this.componentSubs.push(this.debtPayoffService.debtsListChanged
+      .subscribe(debtsList => {
+      this.debtsList = debtsList;
+    }));
+    this.debtPayoffService.getDebtsList();
   }
+
+  ngOnDestroy() {
+    this.componentSubs.forEach(sub => {
+      sub.unsubscribe();
+    });
+  }
+
+
 
 }
