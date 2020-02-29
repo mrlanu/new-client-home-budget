@@ -22,10 +22,12 @@
     </div>
 
     <div fxLayout fxLayoutAlign="end" fxFlex.gt-md="5%">
-      <button class="btn btn-success btn-circle btn-circle-sm">
+      <button class="btn btn-success btn-circle btn-circle-sm"
+              data-toggle="tooltip" data-placement="left" title="New Debt"
+              data-toggle="modal" data-target="#debtModal">
         <fa-icon [icon]="faPlus" class="icon"></fa-icon>
       </button>
     </div>
-
+    <app-edit-debt></app-edit-debt>
   </div>
 </div>

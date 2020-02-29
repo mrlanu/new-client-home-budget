@@ -1,9 +1,8 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {FormControl, FormControlName, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UtilityService} from '../../../services/utility.service';
 import {Account} from '../../../models/account.model';
 import {Subscription} from 'rxjs';
-import {SummariesService} from '../../../services/summaries.service';
 
 @Component({
   selector: 'app-add-account',

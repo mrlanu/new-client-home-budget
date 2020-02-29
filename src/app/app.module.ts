@@ -49,6 +49,7 @@ import { DebtsListComponent } from './pages/debt-payoff/debts-list/debts-list.co
 import { DebtItemComponent } from './pages/debt-payoff/debts-list/debt-item/debt-item.component';
 import { DebtControllerComponent } from './pages/debt-payoff/debt-controller/debt-controller.component';
 import { DebtPayoffService } from './services/debt-payoff.service';
+import { EditDebtComponent } from './shared/modals/edit-debt/edit-debt.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { DebtPayoffService } from './services/debt-payoff.service';
     DebtPayoffComponent,
     DebtsListComponent,
     DebtItemComponent,
-    DebtControllerComponent
+    DebtControllerComponent,
+    EditDebtComponent
   ],
   imports: [
     BrowserModule,

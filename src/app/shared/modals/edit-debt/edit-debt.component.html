@@ -1,0 +1,62 @@
+<!-- Modal -->
+<div class="modal fade" id="debtModal" tabindex="-1" role="dialog" aria-labelledby="debtModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="debtModalLabel">Add New Debt</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="form-group" [formGroup]="debtForm">
+
+          <!--Debt Name-->
+          <div class="form-group">
+            <label for="debt-name">Debt name</label>
+            <input type="text" class="form-control form-control-sm" id="debt-name" formControlName="name"
+                   placeholder="My Car, Chase loan, Visa credit card, etc."
+                   [ngClass]="{'is-invalid': debtForm.get('name').invalid && debtForm.get('name').touched}">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+            <div *ngIf="debtForm.get('name').invalid && debtForm.get('name').touched" class="invalid-feedback">
+              Name is required.
+            </div>
+          </div>
+
+          <!--Initial balance-->
+          <div class="form-group">
+            <label for="balance">Initial Balance</label>
+            <input type="number" class="form-control form-control-sm" id="balance" formControlName="startBalance"
+                   placeholder="$">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+          </div>
+
+          <!--Min payment-->
+          <div class="form-group">
+            <label for="min-payment">Minimum payment</label>
+            <input type="number" class="form-control form-control-sm" id="min-payment" formControlName="minimumPayment"
+                   placeholder="$">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+          </div>
+
+          <!--APR-->
+          <div class="form-group">
+            <label for="apr">APR</label>
+            <input type="number" class="form-control form-control-sm" id="apr" formControlName="apr"
+                   placeholder="%">
+            <!--<small id="nameHelp" class="form-text text-muted">Some Text</small>-->
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmit()" class="btn btn-primary" data-dismiss="modal"
+                [disabled]="debtForm.invalid || debtForm.untouched">Save Debt</button>
+      </div>
+
+    </div>
+  </div>
+</div>
