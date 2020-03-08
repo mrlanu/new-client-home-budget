@@ -65,7 +65,7 @@ export class DebtPayoffService {
           amount: 200.0
         }
       ],
-      minPayments: null
+      minPayments: []
     }
   ];
 

@@ -1,10 +1,23 @@
-<div class="card">
-  <div class="card-header">
-    Duration {{ reportItem.duration }}
+<div class="card m-3">
+  <div class="card-header font-weight-bolder text-uppercase">
+    Duration {{ reportItem.duration }} {{ reportItem.duration > 1 ? 'months':'month'}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+    <div fxLayout fxLayoutAlign="space-between center"
+         *ngFor="let extraPayment of reportItem.extraPayments">
+      <div class="debt-name">{{ extraPayment.name }}</div>
+      <div class="balance">{{ extraPayment.amount| currency }}</div>
+    </div>
+
+  </div>
+  <div class="card-footer" *ngIf="reportItem.minPayments.length > 0">
+    <h6 class="font-weight-bolder text-uppercase" style="font-size: 0.7rem">
+      and min {{reportItem.minPayments.length > 1 ? 'payments' : 'payment' }} for:</h6>
+    <div fxLayout fxLayoutAlign="space-between center"
+         *ngFor="let minPayment of reportItem.minPayments">
+      <div class="debt-name">{{ minPayment.name }}</div>
+      <div class="balance">{{ minPayment.amount| currency }}</div>
+    </div>
   </div>
 </div>
