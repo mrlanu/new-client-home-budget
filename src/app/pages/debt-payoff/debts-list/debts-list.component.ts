@@ -28,7 +28,4 @@ export class DebtsListComponent implements OnInit, OnDestroy {
       sub.unsubscribe();
     });
   }
-
-
-
 }

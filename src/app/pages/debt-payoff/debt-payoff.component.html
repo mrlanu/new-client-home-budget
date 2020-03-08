@@ -1,4 +1,9 @@
-<div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
-  <app-debt-controller></app-debt-controller>
-  <app-debts-list></app-debts-list>
+<div fxLayout fxLayoutAlign="space-between">
+  <div fxLayout="column" fxFlex="50" fxFlex.lt-md="100">
+    <app-debt-controller></app-debt-controller>
+    <app-debts-list></app-debts-list>
+  </div>
+  <div fxFlex="50">
+    <app-strategy-report-list></app-strategy-report-list>
+  </div>
 </div>
