@@ -1,16 +1,28 @@
 <div class="card m-3">
-  <div class="card-header font-weight-bolder text-uppercase">
-    Duration {{ reportItem.duration }} {{ reportItem.duration > 1 ? 'months':'month'}}
-  </div>
-  <div class="card-body">
 
+  <div class="card-header text-uppercase">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="0.5rem">
+      <div style="font-size: 0.8rem">Duration</div>
+      <div class="duration-border font-weight-bolder">{{ reportItem.duration }}</div>
+      <div style="font-size: 0.8rem">{{ reportItem.duration > 1 ? 'months':'month'}}</div>
+    </div>
+  </div>
+
+  <div class="card-body">
     <div fxLayout fxLayoutAlign="space-between center"
          *ngFor="let extraPayment of reportItem.extraPayments">
-      <div class="debt-name">{{ extraPayment.name }}</div>
-      <div class="balance">{{ extraPayment.amount| currency }}</div>
+      <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="0.5rem">
+        <div class="debt-name" [ngStyle]="{color: extraPayment.paid ? '#28A745' : '#272C66',
+        fontWeight: extraPayment.paid ? 'bold' : 'unset'}">{{ extraPayment.name }}</div>
+        <div *ngIf="extraPayment.paid">
+          <fa-icon [icon]="faTrophy" style="color: #28A745"></fa-icon>
+        </div>
+        <div *ngIf="extraPayment.paid" class="text-uppercase" style="font-size: 0.7rem; color: #28A745">last payment</div>
+      </div>
+      <div class="balance" [ngStyle]="{color: extraPayment.paid ? '#28A745' : '#272C66'}">{{ extraPayment.amount| currency }}</div>
     </div>
-
   </div>
+
   <div class="card-footer" *ngIf="reportItem.minPayments.length > 0">
     <h6 class="font-weight-bolder text-uppercase" style="font-size: 0.7rem">
       and min {{reportItem.minPayments.length > 1 ? 'payments' : 'payment' }} for:</h6>
@@ -20,4 +32,5 @@
       <div class="balance">{{ minPayment.amount| currency }}</div>
     </div>
   </div>
+
 </div>

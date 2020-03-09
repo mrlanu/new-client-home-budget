@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DebtStrategyReportModel} from '../../../../models/debt-strategy-report.model';
+import {faTrophy} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-report-item',
@@ -9,6 +10,7 @@ import {DebtStrategyReportModel} from '../../../../models/debt-strategy-report.m
 export class ReportItemComponent implements OnInit {
 
   @Input() reportItem: DebtStrategyReportModel;
+  faTrophy = faTrophy;
 
   constructor() { }
 

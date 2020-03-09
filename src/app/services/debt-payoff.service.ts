@@ -23,13 +23,15 @@ export class DebtPayoffService {
       extraPayments: [
         {
           name: 'CHASE Visa',
-          amount: 150.0
+          amount: 150.0,
+          paid: false
         }
       ],
       minPayments: [
         {
           name: 'Toyota',
-          amount: 50.0
+          amount: 50.0,
+          paid: false
         }
       ]
     },
@@ -38,11 +40,13 @@ export class DebtPayoffService {
       extraPayments: [
         {
           name: 'CHASE Visa',
-          amount: 50.0
+          amount: 50.0,
+          paid: true
         },
         {
           name: 'Toyota',
-          amount: 150.0
+          amount: 150.0,
+          paid: false
         }
       ],
       minPayments: []
@@ -52,7 +56,8 @@ export class DebtPayoffService {
       extraPayments: [
         {
           name: 'Toyota',
-          amount: 200.0
+          amount: 200.0,
+          paid: false
         }
       ],
       minPayments: []
@@ -62,7 +67,8 @@ export class DebtPayoffService {
       extraPayments: [
         {
           name: 'Toyota',
-          amount: 200.0
+          amount: 200.0,
+          paid: true
         }
       ],
       minPayments: []
@@ -81,7 +87,7 @@ export class DebtPayoffService {
     this.debtsListChanged.next(this.debtsList);
   }
 
-  getDebtStrategyReports(){
+  getDebtStrategyReports() {
     this.debtStrategyReportsChanged.next(this.debtStrategyReports);
   }
 }
