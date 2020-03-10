@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {DebtModel} from '../models/debt.model';
 import {Subject} from 'rxjs';
 import {DebtStrategyReportModel} from '../models/debt-strategy-report.model';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class DebtPayoffService {
@@ -11,71 +13,16 @@ export class DebtPayoffService {
   debtStrategyReportsChanged = new Subject<DebtStrategyReportModel[]>();
 
   private debtsList: DebtModel[] =
-    [{publicId: 'test1', name: 'City VISA', apr: 12, currentBalance: 1870, minimumPayment: 100, nextPaymentDue: new Date(),
+    [{publicId: 'test1', name: 'City VISA', apr: 12, currentBalance: 400, minimumPayment: 50, nextPaymentDue: new Date(),
       paymentsList: [], startBalance: 2000},
       // tslint:disable-next-line:max-line-length
-      {publicId: 'test2', name: 'BofA MASTER CARD TEST TEST', apr: 12, currentBalance: 1000, minimumPayment: 100, nextPaymentDue: new Date(),
+      {publicId: 'test2', name: 'BofA MASTER CARD TEST TEST', apr: 12, currentBalance: 900, minimumPayment: 100, nextPaymentDue: new Date(),
         paymentsList: [{amount: 20, date: new Date()}], startBalance: 2000}];
 
-  private debtStrategyReports: DebtStrategyReportModel[] = [
-    {
-      duration: 13,
-      extraPayments: [
-        {
-          name: 'CHASE Visa',
-          amount: 150.0,
-          paid: false
-        }
-      ],
-      minPayments: [
-        {
-          name: 'Toyota',
-          amount: 50.0,
-          paid: false
-        }
-      ]
-    },
-    {
-      duration: 1,
-      extraPayments: [
-        {
-          name: 'CHASE Visa',
-          amount: 50.0,
-          paid: true
-        },
-        {
-          name: 'Toyota',
-          amount: 150.0,
-          paid: false
-        }
-      ],
-      minPayments: []
-    },
-    {
-      duration: 10,
-      extraPayments: [
-        {
-          name: 'Toyota',
-          amount: 200.0,
-          paid: false
-        }
-      ],
-      minPayments: []
-    },
-    {
-      duration: 1,
-      extraPayments: [
-        {
-          name: 'Toyota',
-          amount: 200.0,
-          paid: true
-        }
-      ],
-      minPayments: []
-    }
-  ];
+  private debtStrategyReports: DebtStrategyReportModel[] = [];
 
-  constructor() {}
+  baseUrl = environment.baseUrl;
+  constructor(private httpClient: HttpClient) {}
 
   createDebt(debt: DebtModel) {
     this.debtsList.push(debt);
@@ -87,7 +34,13 @@ export class DebtPayoffService {
     this.debtsListChanged.next(this.debtsList);
   }
 
-  getDebtStrategyReports() {
-    this.debtStrategyReportsChanged.next(this.debtStrategyReports);
+  getDebtStrategyReports(debtsList: DebtModel[]) {
+    const url = `${this.baseUrl}/debts/payoff`;
+    this.httpClient.post<DebtStrategyReportModel[]>(url, this.debtsList)
+      .subscribe(reports => {
+      this.debtStrategyReports = reports;
+      this.debtStrategyReportsChanged.next(reports);
+      console.log(reports);
+    });
   }
 }

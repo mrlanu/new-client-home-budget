@@ -20,7 +20,7 @@ export class StrategyReportListComponent implements OnInit, OnDestroy {
       .subscribe((reportsList: DebtStrategyReportModel[]) => {
         this.reportsList = reportsList;
       }));
-    this.debtPayoffService.getDebtStrategyReports();
+    this.debtPayoffService.getDebtStrategyReports(null);
   }
 
   ngOnDestroy() {
