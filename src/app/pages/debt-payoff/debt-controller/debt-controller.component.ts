@@ -3,6 +3,7 @@ import {faPlus, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {DebtModel} from '../../../models/debt.model';
 import {Subscription} from 'rxjs';
 import {DebtPayoffService} from '../../../services/debt-payoff.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-debt-controller',
@@ -54,11 +55,11 @@ export class DebtControllerComponent implements OnInit, OnDestroy {
       sum = event.target.valueAsNumber;
     }
     this.totalPayment = this.sumMinPayment + sum;
-    // console.log(event.target.valueAsNumber);
+    environment.extraPayment = sum;
   }
 
   onExtraPaymentChange() {
-    console.log('FIRE');
+    this.debtPayoffService.getDebtStrategyReports();
   }
 
   onStrategyChange(value?: any) {

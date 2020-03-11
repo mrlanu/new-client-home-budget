@@ -1,5 +1,5 @@
 export interface DebtModel {
-  publicId: string;
+  id: number;
   name: string;
   startBalance: number;
   currentBalance: number;
