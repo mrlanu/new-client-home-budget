@@ -55,15 +55,16 @@ export class DebtControllerComponent implements OnInit, OnDestroy {
       sum = event.target.valueAsNumber;
     }
     this.totalPayment = this.sumMinPayment + sum;
-    environment.extraPayment = sum;
+    this.debtPayoffService.extraPayment = sum;
   }
 
   onExtraPaymentChange() {
     this.debtPayoffService.getDebtStrategyReports();
   }
 
-  onStrategyChange(value?: any) {
-    console.log('FIRE' + value);
+  onStrategyChange(value: any) {
+    this.debtPayoffService.strategy = value.target.value;
+    this.debtPayoffService.getDebtStrategyReports();
   }
 
 }

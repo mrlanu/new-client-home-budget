@@ -12,6 +12,9 @@ export class DebtPayoffService {
   debtCreated = new Subject<void>();
   debtStrategyReportsChanged = new Subject<DebtStrategyReportModel[]>();
 
+  extraPayment = 0;
+  strategy = 'Avalanche';
+
   private debtsList: DebtModel[] = [];
   private debtStrategyReports: DebtStrategyReportModel[] = [];
 
@@ -30,14 +33,14 @@ export class DebtPayoffService {
   getDebtsList() {
     const url = `${this.baseUrl}/debts`;
     this.httpClient.get<DebtModel[]>(url).subscribe(debts => {
-      this.getDebtStrategyReports();
       this.debtsListChanged.next(debts);
+      this.getDebtStrategyReports();
     });
   }
 
   getDebtStrategyReports() {
     const url = `${this.baseUrl}/debts/payoff`;
-    const params = new HttpParams().set('extraPayment', environment.extraPayment.toString());
+    const params = new HttpParams().set('extraPayment', this.extraPayment.toString()).set('strategy', this.strategy);
     this.httpClient.get<DebtStrategyReportModel[]>(url, {params: params})
       .subscribe(reports => {
       this.debtStrategyReports = reports;

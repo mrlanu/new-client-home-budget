@@ -6,6 +6,5 @@ export const environment = {
     userId: 0,
     username: '',
     budgets: null
-  },
-  extraPayment: 0
+  }
 };
