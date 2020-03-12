@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DebtPayoffService} from '../../../services/debt-payoff.service';
 import {Subscription} from 'rxjs';
 import {DebtStrategyReportModel} from '../../../models/debt-strategy-report.model';
+import {DebtPayoffStrategyModel} from '../../../models/debt-payoff-strategy.model';
 
 @Component({
   selector: 'app-strategy-report-list',
@@ -10,17 +11,17 @@ import {DebtStrategyReportModel} from '../../../models/debt-strategy-report.mode
 })
 export class StrategyReportListComponent implements OnInit, OnDestroy {
 
-  reportsList: DebtStrategyReportModel[] = [];
+  debtStrategyReport: DebtPayoffStrategyModel;
   componentSubs: Subscription[] = [];
 
   constructor(private debtPayoffService: DebtPayoffService) { }
 
   ngOnInit() {
     this.componentSubs.push(this.debtPayoffService.debtStrategyReportsChanged
-      .subscribe((reportsList: DebtStrategyReportModel[]) => {
-        this.reportsList = reportsList;
+      .subscribe((report: DebtPayoffStrategyModel) => {
+        this.debtStrategyReport = report;
+        console.log(report);
       }));
-    this.debtPayoffService.getDebtStrategyReports();
   }
 
   ngOnDestroy() {

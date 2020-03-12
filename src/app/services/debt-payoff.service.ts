@@ -4,19 +4,20 @@ import {Subject} from 'rxjs';
 import {DebtStrategyReportModel} from '../models/debt-strategy-report.model';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {DebtPayoffStrategyModel} from '../models/debt-payoff-strategy.model';
 
 @Injectable()
 export class DebtPayoffService {
 
   debtsListChanged = new Subject<DebtModel[]>();
   debtCreated = new Subject<void>();
-  debtStrategyReportsChanged = new Subject<DebtStrategyReportModel[]>();
+  debtStrategyReportsChanged = new Subject<DebtPayoffStrategyModel>();
   debtSelected = new Subject<DebtModel>();
 
   extraPayment = 0;
   strategy = 'Avalanche';
 
-  private debtStrategyReports: DebtStrategyReportModel[] = [];
+  private debtPayoffStrategy: DebtPayoffStrategyModel;
   private debtsList: DebtModel[] = [];
 
   baseUrl = environment.baseUrl;
@@ -65,10 +66,10 @@ export class DebtPayoffService {
   getDebtStrategyReports() {
     const url = `${this.baseUrl}/debts/payoff`;
     const params = new HttpParams().set('extraPayment', this.extraPayment.toString()).set('strategy', this.strategy);
-    this.httpClient.get<DebtStrategyReportModel[]>(url, {params: params})
-      .subscribe(reports => {
-      this.debtStrategyReports = reports;
-      this.debtStrategyReportsChanged.next(reports);
+    this.httpClient.get<DebtPayoffStrategyModel>(url, {params: params})
+      .subscribe(strategy => {
+      this.debtPayoffStrategy = strategy;
+      this.debtStrategyReportsChanged.next(strategy);
     });
   }
 }
