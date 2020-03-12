@@ -6,7 +6,9 @@
       <div class="text-uppercase balance-hint">apr</div>
     </div>
     <div fxLayout fxLayoutGap="10">
-      <button class="btn btn-success btn-circle btn-circle-sm m-1">
+      <button class="btn btn-success btn-circle btn-circle-sm m-1" (click)="getDebtById(debtItem.id)"
+              data-toggle="tooltip" data-placement="left" title="New Debt"
+              data-toggle="modal" data-target="#debtModal">
         <fa-icon [icon]="faEdit" class="icon"></fa-icon>
       </button>
       <button class="btn btn-danger btn-circle btn-circle-sm m-1" (click)="onDebtDelete(debtItem.id)">

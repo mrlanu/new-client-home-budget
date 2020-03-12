@@ -11,11 +11,13 @@ export class DebtPayoffService {
   debtsListChanged = new Subject<DebtModel[]>();
   debtCreated = new Subject<void>();
   debtStrategyReportsChanged = new Subject<DebtStrategyReportModel[]>();
+  debtSelected = new Subject<DebtModel>();
 
   extraPayment = 0;
   strategy = 'Avalanche';
 
   private debtStrategyReports: DebtStrategyReportModel[] = [];
+  private debtsList: DebtModel[] = [];
 
   baseUrl = environment.baseUrl;
   constructor(private httpClient: HttpClient) {}
@@ -29,12 +31,27 @@ export class DebtPayoffService {
       });
   }
 
+  editDebt(debt: DebtModel) {
+    const url = `${this.baseUrl}/debts`;
+    this.httpClient.put<DebtModel>(url, debt)
+      .subscribe(d => {
+        this.debtCreated.next();
+        this.getDebtsList();
+      });
+  }
+
   getDebtsList() {
     const url = `${this.baseUrl}/debts`;
     this.httpClient.get<DebtModel[]>(url).subscribe(debts => {
+      this.debtsList = debts;
       this.debtsListChanged.next(debts);
       this.getDebtStrategyReports();
     });
+  }
+
+  getDebtById(debtId: number) {
+    const debt = this.debtsList.find(d => d.id === debtId);
+    this.debtSelected.next(debt);
   }
 
   deleteDebt(debtId: number) {

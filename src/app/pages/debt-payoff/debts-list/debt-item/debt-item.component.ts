@@ -21,6 +21,10 @@ export class DebtItemComponent implements OnInit {
     this.progress = (this.debtItem.startBalance - this.debtItem.currentBalance) * 100 / this.debtItem.startBalance;
   }
 
+  getDebtById(debtId: number) {
+    this.debtPayoffService.getDebtById(debtId);
+  }
+
   onDebtDelete(debtItem: number) {
     this.debtPayoffService.deleteDebt(debtItem);
   }
