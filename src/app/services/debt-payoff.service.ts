@@ -15,7 +15,6 @@ export class DebtPayoffService {
   extraPayment = 0;
   strategy = 'Avalanche';
 
-  private debtsList: DebtModel[] = [];
   private debtStrategyReports: DebtStrategyReportModel[] = [];
 
   baseUrl = environment.baseUrl;
@@ -35,6 +34,14 @@ export class DebtPayoffService {
     this.httpClient.get<DebtModel[]>(url).subscribe(debts => {
       this.debtsListChanged.next(debts);
       this.getDebtStrategyReports();
+    });
+  }
+
+  deleteDebt(debtId: number) {
+    const url = `${this.baseUrl}/debts`;
+    const params = new HttpParams().set('debtId', debtId.toString());
+    this.httpClient.delete(url, {params: params}).subscribe(() => {
+      this.getDebtsList();
     });
   }
 

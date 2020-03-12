@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DebtModel} from '../../../../models/debt.model';
 import {faEdit, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {DebtPayoffService} from '../../../../services/debt-payoff.service';
 
 @Component({
   selector: 'app-debt-item',
@@ -14,10 +15,14 @@ export class DebtItemComponent implements OnInit {
   faEdit = faEdit;
   faTimes = faTimes;
 
-  constructor() { }
+  constructor(private debtPayoffService: DebtPayoffService) { }
 
   ngOnInit() {
     this.progress = (this.debtItem.startBalance - this.debtItem.currentBalance) * 100 / this.debtItem.startBalance;
+  }
+
+  onDebtDelete(debtItem: number) {
+    this.debtPayoffService.deleteDebt(debtItem);
   }
 
 }
