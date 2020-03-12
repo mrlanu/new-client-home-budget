@@ -53,13 +53,14 @@ export class DebtControllerComponent implements OnInit, OnDestroy {
     this.debtPayoffService.getDebtById(debtId);
   }
 
-  onExtraPaymentInput(event) {
+  onExtraPaymentInput(extra: number) {
     let sum = 0;
-    if (event.target.valueAsNumber && event.target.valueAsNumber > 0) {
-      sum = event.target.valueAsNumber;
+    if (extra && extra > 0) {
+      sum = extra;
     }
     this.totalPayment = this.sumMinPayment + sum;
     this.debtPayoffService.extraPayment = sum;
+    this.extraPayment = sum;
   }
 
   onExtraPaymentChange() {

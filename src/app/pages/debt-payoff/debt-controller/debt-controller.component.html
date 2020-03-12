@@ -6,7 +6,8 @@
         <span class="input-group-text" id="inputGroup-sizing-sm">
           Min <strong class="ml-1 mr-1">{{ sumMinPayment | currency }}</strong> +</span>
       </div>
-      <input [value]="extraPayment" (input)="onExtraPaymentInput($event)" (change)="onExtraPaymentChange()" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      <input [value]="extraPayment" (input)="onExtraPaymentInput($event.target.valueAsNumber)" (change)="onExtraPaymentChange()"
+             type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
       <div class="input-group-append">
         <span class="input-group-text">=<strong class="ml-1 mr-1">{{ totalPayment | currency }}</strong></span>
       </div>
