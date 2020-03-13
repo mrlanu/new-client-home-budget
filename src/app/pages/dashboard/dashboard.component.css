@@ -1,17 +1,17 @@
-/*.my-container>.row {
-  margin: 0;
-}*/
-/*
-.container-for-row {
-  border: 1px solid orange;
-}
-.cont {
-  border: 1px solid green;
-}
-.item {
-  border: 1px solid red;
+.my-wrapper{
+  width: 98%;
+  margin: auto;
 }
 
-.test {
-  max-width: 1000px;
-}*/
+@media (min-width: 36rem) {
+  .my-wrapper {
+    width: 50%;
+  }
+}
+
+@media (min-width: 80rem) {
+  .my-wrapper {
+    width: 100%;
+    margin: unset;
+  }
+}

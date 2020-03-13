@@ -1,12 +1,13 @@
-<div fxLayout="row wrap" fxLayoutGap="1rem" fxLayoutGap.lt-sm="0" fxFlex>
-  <div class="item" fxFlex="55" fxFlex.lt-lg="100">
+<div fxLayout.gt-md fxFlexAlign.gt-md="space-around">
+
+  <div fxFlex.gt-md="65">
     <app-transactions-list [fxHide.lt-lg]="viewChange"></app-transactions-list>
   </div>
-  <div fxLayout="column" fxFlex>
-    <div class="item">
-      <app-summary *ngIf="!viewChange"></app-summary>
-      <app-operations *ngIf="viewChange"></app-operations>
-    </div>
+
+  <div class="my-wrapper" fxFlex.gt-md="30">
+    <app-summary *ngIf="!viewChange"></app-summary>
+    <app-operations *ngIf="viewChange"></app-operations>
   </div>
+
 </div>
 

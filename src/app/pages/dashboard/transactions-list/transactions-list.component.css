@@ -7,8 +7,7 @@ label {
 }
 
 .my-wrapper {
-  max-width: 1200px;
-  margin: auto;
+
 }
 
 .title {
@@ -37,7 +36,7 @@ label {
 
 @media (min-width: 35rem) {
   .table-decorator {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 
   .title {

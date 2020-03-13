@@ -1,6 +1,5 @@
 .my-wrapper {
-  width: 360px;
-  margin: auto;
+
 }
 
 .my-border {
@@ -30,7 +29,6 @@
 
 @media (min-width: 38rem) {
   .my-wrapper {
-    width: 450px;
   }
   .title {
     font-size: 1.8rem;
