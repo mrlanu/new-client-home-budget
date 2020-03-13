@@ -1,0 +1,16 @@
+<div class="card m-3 shadow">
+  <div class="card-body" fxLayout.gt-md fxLayoutAlign.gt-md="space-evenly center">
+    <div style="text-align: center">
+      <div class="balance font-weight-bold">{{ strategyReport?.debtFreeDate | date: 'MMM, y'}}</div>
+      <div class="text-uppercase balance-hint">debt free on</div>
+    </div>
+    <div style="text-align: center">
+      <div class="balance font-weight-bold">{{ strategyReport?.totalDuration }} {{ strategyReport?.totalDuration > 1 ? 'months' : 'month' }}</div>
+      <div class="text-uppercase balance-hint">duration</div>
+    </div>
+    <div style="text-align: center">
+      <div class="balance font-weight-bold">{{ strategyReport?.totalInterest | currency }}</div>
+      <div class="text-uppercase balance-hint">total Interest</div>
+    </div>
+  </div>
+</div>

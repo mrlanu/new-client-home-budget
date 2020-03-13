@@ -4,22 +4,21 @@ import {Subscription} from 'rxjs';
 import {DebtPayoffStrategyModel} from '../../../models/debt-payoff-strategy.model';
 
 @Component({
-  selector: 'app-strategy-report-list',
-  templateUrl: './strategy-report-list.component.html',
-  styleUrls: ['./strategy-report-list.component.css']
+  selector: 'app-payoff-summary',
+  templateUrl: './payoff-summary.component.html',
+  styleUrls: ['./payoff-summary.component.css']
 })
-export class StrategyReportListComponent implements OnInit, OnDestroy {
+export class PayoffSummaryComponent implements OnInit, OnDestroy {
 
-  debtStrategyReport: DebtPayoffStrategyModel;
+  strategyReport: DebtPayoffStrategyModel;
   componentSubs: Subscription[] = [];
 
   constructor(private debtPayoffService: DebtPayoffService) { }
 
   ngOnInit() {
     this.componentSubs.push(this.debtPayoffService.debtStrategyReportsChanged
-      .subscribe((report: DebtPayoffStrategyModel) => {
-        this.debtStrategyReport = report;
-        console.log(report);
+      .subscribe((report) => {
+        this.strategyReport = report;
       }));
   }
 
