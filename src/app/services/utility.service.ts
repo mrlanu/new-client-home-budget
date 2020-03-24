@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Category} from '../models/category.model';
 import {Subject} from 'rxjs';
@@ -7,6 +7,7 @@ import {Subcategory} from '../models/subcategory.model';
 import {Account} from '../models/account.model';
 import {SummariesService} from './summaries.service';
 import {Budget} from '../models/budget.model';
+import {DataViewModel} from '../models/data-view.model';
 
 @Injectable()
 export class UtilityService {
@@ -18,6 +19,7 @@ export class UtilityService {
   categoryCreated = new Subject<Category>();
   subcategoryChanged = new Subject<Subcategory[]>();
   subcategoryCreated = new Subject<Subcategory>();
+  dataChanged = new Subject<DataViewModel>();
   budgetsChange = new Subject<Budget[]>();
   budgets: Budget[] = [];
 
@@ -28,6 +30,18 @@ export class UtilityService {
 
   constructor(private httpClient: HttpClient,
               private summariesService: SummariesService) { }
+
+  getDataView() {
+    const url = `${this.baseUrl}/test`;
+    const params = new HttpParams()
+      .set('startDate', '2015-01-01')
+      .set('endDate', '2020-01-01')
+      .set('amount', '1000')
+      .set('percentDropdown', '3');
+    this.httpClient.get<DataViewModel>(url, {params: params}).subscribe(d => {
+      this.dataChanged.next(d);
+    });
+  }
 
   getBudgetsByUser() {
     const url = `${this.baseUrl}/budgets`;

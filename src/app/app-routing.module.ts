@@ -8,9 +8,11 @@ import {LineChartComponent} from './pages/charts/line-chart/line-chart.component
 import {AuthGuard} from './auth/auth.guard';
 import {UserDetailsComponent} from './pages/user-details/user-details.component';
 import {DebtPayoffComponent} from './pages/debt-payoff/debt-payoff.component';
+import {TestComponent} from './test/test.component';
 
 const routes: Routes = [
   {path: 'welcome-page', component: WelcomePageComponent},
+  {path: 'test', component: TestComponent},
   {path: 'main', component: MainComponent, canActivateChild: [AuthGuard], children: [
           {path: 'charts/income-vs-expenses', component: BarChartComponent},
           {path: 'charts/spent-by-category', component: LineChartComponent},
